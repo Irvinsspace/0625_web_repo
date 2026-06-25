@@ -3,25 +3,60 @@
 
 <head>
         <meta charset="UTF-8">
-        <title>我的個人網站</title>
+        <title>默文部落格</title>
         <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-container"> /* 把顯示網站文字圖片主要內容區塊從整個背景分出來 */
+    <div class="main-container">
         <div class="header-container">
-        <img src="banner.png"  class="Banner" width="1200" height="400">
-        <img src="NewProfile.png" alt="My Profile Picture" class="Profile-pic" width="200" height="200">
+            <img src="banner.png"  class="Banner" width="1200" height="400">
+            <img src="NewProfile.png" alt="My Profile Picture" class="Profile-pic" width="200" height="200">
+            <div class="tags-box">
+                <span class="tag">#畫畫</span>
+                <span class="tag">#遊戲心得</span>
+                <span class="tag">#生活</span>
+                <span class="tag">#自我探索</span>
+            </div>
         </div>
 
         <div class="text-content">
-        <h1>我的個人網站</h1>
-        <p>歡迎來到我的個人網站！</p>
-        <h1>嗨！這是我的網站上的第一行文字。</h1>
-        <h2>這是我的網站上的第二行文字。</h2>
-        <h3>這是我的網站上的第三行文字。</h3>
-        <p>我想創建一個個人的部落格，整理我對很多事情的想法跟紀錄。<br>我會在這裡擺放自己的興趣喜好。</p>
+        <h1>歡迎來到我的個人網站！</h1>
+        <p>嗨！我是默文!會有這個部落格生出來的原因是因為，</p>
+        <p>我想創建一個個人的部落格，整理我對很多事情的想法跟紀錄。</p>
         </div>
+
+    <div class="folder-system">
+
+        <input type="radio" name="tabs" id="tab1" checked> <input type="radio" name="tabs" id="tab2">
+        <input type="radio" name="tabs" id="tab3">
+
+        <div class="folder-tabs">
+        <label for="tab1" class="tab-btn">自我介紹</label>
+        <label for="tab2" class="tab-btn">興趣喜好</label>
+        <label for="tab3" class="tab-btn">旅遊記事</label>
+        </div>
+
+    <div class="folder-content-box">
+
+        <div class="content-panel" id="content1">
+            <h3>我的個人資料</h3>
+            <p>年齡:20歲</p>
+            <p>學校:霍格華茲魔法與巫術學院</p>
+            <p>夢想:成為前端大師</p>
+            </div>
+
+        <div class="content-panel" id="content2">
+            <h3>我的興趣</h3>
+            <p>喜歡帶著相機到處走走...</p>
+            </div>
+
+        <div class="content-panel" id="content3">
+            <h3>旅遊記事</h3>
+            <p>上次去了...</p>
+            </div>
     </div>
+  </div>
+</div>
 </body>
 <footer>
         <p>版權所有 &copy; 2026 默文</p>

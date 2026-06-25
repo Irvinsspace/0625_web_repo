@@ -17,7 +17,7 @@ body {
 }
 
 .main-container {
-  max-width: 1400px; /* 限制這個區塊最大只能 900px 寬 (數值可自由調整) */
+  max-width: 1200px; /* 限制這個區塊最大只能 1400px 寬 (數值可自由調整) */
   margin: 0 auto; /* 讓區塊在畫面裡「水平置中 */
   background-color: #ffffff; /* 給文字區塊白底，不會跟外層的背景圖糊在一起 */
   border-radius: 5%;
@@ -37,14 +37,36 @@ h1 {
     width: 100%;
     height: 400px; /* 可調整橫幅高度 */
 }
+
+.tags-box {
+    position: absolute;
+    left: 20px;
+    bottom: 15px;
+    z-index: 10;
+
+    display: flex;
+    gap: 10px; /* 標籤之間的間距 */
+}
+
+.tag {
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+  color: #333; /* 文字顏色 */
+  padding: 5px 15px; /* 上下 5px，左右 15px 的呼吸空間 */
+  border-radius: 20px; /* 讓邊角變成圓潤的膠囊狀 */
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* 加點小陰影更有質感 */
+}
+
 .Profile-pic {
     position: absolute;
     right: 70px;
     bottom: -50px; /* 調整圖片位置 */
     border-radius: 50%;
-    width: 230px;
-    height: 230px;
+    width: 250px;
+    height: 250px;
     border: 7px solid #aca49de3;
+    box-shadow: 0 0 10px rgba(63, 60, 60, 0.3);
     z-index: 10;
 }
 
@@ -55,5 +77,60 @@ h1 {
 }
 
 .text-content {
-  padding: 50px 30px 30px 30px; /* 上方刻意多留 50px 的空白，因為大頭貼有往下凸 30px，避免文字被大頭貼擋住 */
+  padding: 40px 30px 30px 30px; /* 上方刻意多留 50px 的空白，因為大頭貼有往下凸 30px，避免文字被大頭貼擋住 */
+}
+
+/* 以下是資料夾系統的 CSS 設計 */
+/* 把單選按鈕藏起來 */
+input[type="radio"] {
+  display: none;
+}
+
+/* 資料夾標籤排排站 */
+.folder-tabs {
+  display: flex;
+  gap: 5px;
+  padding-left: 10px; /* 讓標籤不要太貼邊 */
+}
+
+/* 標籤的外觀設計 (像資料夾突出來的部分) */
+.tab-btn {
+  padding: 10px 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px 10px 0 0; /* 只有左上和右上是圓角 */
+  cursor: pointer; /* 滑鼠移上去變成手指 */
+  font-weight: bold;
+}
+
+/* 資料夾大框框的設計 (包含限制寬度) */
+.folder-content-box {
+  background-color: #ffffff;
+  border: 2px solid #333; /* 你草圖裡的黑色邊框 */
+  border-radius: 0 10px 10px 10px; /* 右上、左下、右下圓角 */
+  padding: 30px;
+  min-height: 300px; /* 保證有一個基本高度 */
+
+  /* 這就是你要的文字防爆寬度！ */
+  max-width: 800px;
+  margin: 0 auto; /* 在外層容器內置中 */
+}
+
+/* 預設先把所有內容隱藏 */
+.content-panel {
+  display: none;
+}
+
+/* 🪄 CSS 魔法核心：如果按鈕 1 被選中，就讓旁邊的標籤變色，並顯示對應的內容！ */
+#tab1:checked ~ .folder-tabs label[for="tab1"],
+#tab2:checked ~ .folder-tabs label[for="tab2"],
+#tab3:checked ~ .folder-tabs label[for="tab3"] {
+  background-color: #e7e4e1; /* 讓選中的標籤顏色跟下面資料夾一樣，產生連接感 */
+  border: 2px solid #333;
+  border-bottom: none; /* 藏起底線，感覺就像連在一起 */
+}
+
+#tab1:checked ~ .folder-content-box #content1,
+#tab2:checked ~ .folder-content-box #content2,
+#tab3:checked ~ .folder-content-box #content3 {
+  display: block; /* 把對應的內容顯示出來 */
 }
