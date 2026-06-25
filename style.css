@@ -1,1 +1,40 @@
+p {
+    text-align: left;
+    color: #ce9d7c;
+    font-size: 25px;
+    font-family: Arial, sans-serif;
+}
 
+body {
+    background-color: #f1efee;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+h1 {
+    text-align: left;
+    color: #696464;
+    font-size: 50px;
+    font-family: NotoSerifCJKtc-SemiBold, sans-serif;
+}
+.header-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* 可調整橫幅高度 */
+}
+.Profile-pic {
+    position: absolute;
+    right: 50px;
+    bottom: -50px; /* 調整圖片位置 */
+    border-radius: 50%;
+    width: 230px;
+    height: 230px;
+    border: 6px solid #c7a271e3;
+    z-index: 10;
+}
+
+.Banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 保持圖片比例，填滿容器 */
+}
