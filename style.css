@@ -1,20 +1,35 @@
 p {
     text-align: left;
-    color: #ce9d7c;
-    font-size: 25px;
+    color: #8d6f5b;
+    font-size: 20px;
     font-family: Arial, sans-serif;
 }
 
 body {
+    margin: 0;
+    padding: 0;
+    background-image:url('background(test).png'); /* 放上你喜歡的背景圖 */
+    background-size: cover; /* 讓背景圖填滿整個螢幕 */
+    background-attachment: fixed; /* (選擇性) 讓背景圖固定，滑動網頁時只有中間區塊會動，很有質感！ */
     background-color: #f1efee;
     font-family: Arial, sans-serif;
     color: #333;
 }
 
+.main-container {
+  max-width: 1400px; /* 限制這個區塊最大只能 900px 寬 (數值可自由調整) */
+  margin: 0 auto; /* 讓區塊在畫面裡「水平置中 */
+  background-color: #ffffff; /* 給文字區塊白底，不會跟外層的背景圖糊在一起 */
+  border-radius: 5%;
+  min-height: 105vh; /* 確保就算文字很少，白色區塊也能往下長，至少跟螢幕一樣高 */
+  box-shadow: 0 0 15px rgba(0,0,0,0.3); /* (選擇性) 加一點陰影 */
+}
+
 h1 {
     text-align: left;
     color: #696464;
-    font-size: 50px;
+    font-size: 42px;
+    padding: 10px 0;
     font-family: NotoSerifCJKtc-SemiBold, sans-serif;
 }
 .header-container {
@@ -24,12 +39,12 @@ h1 {
 }
 .Profile-pic {
     position: absolute;
-    right: 50px;
+    right: 70px;
     bottom: -50px; /* 調整圖片位置 */
     border-radius: 50%;
     width: 230px;
     height: 230px;
-    border: 6px solid #c7a271e3;
+    border: 7px solid #aca49de3;
     z-index: 10;
 }
 
@@ -37,4 +52,8 @@ h1 {
     width: 100%;
     height: 100%;
     object-fit: cover; /* 保持圖片比例，填滿容器 */
+}
+
+.text-content {
+  padding: 50px 30px 30px 30px; /* 上方刻意多留 50px 的空白，因為大頭貼有往下凸 30px，避免文字被大頭貼擋住 */
 }
