@@ -28,9 +28,88 @@ h1 {
     font-weight: bold;
   }
 
+  /* 導覽列外框設定 */
+.sticky-navbar {
+  position: sticky; /* 置頂*/
+  top: 0; /* 告訴它要黏在距離頂部 0px 的地方 */
+  background: rgba(95, 89, 60, 0.8); /* 導覽列底色 (可自由修改) */
+  z-index: 100; /* 確保導覽列圖層在最上層，才不會往下滾時被 Banner 或大頭貼蓋住 */
+  padding: 15px 0;
+
+  /* 毛玻璃 */
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px); /* 確保 Safari 瀏覽器相容性 */
+
+  display: flex;
+  justify-content: center; /* 讓導覽列的文字在電腦版時置中 */
+}
+
+/* 連結清單設定 */
+.nav-links {
+  list-style: none; /* 拿掉預設的清單黑點點 */
+  margin: 0;
+  padding: 0;
+  display: flex; /* 讓清單變成橫向排列 */
+  gap: 40px; /* 每個連結之間的距離 */
+}
+
+/* 連結文字的樣式 */
+.nav-links a {
+  color: white; /* 文字顏色 */
+  text-decoration: none; /* 拿掉預設的超連結底線 */
+  font-weight: bold;
+  font-size: 16px;
+  font-family: "Noto Sans CJK TC", Arial, sans-serif;
+}
+
+/* --- 先把漢堡按鈕跟機關藏起來 (電腦版不需要看到) --- */
+.menu-checkbox, .menu-btn {
+  display: none;
+}
+
+/* --- 響應式設計：當螢幕寬度「小於 768px」時，會觸發以下魔法 --- */
+@media (max-width: 768px) {
+
+  /* 1. 把漢堡按鈕呼叫出來，放在左上角 */
+  .menu-btn {
+    display: block;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+  }
+
+  /* 2. 把原本橫向的導覽列變成直的，並先藏起來 */
+  .nav-links {
+    display: none; /* 預設隱藏 */
+    flex-direction: column; /* 變成直向排列 */
+    background:rgba(95, 89, 60, 0.8); /* 給它一個稍微不同的底色 */
+    width: 100%;
+    position: absolute; /* 定位在導覽列下方 */
+    top: 30px;
+    left: 0;
+    text-align: center;
+    font-family: "Noto Sans CJK TC", Arial, sans-serif;
+  }
+
+  /* 調整直向選單裡的間距 */
+  .nav-links li {
+    padding: 2px 0;
+    border-bottom: 1px solid #978a6e; /* 加一條分隔線會更有質感 */
+  }
+
+  /* 3.當隱藏的 Checkbox 被打勾時，把 nav-links 秀出來 */
+  .menu-checkbox:checked ~ .nav-links {
+    display: flex;
+  }
+}
+
 .text-content {  /* 進入網站歡迎內容跟簡介的一塊div */
   padding: 50px 30px 30px 80px; /* 上方刻意多留 50px 的空白，因為大頭貼有往下凸 30px，避免文字被大頭貼擋住 */
 }
+
 
 .main-container {
   position: relative;
