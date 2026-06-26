@@ -1,28 +1,22 @@
-p {
-    text-align: left;
-    color: #8d6f5b;
-    font-size: 20px;
-    font-family: Arial, sans-serif;
-}
+
 
 body {
     margin: 0;
     padding: 0;
-    background-image:url('background(test).png'); /* 放上你喜歡的背景圖 */
+    background-image:url(pictues\background.png); /* 放上你喜歡的背景圖 */
     background-size: cover; /* 讓背景圖填滿整個螢幕 */
     background-attachment: fixed; /* (選擇性) 讓背景圖固定，滑動網頁時只有中間區塊會動，很有質感！ */
     background-color: #f1efee;
-    font-family: Arial, sans-serif;
+    font-family: "Noto Serif CJK TC", Arial, sans-serif;
     color: #333;
 }
 
-.main-container {
-  max-width: 1200px; /* 限制這個區塊最大只能 1400px 寬 (數值可自由調整) */
-  margin: 0 auto; /* 讓區塊在畫面裡「水平置中 */
-  background-color: #ffffff; /* 給文字區塊白底，不會跟外層的背景圖糊在一起 */
-  border-radius: 5%;
-  min-height: 105vh; /* 確保就算文字很少，白色區塊也能往下長，至少跟螢幕一樣高 */
-  box-shadow: 0 0 15px rgba(0,0,0,0.3); /* (選擇性) 加一點陰影 */
+p {
+    text-align: left;
+    color: #8d6f5b;
+    padding: 0 0 0 5px;
+    font-size: 20px;
+    font-family: "Noto Serif CJK TC", Arial, sans-serif;
 }
 
 h1 {
@@ -30,8 +24,24 @@ h1 {
     color: #696464;
     font-size: 42px;
     padding: 10px 0;
-    font-family: NotoSerifCJKtc-SemiBold, sans-serif;
+    font-family: "Noto Serif CJK TC", Arial, sans-serif;
+    font-weight: bold;
+  }
+
+.text-content {  /* 進入網站歡迎內容跟簡介的一塊div */
+  padding: 50px 30px 30px 80px; /* 上方刻意多留 50px 的空白，因為大頭貼有往下凸 30px，避免文字被大頭貼擋住 */
 }
+
+.main-container {
+  position: relative;
+  max-width: 1200px; /* 限制這個區塊的大小 */
+  margin: 0 auto; /* 讓區塊在畫面裡「水平置中 */
+  background-color: #ffffff; /* 給文字區塊白底，不會跟外層的背景圖糊在一起 */
+  border-radius: 5%;
+  min-height: 120vh; /* 確保就算文字很少，白色區塊也能往下長，至少跟螢幕一樣高 */
+  box-shadow: 0 0 15px rgba(0,0,0,0.3); /* (選擇性) 加一點陰影 */
+}
+
 .header-container {
     position: relative;
     width: 100%;
@@ -50,12 +60,12 @@ h1 {
 
 .tag {
   background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
-  color: #333; /* 文字顏色 */
+  color: #a06732; /* 文字顏色 */
   padding: 5px 15px; /* 上下 5px，左右 15px 的呼吸空間 */
   border-radius: 20px; /* 讓邊角變成圓潤的膠囊狀 */
   font-size: 14px;
   font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* 加點小陰影更有質感 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* 加點小陰影更有質感 */
 }
 
 .Profile-pic {
@@ -76,61 +86,3 @@ h1 {
     object-fit: cover; /* 保持圖片比例，填滿容器 */
 }
 
-.text-content {
-  padding: 40px 30px 30px 30px; /* 上方刻意多留 50px 的空白，因為大頭貼有往下凸 30px，避免文字被大頭貼擋住 */
-}
-
-/* 以下是資料夾系統的 CSS 設計 */
-/* 把單選按鈕藏起來 */
-input[type="radio"] {
-  display: none;
-}
-
-/* 資料夾標籤排排站 */
-.folder-tabs {
-  display: flex;
-  gap: 5px;
-  padding-left: 10px; /* 讓標籤不要太貼邊 */
-}
-
-/* 標籤的外觀設計 (像資料夾突出來的部分) */
-.tab-btn {
-  padding: 10px 20px;
-  background-color: #e0e0e0;
-  border-radius: 10px 10px 0 0; /* 只有左上和右上是圓角 */
-  cursor: pointer; /* 滑鼠移上去變成手指 */
-  font-weight: bold;
-}
-
-/* 資料夾大框框的設計 (包含限制寬度) */
-.folder-content-box {
-  background-color: #ffffff;
-  border: 2px solid #333; /* 你草圖裡的黑色邊框 */
-  border-radius: 0 10px 10px 10px; /* 右上、左下、右下圓角 */
-  padding: 30px;
-  min-height: 300px; /* 保證有一個基本高度 */
-
-  /* 這就是你要的文字防爆寬度！ */
-  max-width: 800px;
-  margin: 0 auto; /* 在外層容器內置中 */
-}
-
-/* 預設先把所有內容隱藏 */
-.content-panel {
-  display: none;
-}
-
-/* 🪄 CSS 魔法核心：如果按鈕 1 被選中，就讓旁邊的標籤變色，並顯示對應的內容！ */
-#tab1:checked ~ .folder-tabs label[for="tab1"],
-#tab2:checked ~ .folder-tabs label[for="tab2"],
-#tab3:checked ~ .folder-tabs label[for="tab3"] {
-  background-color: #e7e4e1; /* 讓選中的標籤顏色跟下面資料夾一樣，產生連接感 */
-  border: 2px solid #333;
-  border-bottom: none; /* 藏起底線，感覺就像連在一起 */
-}
-
-#tab1:checked ~ .folder-content-box #content1,
-#tab2:checked ~ .folder-content-box #content2,
-#tab3:checked ~ .folder-content-box #content3 {
-  display: block; /* 把對應的內容顯示出來 */
-}
