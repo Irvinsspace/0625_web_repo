@@ -13,9 +13,12 @@ body {
 
 p {
     text-align: left;
-    color: #8d6f5b;
+    max-width: 70ch;
+    line-height: 1.6;
+
     padding: 0 0 0 5px;
-    font-size: 20px;
+    font-size: 19px;
+    color: #8d6f5b;
     font-family: "Noto Serif CJK TC", Arial, sans-serif;
 }
 
@@ -60,6 +63,12 @@ h1 {
   font-weight: bold;
   font-size: 16px;
   font-family: "Noto Sans CJK TC", Arial, sans-serif;
+  transition: 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: #ffffff; /* 滑鼠移上去的顏色 */
+  text-shadow: 0 0 20px #f1efee; /* 滑鼠移上去的文字光暈 */ /* 滑鼠移上去的透明度 */
 }
 
 /* --- 先把漢堡按鈕跟機關藏起來 (電腦版不需要看到) --- */
@@ -71,18 +80,19 @@ h1 {
 @media (max-width: 768px) {
 
   /* 1. 把漢堡按鈕呼叫出來，放在左上角 */
-  .menu-btn {
+.menu-btn {
     display: block;
     color: white;
     font-size: 26px;
     cursor: pointer;
     position: absolute;
+    font-size: 50px;
     left: 20px;
     top: 10px;
   }
 
   /* 2. 把原本橫向的導覽列變成直的，並先藏起來 */
-  .nav-links {
+.nav-links {
     display: none; /* 預設隱藏 */
     flex-direction: column; /* 變成直向排列 */
     background:rgba(95, 89, 60, 0.8); /* 給它一個稍微不同的底色 */
@@ -95,13 +105,13 @@ h1 {
   }
 
   /* 調整直向選單裡的間距 */
-  .nav-links li {
+.nav-links li {
     padding: 2px 0;
     border-bottom: 1px solid #978a6e; /* 加一條分隔線會更有質感 */
   }
 
   /* 3.當隱藏的 Checkbox 被打勾時，把 nav-links 秀出來 */
-  .menu-checkbox:checked ~ .nav-links {
+.menu-checkbox:checked ~ .nav-links {
     display: flex;
   }
 }
@@ -116,7 +126,7 @@ h1 {
   max-width: 1200px; /* 限制這個區塊的大小 */
   margin: 0 auto; /* 讓區塊在畫面裡「水平置中 */
   background-color: #ffffff; /* 給文字區塊白底，不會跟外層的背景圖糊在一起 */
-  border-radius: 5%;
+  border-radius: 0 0 5% 5%;
   min-height: 120vh; /* 確保就算文字很少，白色區塊也能往下長，至少跟螢幕一樣高 */
   box-shadow: 0 0 15px rgba(0,0,0,0.3); /* (選擇性) 加一點陰影 */
 }
