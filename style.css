@@ -71,6 +71,37 @@ h1 {
   text-shadow: 0 0 20px #f1efee; /* 滑鼠移上去的文字光暈 */ /* 滑鼠移上去的透明度 */
 }
 
+.dropdown-parent {
+  position: relative; /* 讓下拉選單的子元素絕對定位 */
+  transition: 0.25s ease;
+}
+
+/* 2. 下拉選單的預設樣式 (先藏起來！) */
+.dropdown-menu {
+  display: none; /* 🌟 關鍵魔法：預設隱藏，不要出現在畫面上 */
+  position: absolute; /* 讓選單懸空，才不會把旁邊的導覽列撐開 */
+  top: 100%; /* 從「興趣喜好」的底部開始往下長 */
+  left: 50%;
+  transform: translateX(-50%); /* 讓下拉選單跟「興趣喜好」完美水平置中對齊 */
+
+  background-color: rgba(95, 89, 60, 0.8); /* 下拉選單的底色 */
+  padding: 10px 0;
+  border-radius: 8px; /* 圓角看起來比較可愛 */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* 加點陰影有立體感 */
+  min-width: 120px; /* 給選單一個基本寬度 */
+}
+
+/* 3. 下拉選單裡面的選項排版 */
+.dropdown-menu li {
+  padding: 10px 20px;
+  list-style: none;
+}
+
+/* 4. 🌟 啟動魔法：當滑鼠碰到父元素 (.dropdown-parent) 時，把子選單秀出來！ */
+.dropdown-parent:hover .dropdown-menu {
+  display: block;
+}
+
 /* --- 先把漢堡按鈕跟機關藏起來 (電腦版不需要看到) --- */
 .menu-checkbox, .menu-btn {
   display: none;
