@@ -6,9 +6,9 @@
         <title>默文的部落格</title>
         <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<nav class="sticky-navbar">
+
+    <nav class="sticky-navbar">
 
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
@@ -17,14 +17,44 @@
     <ul class="nav-links">
     <li><a href="main.html">首頁</a></li>
     <li><a href="about.html">自我介紹</a></li>
-    <li><a href="hobbies.html">喜好專欄</a></li>
+
+    <li class="dropdown-parent">
+        <a href="#">喜好專欄</a>
+
+        <ul class="dropdown-menu">
+            <li><a href="painting.html">畫畫</a></li>
+            <li><a href="gaming.html">遊戲</a></li>
+            <li><a href="my_fiction.html">寫小說</a></li>
+        </ul>
+
     <li><a href="diary.html">生活日誌</a></li>
+    </li>
+
     </ul>
 
     </nav>
+    <div class="main-container">
+        <div class="header-container">
+            <img src="pictures\banner.png"  class="Banner" width="1200" height="400">
+            <img src="pictures\NewProfile.png" alt="My Profile Picture" class="Profile-pic" width="200" height="200">
+            <div class="tags-box">
+                <span class="tag">#畫畫</span>
+                <span class="tag">#遊戲心得</span>
+                <span class="tag">#生活</span>
+                <span class="tag">#自我探索</span>
+            </div>
+        </div>
 
+        <div class="text-content">
+        <h1>關於默文</h1>
+        <p>我是一個自學畫畫的人，普通的高中畢業生，不過我還在尋找自己的志向當中。
+        <br>我從自己原本充滿壓力的原生家庭出走，想知道自己如果可以有完全屬於自己的生活與時間，
+        我能不能有辦法，不會再因為外界的期待，無論是家庭、學校、社會，而迷失自己真正想做的事。</p>
+        </div>
+
+  </div>
+</div>
 </body>
-
 <footer>
         <p>版權所有 &copy; 2026 默文</p>
 </footer>

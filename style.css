@@ -73,7 +73,6 @@ h1 {
 
 .dropdown-parent {
   position: relative; /* 讓下拉選單的子元素絕對定位 */
-  transition: 0.25s ease;
 }
 
 /* 2. 下拉選單的預設樣式 (先藏起來！) */
@@ -91,6 +90,15 @@ h1 {
   min-width: 120px; /* 給選單一個基本寬度 */
 }
 
+.dropdown-menu li a {
+  display: block; /* 讓整個選項都可以點擊 */
+  color: white;
+  padding: 5px 15px;
+  border-bottom: 1px solid #978a6e; /* 每個選項之間的間距 */
+  text-decoration: none;
+  font-family: "Noto Sans CJK TC", Arial, sans-serif;
+}
+
 /* 3. 下拉選單裡面的選項排版 */
 .dropdown-menu li {
   padding: 10px 20px;
@@ -100,6 +108,7 @@ h1 {
 /* 4. 🌟 啟動魔法：當滑鼠碰到父元素 (.dropdown-parent) 時，把子選單秀出來！ */
 .dropdown-parent:hover .dropdown-menu {
   display: block;
+  transition: 0.25s ease;
 }
 
 /* --- 先把漢堡按鈕跟機關藏起來 (電腦版不需要看到) --- */
