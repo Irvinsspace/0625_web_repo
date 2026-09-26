@@ -198,6 +198,11 @@ h3 {
     position: relative;
     width: 100%;
     height: 400px; /* 可調整橫幅高度 */
+    margin-top: -40px;
+    margin-left: -40px;
+    margin-right: -40px;
+    /* 因為它突破了，所以寬度要加上被扣掉的 padding 才會填滿 */
+    width: calc(100% + 80px);
 }
 
 .tags-box {
@@ -233,9 +238,16 @@ h3 {
 }
 
 .Banner {
+    position: absolute; /* 🌟 讓圖片脫離排版，隨心所欲控制 */
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 保持圖片比例，填滿容器 */
+    /* 這是你之前學過的防變形魔法，讓圖片填滿整個空間[cite: 9]*/
+    object-fit: cover;
+    /* 為了不要蓋到大頭貼跟標籤，圖層要設最低[cite: 9]*/
+    z-index: 1;
+    border-radius: 20px 20px 0 0;
 }
 
 .under-development {
@@ -288,18 +300,39 @@ h3 {
    點擊後的放大預覽區塊 (Lightbox)
 ========================================= */
 .lightbox {
-    display: none; /* 平常先隱藏起來 */
-    position: fixed; /* 固定在螢幕畫面上 */
-    z-index: 9999; /* 圖層拉到最高，蓋住所有東西 */
+    /* 🌟 把原本的 display: none; 刪掉！改成下面兩行： */
+    opacity: 0;
+    visibility: hidden;
+
+    position: fixed;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.85); /* 變暗的半透明黑底 */
-    align-items: center; /* 讓圖片垂直置中 */
-    justify-content: center; /* 讓圖片水平置中 */
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex; /* 改成平常就保持 flex，只是隱藏起來 */
+    align-items: center;
+    justify-content: center;
+
+    /* 🌟 魔法核心：設定透明度的漸變時間 */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+/* 當加上 .show 這個 class 時，就會變成看得到，並觸發 0.3 秒淡入 */
+.lightbox.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 額外小驚喜：讓圖片被點開時，有從微小放大回來的呼吸感！ */
+.lightbox img {
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+.lightbox.show img {
+    transform: scale(1);
+}
 /* 放大預覽區裡面的大圖片（一樣套用白框） */
 .lightbox img {
     max-width: 90%;
@@ -329,21 +362,32 @@ h3 {
     display: none; /* 把醜醜的圓圈預設按鈕隱藏起來 */
 }
 
-/* 浮動在左邊的按鈕容器 */
+/* =========================================
+   左側分類按鈕 (加入黏性定位 sticky)
+========================================= */
+.sticky-anchor {
+    position: sticky;
+    top: 100px; /* 往下滾動時，距離螢幕頂部 100px 時黏住！ */
+    z-index: 10;
+    width: 0;  /* 寬高設為 0，避免佔用白框內部空間把畫作往下擠 */
+    height: 0;
+}
+
+/* 按鈕容器現在是以 sticky-anchor 為基準點往左推 */
 .side-buttons {
     position: absolute;
-    left: -140px; /* 把按鈕往左邊推出去到白框外面 */
-    top: 80px; /* 距離頂部一點距離 */
+    left: -140px;
+    top: 32px;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* 按鈕之間的間距 */
+    gap: 20px;
 }
 
 /* 按鈕本身的外觀設計 */
 .side-btn {
     background-color: #ffffff;
     padding: 15px 25px;
-    border-radius: 10px 0 0 10px; /* 只有左邊有圓角，右邊貼平白框更好看 */
+    border-radius: 10px;
     box-shadow: -4px 4px 8px rgba(0,0,0,0.15); /* 陰影打在左下角 */
     cursor: pointer;
     font-weight: bold;
@@ -354,15 +398,15 @@ h3 {
 
 /* 滑鼠移過去微微往左彈出的互動感 */
 .side-btn:hover {
-    transform: translateX(-5px); 
+    transform: translateX(-5px);
 }
 
 /* 當按鈕被選中時的發光/變色效果 */
-#btn-digital:checked ~ .side-buttons [for="btn-digital"],
-#btn-traditional:checked ~ .side-buttons [for="btn-traditional"] {
-    background-color: #ffeb3b; /* 變成可愛的黃色，你可以換成喜歡的顏色 */
-    color: #000;
-    box-shadow: -4px 4px 15px rgba(255, 235, 59, 0.6);
+#btn-digital:checked ~ .sticky-anchor .side-buttons [for="btn-digital"],
+#btn-traditional:checked ~ .sticky-anchor .side-buttons [for="btn-traditional"] {
+    background-color: #88b7e4;
+    color: #ffffff;
+    box-shadow: -4px 4px 15px rgba(100, 73, 57, 0.6);
 }
 
 /* 控制兩個畫廊的顯示與隱藏 */
@@ -376,13 +420,19 @@ h3 {
 
 /* 🚨 防呆機制：如果別人的螢幕太小，左邊按鈕會被切掉，我們就把它變回放在上方 */
 @media (max-width: 1500px) {
+    .sticky-anchor {
+        position: sticky;
+        top: 50px; /* 避開你原本的頂部 Navbar 高度 */
+        width: 100%;
+        height: auto;
+        padding: 15px 0;
+        margin-bottom: 20px;
+    }
     .side-buttons {
         position: static;
         flex-direction: row;
         justify-content: center;
-        margin-bottom: 20px;
     }
-    .side-btn { border-radius: 10px; }
 }
 
 /* =========================================
@@ -399,9 +449,9 @@ h3 {
 .lightbox-text {
     color: white;
     font-size: 1.2rem;
-    margin-top: 15px; 
+    margin-top: 15px;
     letter-spacing: 1.5px;
     line-height: 1.5;
     /* 確保文字不會超出圖片寬度 */
-    max-width: 100%; 
+    max-width: 100%;
 }
