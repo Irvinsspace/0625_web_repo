@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image:url(pictues\background.png); /* 放上你喜歡的背景圖 */
+    background-image:url(pictures/background.png); /* 放上你喜歡的背景圖 */
     background-size: cover; /* 讓背景圖填滿整個螢幕 */
     background-attachment: fixed; /* (選擇性) 讓背景圖固定，滑動網頁時只有中間區塊會動，很有質感！ */
     background-color: #f1efee;
@@ -30,6 +30,16 @@ h1 {
     font-family: "Noto Serif CJK TC", Arial, sans-serif;
     font-weight: bold;
   }
+
+h3 {
+  text-align: left;
+  color: #af583e;
+  font-size: 30px;
+  padding: 5px 0;
+  font-family: "Noto Serif CJK TC", Arial, sans-serif;
+  font-weight: bold;
+}
+
 
   /* 導覽列外框設定 */
 .sticky-navbar {
@@ -92,8 +102,8 @@ h1 {
 
 .dropdown-menu li a {
   display: block; /* 讓整個選項都可以點擊 */
-  color: white;
-  padding: 5px 15px;
+  color: rgb(207, 198, 198);
+  padding: 10px 15px;
   border-bottom: 1px solid #978a6e; /* 每個選項之間的間距 */
   text-decoration: none;
   font-family: "Noto Sans CJK TC", Arial, sans-serif;
@@ -215,3 +225,85 @@ h1 {
     object-fit: cover; /* 保持圖片比例，填滿容器 */
 }
 
+.under-development {
+    display: block;
+    margin: 10px auto; /* 置中圖片 */
+    max-width: 100%; /* 確保圖片不會超過容器寬度 */
+    height: auto; /* 保持圖片比例 */
+}
+
+.writing-down {
+    display: block;
+    margin: 10px auto; /* 置中圖片 */
+    max-width: 100%; /* 確保圖片不會超過容器寬度 */
+    height: auto; /* 保持圖片比例 */
+}
+
+/* =========================================
+   畫廊網格：處理一排 2~3 張的排版
+========================================= */
+.gallery-grid {
+    display: grid;
+    /* 這個魔法會自動幫你排版：螢幕大時一排 3 張，螢幕小時自動變成一排 1~2 張 */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px; /* 圖片之間的間距 */
+    padding: 20px;
+}
+
+/* =========================================
+   拍立得風格照片
+========================================= */
+.polaroid {
+    width: 100%;
+    background-color: white; /* 拍立得的白色底 */
+    padding: 10px 10px 15px 10px; /* 製造出白框效果，下方稍微寬一點更像拍立得 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 加上一點陰影看起來更立體 */
+    cursor: pointer; /* 滑鼠移過去變成手指圖案，提示可以點擊 */
+    transition: transform 0.2s; /* 微微放大的動畫時間 */
+
+    /* 避免圖片被反白選取 */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* 滑鼠碰到小圖時，微微放大互動感 */
+.polaroid:hover {
+    transform: scale(1.03);
+}
+
+/* =========================================
+   點擊後的放大預覽區塊 (Lightbox)
+========================================= */
+.lightbox {
+    display: none; /* 平常先隱藏起來 */
+    position: fixed; /* 固定在螢幕畫面上 */
+    z-index: 9999; /* 圖層拉到最高，蓋住所有東西 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* 變暗的半透明黑底 */
+    align-items: center; /* 讓圖片垂直置中 */
+    justify-content: center; /* 讓圖片水平置中 */
+}
+
+/* 放大預覽區裡面的大圖片（一樣套用白框） */
+.lightbox img {
+    max-width: 90%;
+    max-height: 85vh; /* 確保不管多大都不會超過螢幕高度 */
+    background-color: white;
+    padding: 15px; /* 大圖的白框 */
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+/* 關閉按鈕 (X) */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}

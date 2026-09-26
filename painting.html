@@ -3,7 +3,7 @@
 
 <head>
         <meta charset="UTF-8">
-        <title>默文的部落格</title>
+        <title>我的部落格</title>
         <link rel="stylesheet" href="style.css">
 </head>
 
@@ -23,8 +23,8 @@
 
         <ul class="dropdown-menu">
             <li><a href="painting.html">畫畫</a></li>
-            <li><a href="gaming.html">遊戲</a></li>
-            <li><a href="my_fiction.html">寫小說</a></li>
+            <li><a href="reading.html">閱讀專欄</a></li>
+            <li><a href="my_fiction.html">小說</a></li>
         </ul>
 
     <li><a href="diary.html">生活日誌</a></li>
@@ -32,15 +32,65 @@
     </nav>
 
     <div class="main-container">
-        <div class="text-content">
-        <h1>我有很多塗鴉!</h1>
-        <p>我非常喜歡畫畫，這裡會收錄一些被我挑選過、值得讓我留下來的作品。</p>
+        <!-- 這是你的畫廊區塊 -->
+        <div class="gallery-grid">
+            <!-- 每一張圖都加上 polaroid 類別，以及防右鍵/拖曳屬性 -->
+            <img src="pictures\sunflower_08182026.png" alt="畫作1" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\Your Glaze.png" alt="畫作2" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\Chen_2025.3.20.png" alt="畫作3" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\banner.png" alt="畫作4" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\MW12.png" alt="畫作5" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\ghrr.png" alt="畫作6" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\city of tears.png" alt="畫作7" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\sailor moon redraw challange 20210925.png" alt="畫作8" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\Practice0001.png" alt="畫作9" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\blue_eyes.png" alt="畫作10" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\blue_eyes(f)20240215.png" alt="畫作11" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\gura(hbd davi)01292024.png" alt="畫作12" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\me0003.png" alt="畫作13" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\jojo_Kakyoin.png" alt="畫作14" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\Amenor01.png" alt="畫作15" class="polaroid" oncontextmenu="return false;" draggable="false">
+            <img src="pictures\c.png" alt="畫作16" class="polaroid" oncontextmenu="return false;" draggable="false">
         </div>
     </div>
+
+    <!-- 這是點擊後才會跑出來的「放大預覽區 (Lightbox)」 -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-btn">&times;</span>
+        <img id="lightbox-img" src="" alt="放大預覽" oncontextmenu="return false;" draggable="false">
+    </div>
+
+    <!-- 這一小段 JavaScript 負責控制點擊放大的魔法 -->
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.polaroid');
+        const closeBtn = document.querySelector('.close-btn');
+
+        // 當點擊小圖時，打開黑底背景並將放大的圖換成該小圖
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = this.src;
+            });
+        });
+
+        // 點擊右上角叉叉，關閉預覽
+        closeBtn.addEventListener('click', function() {
+            lightbox.style.display = 'none';
+        });
+
+        // 點擊黑色背景任何一處，也可以關閉預覽
+        lightbox.addEventListener('click', function(e) {
+            if (e.target !== lightboxImg) {
+                lightbox.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 
 <footer>
-        <p>版權所有 &copy; 2026 默文</p>
+        <p>版權所有 &copy; 2026</p>
 </footer>
 
 </html>
