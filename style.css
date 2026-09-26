@@ -1,4 +1,8 @@
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
     margin: 0;
@@ -174,11 +178,20 @@ h3 {
 .main-container {
   position: relative;
   max-width: 1200px; /* 限制這個區塊的大小 */
-  margin: 0 auto; /* 讓區塊在畫面裡「水平置中 */
-  background-color: #ffffff; /* 給文字區塊白底，不會跟外層的背景圖糊在一起 */
-  border-radius: 0 0 5% 5%;
-  min-height: 120vh; /* 確保就算文字很少，白色區塊也能往下長，至少跟螢幕一樣高 */
-  box-shadow: 0 0 15px rgba(0,0,0,0.3); /* (選擇性) 加一點陰影 */
+  margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
+  background-color: #ffffff;
+
+  /*給便當盒內部安全的留白空間，解決貼壁問題 */
+  padding: 40px;
+  box-sizing: border-box; /* 確保 padding 不會把 1200px 的寬度撐破 */
+
+  /* 把 % 改成固定的 px (像素)，這樣就算網頁再長，圓角永遠都是 20px 不會變形 */
+  border-radius: 0 0 20px 20px;
+
+  /*改成 100vh (剛好一個螢幕高) 就好，內容變多它會自己往下長 */
+  min-height: 100vh;
+
+  box-shadow: 0 0 15px rgba(0,0,0,0.3); /* 加一點陰影 */
 }
 
 .header-container {
@@ -245,7 +258,7 @@ h3 {
 .gallery-grid {
     display: grid;
     /* 這個魔法會自動幫你排版：螢幕大時一排 3 張，螢幕小時自動變成一排 1~2 張 */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px; /* 圖片之間的間距 */
     padding: 20px;
 }
@@ -306,4 +319,89 @@ h3 {
     font-weight: bold;
     cursor: pointer;
     user-select: none;
+}
+
+
+/* =========================================
+   左側分類按鈕與切換魔法
+========================================= */
+.tab-input {
+    display: none; /* 把醜醜的圓圈預設按鈕隱藏起來 */
+}
+
+/* 浮動在左邊的按鈕容器 */
+.side-buttons {
+    position: absolute;
+    left: -140px; /* 把按鈕往左邊推出去到白框外面 */
+    top: 80px; /* 距離頂部一點距離 */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 按鈕之間的間距 */
+}
+
+/* 按鈕本身的外觀設計 */
+.side-btn {
+    background-color: #ffffff;
+    padding: 15px 25px;
+    border-radius: 10px 0 0 10px; /* 只有左邊有圓角，右邊貼平白框更好看 */
+    box-shadow: -4px 4px 8px rgba(0,0,0,0.15); /* 陰影打在左下角 */
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+    transition: 0.3s;
+    user-select: none;
+}
+
+/* 滑鼠移過去微微往左彈出的互動感 */
+.side-btn:hover {
+    transform: translateX(-5px); 
+}
+
+/* 當按鈕被選中時的發光/變色效果 */
+#btn-digital:checked ~ .side-buttons [for="btn-digital"],
+#btn-traditional:checked ~ .side-buttons [for="btn-traditional"] {
+    background-color: #ffeb3b; /* 變成可愛的黃色，你可以換成喜歡的顏色 */
+    color: #000;
+    box-shadow: -4px 4px 15px rgba(255, 235, 59, 0.6);
+}
+
+/* 控制兩個畫廊的顯示與隱藏 */
+.digital-gallery, .traditional-gallery {
+    display: none; /* 預設都先藏起來 */
+}
+
+/* 對應按鈕被打勾時，顯示該區塊 */
+#btn-digital:checked ~ .digital-gallery { display: block; }
+#btn-traditional:checked ~ .traditional-gallery { display: block; }
+
+/* 🚨 防呆機制：如果別人的螢幕太小，左邊按鈕會被切掉，我們就把它變回放在上方 */
+@media (max-width: 1500px) {
+    .side-buttons {
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .side-btn { border-radius: 10px; }
+}
+
+/* =========================================
+   Lightbox 大圖預覽的文字排版
+========================================= */
+.lightbox-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 讓內容對齊左邊 */
+    max-width: 90%;
+}
+
+/* 你許願的左下角白色文字 */
+.lightbox-text {
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 15px; 
+    letter-spacing: 1.5px;
+    line-height: 1.5;
+    /* 確保文字不會超出圖片寬度 */
+    max-width: 100%; 
 }
