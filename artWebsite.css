@@ -110,7 +110,7 @@
 /* 按鈕容器現在是以 sticky-anchor 為基準點往左推 */
 .side-buttons {
     position: absolute;
-    left: -140px;
+    left: -300px;
     top: 32px;
     display: flex;
     flex-direction: column;

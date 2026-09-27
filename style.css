@@ -7,12 +7,13 @@
 body {
     margin: 0;
     padding: 0;
-    background-image:url(pictures/background.png); /* 放上你喜歡的背景圖 */
     background-size: cover; /* 讓背景圖填滿整個螢幕 */
+    background-image: url("pictures/background.png"); /* 設定背景圖 */
     background-attachment: fixed; /* (選擇性) 讓背景圖固定，滑動網頁時只有中間區塊會動，很有質感！ */
-    background-color: #f1efee;
+    background-color: #f1efe9;
     font-family: "Noto Serif CJK TC", Arial, sans-serif;
     color: #333;
+    z-index: 2;
 }
 
 p {
@@ -22,43 +23,45 @@ p {
 
     padding: 0 0 0 5px;
     font-size: 19px;
-    color: #8d6f5b;
-    font-family: "Noto Serif CJK TC", Arial, sans-serif;
+    color: #222222;
+    font-family:"Noto Sans CJK TC", Arial, sans-serif;
 }
 
 h1 {
     text-align: left;
-    color: #696464;
+    color: #161616;
     font-size: 42px;
     padding: 10px 0;
     font-family: "Noto Serif CJK TC", Arial, sans-serif;
     font-weight: bold;
   }
 
+
 h3 {
   text-align: left;
-  color: #af583e;
-  font-size: 30px;
+  color: #4c508a;
+  font-size: 26px;
   padding: 5px 0;
   font-family: "Noto Serif CJK TC", Arial, sans-serif;
   font-weight: bold;
 }
 
 
-  /* 導覽列外框設定 */
+/* 導覽列外框設定 */
 .sticky-navbar {
-  position: sticky; /* 置頂*/
-  top: 0; /* 告訴它要黏在距離頂部 0px 的地方 */
-  background: rgba(95, 89, 60, 0.8); /* 導覽列底色 (可自由修改) */
-  z-index: 100; /* 確保導覽列圖層在最上層，才不會往下滾時被 Banner 或大頭貼蓋住 */
+  position: fixed; /* 🌟 關鍵修改 1：將原本的 sticky 改成 fixed，讓導覽列脫離排版空間，懸浮在最上層 */
+  width: 100%; /* 🌟 關鍵修改 2：脫離排版後，必須手動告訴它要填滿 100% 寬度 */
+  left: 0; /* 🌟 確保它從畫面最左邊開始貼齊 */
+
+  /* 以下保留你原本寫好的超棒設定 */
+  top: 0;
+  background: rgba(105, 96, 84, 0.829);
+  z-index: 100;
   padding: 15px 0;
-
-  /* 毛玻璃 */
   backdrop-filter: blur(11px);
-  -webkit-backdrop-filter: blur(11px); /* 確保 Safari 瀏覽器相容性 */
-
+  -webkit-backdrop-filter: blur(11px);
   display: flex;
-  justify-content: center; /* 讓導覽列的文字在電腦版時置中 */
+  justify-content: center;
 }
 
 /* 連結清單設定 */
@@ -67,14 +70,13 @@ h3 {
   margin: 0;
   padding: 0;
   display: flex; /* 讓清單變成橫向排列 */
-  gap: 40px; /* 每個連結之間的距離 */
+  gap: 60px; /* 每個連結之間的距離 */
 }
 
 /* 連結文字的樣式 */
 .nav-links a {
-  color: white; /* 文字顏色 */
+  color: rgb(240, 238, 237); /* 文字顏色 */
   text-decoration: none; /* 拿掉預設的超連結底線 */
-  font-weight: bold;
   font-size: 16px;
   font-family: "Noto Sans CJK TC", Arial, sans-serif;
   transition: 0.25s ease;
@@ -91,24 +93,33 @@ h3 {
 
 /* 2. 下拉選單的預設樣式 (先藏起來！) */
 .dropdown-menu {
-  display: none; /* 🌟 關鍵魔法：預設隱藏，不要出現在畫面上 */
-  position: absolute; /* 讓選單懸空，才不會把旁邊的導覽列撐開 */
-  top: 100%; /* 從「興趣喜好」的底部開始往下長 */
-  left: 50%;
-  transform: translateX(-50%); /* 讓下拉選單跟「興趣喜好」完美水平置中對齊 */
+  visibility: hidden;
+  opacity: 0;
 
-  background-color: rgba(95, 89, 60, 0.8); /* 下拉選單的底色 */
+  position: absolute;
+  top: 100%;
+  left: 50%;
+
+  /* 🌟 動畫關鍵：除了原本的水平置中 (-50%)，我們多加了 Y 軸往上偏移 (-15px) */
+  transform: translate(-50%, -15px);
+
+  background-color: rgba(105, 96, 84, 0.829);
+  backdrop-filter: blur(10px);
+
   padding: 10px 0;
-  border-radius: 8px; /* 圓角看起來比較可愛 */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* 加點陰影有立體感 */
-  min-width: 120px; /* 給選單一個基本寬度 */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  min-width: 120px;
+
+  /* 🌟 設定轉場動畫：讓透明度、位移都能順暢漸變 */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
 
 .dropdown-menu li a {
   display: block; /* 讓整個選項都可以點擊 */
-  color: rgb(207, 198, 198);
+  color: rgb(240, 238, 237); /* 文字顏色 */
   padding: 10px 15px;
-  border-bottom: 1px solid #978a6e; /* 每個選項之間的間距 */
+  border-bottom: 1px solid rgba(224, 222, 219, 0.829); /* 每個選項之間的間距 */
   text-decoration: none;
   font-family: "Noto Sans CJK TC", Arial, sans-serif;
 }
@@ -121,8 +132,11 @@ h3 {
 
 /* 4. 🌟 啟動魔法：當滑鼠碰到父元素 (.dropdown-parent) 時，把子選單秀出來！ */
 .dropdown-parent:hover .dropdown-menu {
-  display: block;
-  transition: 0.25s ease;
+  /* 把選單秀出來 */
+  visibility: visible;
+  opacity: 1;
+  /* 🌟 動畫關鍵：讓 Y 軸的 -15px 回到 0 (原本的位置)，就會產生往下滑的效果！ */
+  transform: translate(-50%, 0);
 }
 
 /* --- 先把漢堡按鈕跟機關藏起來 (電腦版不需要看到) --- */
@@ -149,7 +163,7 @@ h3 {
 .nav-links {
     display: none; /* 預設隱藏 */
     flex-direction: column; /* 變成直向排列 */
-    background:rgba(95, 89, 60, 0.8); /* 給它一個稍微不同的底色 */
+    background:rgba(105, 96, 84, 0.829); /* 給它一個稍微不同的底色 */
     width: 100%;
     position: absolute; /* 定位在導覽列下方 */
     top: 30px;
@@ -161,7 +175,7 @@ h3 {
   /* 調整直向選單裡的間距 */
 .nav-links li {
     padding: 2px 0;
-    border-bottom: 1px solid #978a6e; /* 加一條分隔線會更有質感 */
+    border-bottom: 1px solid rgba(202, 200, 197, 0.829); /* 加一條分隔線會更有質感 */
   }
 
   /* 3.當隱藏的 Checkbox 被打勾時，把 nav-links 秀出來 */
@@ -174,7 +188,25 @@ h3 {
   padding: 50px 30px 30px 80px; /* 上方刻意多留 50px 的空白，因為大頭貼有往下凸 30px，避免文字被大頭貼擋住 */
 }
 
+.Banner {
+    position: absolute; /* 🌟 讓圖片脫離排版，隨心所欲控制 */
+    top: 0;
 
+    /* 🌟 關鍵魔法：讓圖片從正中間對齊，然後往左右延展填滿整個螢幕 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw; /* 100vw 代表 100% 的螢幕視窗寬度 */
+
+    height: 100%;
+
+    /* 這是你之前學過的防變形魔法，讓圖片填滿整個空間*/
+    object-fit: cover;
+
+    /* 為了不要蓋到大頭貼跟標籤，圖層要設最低[cite: 2]*/
+    z-index: 1;
+
+    /* 🌟 記得把原本這行 border-radius 刪掉！因為現在圖片要貼齊螢幕最邊緣，不需要上方圓角了 */
+}
 .main-container {
   position: relative;
   max-width: 1200px; /* 限制這個區塊的大小 */
@@ -235,19 +267,6 @@ h3 {
     border: 7px solid #aca49de3;
     box-shadow: 0 0 10px rgba(63, 60, 60, 0.3);
     z-index: 10;
-}
-
-.Banner {
-    position: absolute; /* 🌟 讓圖片脫離排版，隨心所欲控制 */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* 這是你之前學過的防變形魔法，讓圖片填滿整個空間[cite: 9]*/
-    object-fit: cover;
-    /* 為了不要蓋到大頭貼跟標籤，圖層要設最低[cite: 9]*/
-    z-index: 1;
-    border-radius: 20px 20px 0 0;
 }
 
 .under-development {

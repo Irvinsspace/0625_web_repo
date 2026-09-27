@@ -30,9 +30,9 @@
 
 .book-title {
     font-size: 24px;
-    color: #333;
+    color: #a75737;
     margin-bottom: 15px;
-    border-bottom: 3px solid #7471594f; /* 用底線裝飾書名 */
+    border-bottom: 1px solid #a0a0a04f; /* 用底線裝飾書名 */
     padding-bottom: 5px;
     display: inline-block;
 }
@@ -40,8 +40,8 @@
 /* 閱讀心得預覽框框 */
 .reflection-preview {
     text-decoration: none; /* 拿掉超連結底線 */
-    color: #444;
-    background-color: #fcfcfc;
+    color: #f0eeee;
+    background-color: #f1efe9;
     padding: 20px;
     border-radius: 12px;
     border: 1px solid #e0e0e0;
@@ -64,7 +64,7 @@
 .read-more {
     display: block;
     margin-top: 15px;
-    color: #88b7e4a6; /* 淡淡的藍色 */
+    color: #4c508a;
     font-weight: bold;
     text-align: right; /* 把「點擊閱讀完整心得」推到右邊 */
 }
@@ -72,7 +72,7 @@
 /* 裝飾性分隔線 */
 .book-divider {
     border: 0;
-    height: 2px;
-    background: repeating-linear-gradient(to right, #ccc, transparent 20px); /* 做成可愛的虛線 */
-    margin: 40px 0;
+    height: 1px;
+    background-color: #1b1b1b1a;
+    margin: 60px 0;
 }
