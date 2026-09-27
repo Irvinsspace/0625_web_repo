@@ -1,0 +1,71 @@
+/* =========================================
+   完整心得頁面：上方書本資訊區塊
+========================================= */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #88b7e4;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    color: #555;
+    transform: translateX(-5px); /* 滑鼠摸到往左微彈 */
+}
+
+.book-detail-header {
+    display: flex;
+    gap: 40px;
+    align-items: center; /* 讓圖片跟文字垂直置中對齊 */
+    margin-bottom: 30px;
+}
+
+.detail-cover {
+    width: 220px; /* 這裡的封面可以比預覽圖再大一點 */
+    border-radius: 8px;
+    box-shadow: 2px 4px 15px rgba(0,0,0,0.25);
+}
+
+.detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* 標題、作者、標籤之間的間距 */
+}
+
+.detail-title {
+    font-size: 32px;
+    color: #333;
+    margin: 0;
+}
+
+.detail-author {
+    font-size: 18px;
+    color: #666;
+    margin: 0;
+    font-weight: normal;
+}
+
+/* =========================================
+   完整心得頁面：下方文章區塊
+========================================= */
+.reflection-content {
+    padding: 20px 10px;
+}
+
+.reflection-content h2 {
+    font-size: 24px;
+    color: #444;
+    margin-bottom: 20px;
+    border-left: 5px solid #e0bd7b; /* 左側加上可愛的黃色裝飾線 */
+    padding-left: 15px;
+}
+
+.reflection-content p {
+    font-size: 16px;
+    line-height: 1.8; /* 讓文章行距變寬，閱讀起來更舒服 */
+    color: #333;
+    margin-bottom: 20px;
+    text-align: justify; /* 讓文字左右對齊，看起來更整齊 */
+}

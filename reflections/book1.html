@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+        <meta charset="UTF-8">
+        <title>黑犬的部落格</title>
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../hashtags.css">
+        <link rel="stylesheet" href="../booksModule.css">
+        <link rel="stylesheet" href="../reflectionModule.css">
+</head>
+<body>
+
+    <nav class="sticky-navbar">
+
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+
+    <label for="menu-toggle" class="menu-btn">☰</label>
+
+    <ul class="nav-links">
+    <li><a href="../main.html">首頁</a></li>
+    <li><a href="../about.html">自我介紹</a></li>
+
+    <li class="dropdown-parent">
+        <a href="#">喜好專欄</a>
+
+        <ul class="dropdown-menu">
+            <li><a href="../painting.html">畫畫作品集</a></li>
+            <li><a href="../reading.html">閱讀專欄</a></li>
+            <li><a href="../my_fiction.html">小說</a></li>
+        </ul>
+
+    <li><a href="../diary.html">生活日誌</a></li>
+    </li>
+
+    </ul>
+
+    </nav>
+
+    <div class="main-container">
+    <!-- 返回按鈕：讓使用者可以輕鬆回到書單頁面 -->
+        <a href="../reading.html" class="back-btn">⬅ 返回閱讀專欄</a>
+
+    <!-- 🌟 上半部：書本詳細資訊 (對應你的設計圖) -->
+    <div class="book-detail-header">
+        <!-- 左側書封 -->
+        <img src="../booksCover/Man's_Search_for_Meaning.jpg" alt="book cover" class="detail-cover">
+
+        <!-- 右側書本資訊 -->
+        <div class="detail-info">
+            <h1 class="detail-title">活出生命的意義</h1>
+            <h3 class="detail-author">作者: 維克多·E·法蘭克</h3>
+
+            <!-- 直接沿用你已經寫好的 hashtags.css 裡的標籤樣式 -->
+            <div class="book-tags">
+                <span class="book-tag">#心理學</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分隔線 -->
+    <hr class="book-divider">
+
+    <!-- 🌟 下半部：完整閱讀心得與介紹 -->
+    <div class="reflection-content">
+        <h2>內容簡介與反思</h2>
+        <p>這本書一開始吸引我的地方在於...</p>
+        <p>在閱讀的過程中，我發現作者用了很多很有趣的比喻...</p>
+        <p>總結來說，這是一本非常值得一看的好書，特別推薦給...</p>
+    </div>
+</div>
+
+  </div>
+</div>
+</body>
+<footer>
+        <p>版權所有 &copy; 2026 黑犬</p>
+</footer>
+
+</html>

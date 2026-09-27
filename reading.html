@@ -50,24 +50,25 @@
     <!-- 🌟 閱讀清單區塊 -->
     <div class="reading-list">
         <!-- 第一本書 (注意 class 裡面加了分類 psychology) -->
-        <div class="book-card psychology">
+        <div class="book-card psychology philosophy">
             <div class="book-left">
                 <!-- 書封上方的 Tag -->
                 <div class="book-tags">
+                    <span class="book-tag">#哲學</span>
                     <span class="book-tag">#心理學</span>
                 </div>
                 <!-- 書本封面 -->
-                <img src="pictures/book1.jpg" alt="book cover" class="book-cover">
+                <img src="booksCover/Man's_Search_for_Meaning.jpg" alt="book cover" class="book-cover">
             </div>
 
             <div class="book-right">
                 <!-- 書本名稱 -->
-                <h2 class="book-title">書本名稱 1</h2>
+                <h2 class="book-title">活出生命的意義 - 維克多·E·法蘭克</h2>
                 <!-- 閱讀心得預覽 (點擊框框內任何一處都會跳轉) -->
-                <a href="reflection1.html" class="reflection-preview">
+                <a href="reflections\book1.html" class="reflection-preview">
                     <p>這是第一段的閱讀心得預覽。這本書主要在探討...</p>
                     <p>這是第二段的閱讀心得預覽。看完之後我覺得...</p>
-                    <span class="read-more">點擊閱讀完整心得與反思 ➔</span>
+                    <span class="read-more">閱讀完整心得與反思 ➔</span>
                 </a>
             </div>
         </div>
@@ -75,18 +76,19 @@
         <hr class="book-divider">
 
 <!-- 第二本書 (可以自行往下新增) -->
-        <div class="book-card novel">
+        <div class="book-card psychology philosophy">
             <div class="book-left">
                 <div class="book-tags">
-                    <span class="book-tag">#小說</span>
+                    <span class="book-tag">#哲學</span>
+                    <span class="book-tag">#心理學</span>
                 </div>
-                <img src="pictures/book2.jpg" alt="book cover" class="book-cover">
+                <img src="booksCover/The_Meaning_of_Anxiety.jpg" alt="book cover" class="book-cover">
             </div>
             <div class="book-right">
-                <h2 class="book-title">書本名稱 2</h2>
-                <a href="reflection2.html" class="reflection-preview">
+                <h2 class="book-title">焦慮的意義 - 羅洛·梅</h2>
+                <a href="reflections\book2.html" class="reflection-preview">
                     <p>這是小說的心得預覽...</p>
-                    <span class="read-more">點擊閱讀完整心得與反思 ➔</span>
+                    <span class="read-more">閱讀完整心得與反思 ➔</span>
                 </a>
             </div>
         </div>
@@ -101,9 +103,9 @@
         books.forEach(book => {
             // 如果點擊「全部」或是該本書有對應的 class，就顯示出來
             if (category === 'all' || book.classList.contains(category)) {
-                book.style.display = 'flex'; 
+                book.style.display = 'flex';
             } else {
-                book.style.display = 'none'; 
+                book.style.display = 'none';
             }
         });
     }

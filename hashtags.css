@@ -13,7 +13,7 @@
 .tags-sidebar {
     position: absolute;
     /* 這裡的數字決定它在右邊多遠，你可以依照自己的背景寬度微調 */
-    right: -160px; 
+    right: -160px;
     top: 0;
     display: flex;
     flex-direction: column;
@@ -41,7 +41,7 @@
 }
 
 .tag-filter-btn:hover {
-    background-color: #ffeb3b; /* 滑鼠摸到變黃色 */
+    background-color: #77b1d8; /* 滑鼠摸到變色 */
     color: #000;
     transform: translateX(5px); /* 往右彈一下 */
 }

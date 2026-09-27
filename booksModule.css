@@ -32,7 +32,7 @@
     font-size: 24px;
     color: #333;
     margin-bottom: 15px;
-    border-bottom: 3px solid #ffed4a; /* 用可愛的黃色底線裝飾書名 */
+    border-bottom: 3px solid #7471594f; /* 用底線裝飾書名 */
     padding-bottom: 5px;
     display: inline-block;
 }
@@ -56,7 +56,7 @@
 
 /* 滑鼠摸到預覽框時的效果 */
 .reflection-preview:hover {
-    background-color: #fffde7; /* 微微變亮 */
+    background-color: #d8d7d2; /* 微微變亮 */
     box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* 陰影加深 */
     transform: translateY(-3px); /* 整個框框往上彈一點點 */
 }
@@ -64,7 +64,7 @@
 .read-more {
     display: block;
     margin-top: 15px;
-    color: #88b7e4; /* 淡淡的藍色 */
+    color: #5a5a5aa6; /* 淡淡的藍色 */
     font-weight: bold;
     text-align: right; /* 把「點擊閱讀完整心得」推到右邊 */
 }
@@ -73,6 +73,6 @@
 .book-divider {
     border: 0;
     height: 2px;
-    background: repeating-linear-gradient(to right, #ccc, #ccc 10px, transparent 10px, transparent 20px); /* 做成可愛的虛線 */
+    background: repeating-linear-gradient(to right, #ccc, transparent 20px); /* 做成可愛的虛線 */
     margin: 40px 0;
 }
