@@ -5,6 +5,8 @@
         <meta charset="UTF-8">
         <title>黑犬的部落格</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="hashtags.css">
+        <link rel="stylesheet" href="booksModule.css">
 </head>
 
 <body>
@@ -31,12 +33,82 @@
     </ul>
     </nav>
 
-    <div class="main-container">
-        <div class="text-content">
-        <h1>網頁仍處於開發階段喔!</h1>
-        <img src="pictures\under_development.png" alt="under development" class="under-development" width="600" height="750">
+<div class="main-container">
+        <!-- 🌟 右側懸浮標籤選單：用來篩選書本類型 -->
+    <div class="sticky-anchor-right">
+        <div class="tags-sidebar">
+            <h3 class="sidebar-title">書本類型</h3>
+            <!-- 點擊按鈕就會觸發底下的 JS 篩選魔法 -->
+            <button class="tag-filter-btn" onclick="filterBooks('all')">#全部</button>
+            <button class="tag-filter-btn" onclick="filterBooks('psychology')">#心理學</button>
+            <button class="tag-filter-btn" onclick="filterBooks('philosophy')">#哲學</button>
+            <button class="tag-filter-btn" onclick="filterBooks('novel')">#小說</button>
+            <button class="tag-filter-btn" onclick="filterBooks('prose')">#散文</button>
         </div>
     </div>
+
+    <!-- 🌟 閱讀清單區塊 -->
+    <div class="reading-list">
+        <!-- 第一本書 (注意 class 裡面加了分類 psychology) -->
+        <div class="book-card psychology">
+            <div class="book-left">
+                <!-- 書封上方的 Tag -->
+                <div class="book-tags">
+                    <span class="book-tag">#心理學</span>
+                </div>
+                <!-- 書本封面 -->
+                <img src="pictures/book1.jpg" alt="book cover" class="book-cover">
+            </div>
+
+            <div class="book-right">
+                <!-- 書本名稱 -->
+                <h2 class="book-title">書本名稱 1</h2>
+                <!-- 閱讀心得預覽 (點擊框框內任何一處都會跳轉) -->
+                <a href="reflection1.html" class="reflection-preview">
+                    <p>這是第一段的閱讀心得預覽。這本書主要在探討...</p>
+                    <p>這是第二段的閱讀心得預覽。看完之後我覺得...</p>
+                    <span class="read-more">點擊閱讀完整心得與反思 ➔</span>
+                </a>
+            </div>
+        </div>
+        <!-- 裝飾性分隔線 (往下新增下一本書)-->
+        <hr class="book-divider">
+
+<!-- 第二本書 (可以自行往下新增) -->
+        <div class="book-card novel">
+            <div class="book-left">
+                <div class="book-tags">
+                    <span class="book-tag">#小說</span>
+                </div>
+                <img src="pictures/book2.jpg" alt="book cover" class="book-cover">
+            </div>
+            <div class="book-right">
+                <h2 class="book-title">書本名稱 2</h2>
+                <a href="reflection2.html" class="reflection-preview">
+                    <p>這是小說的心得預覽...</p>
+                    <span class="read-more">點擊閱讀完整心得與反思 ➔</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- 🌟 負責篩選書籍的超簡單 JavaScript 魔法 -->
+<script>
+    function filterBooks(category) {
+        const books = document.querySelectorAll('.book-card');
+        books.forEach(book => {
+            // 如果點擊「全部」或是該本書有對應的 class，就顯示出來
+            if (category === 'all' || book.classList.contains(category)) {
+                book.style.display = 'flex'; 
+            } else {
+                book.style.display = 'none'; 
+            }
+        });
+    }
+</script>
+
 </body>
 
 <footer>
