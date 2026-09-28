@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title>黑犬的部落格</title>
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="artWebsite.css">
+        <link rel="stylesheet" href="painting.css">
     </head>
 
 <body>
@@ -33,9 +33,9 @@
     </nav>
 
     <div class="main-container">
-        <div class="header-container">
+       <!-- <div class="header-container">
             <img src="banner\DP_banner.png" class="Banner" alt="橫幅">
-        </div>
+        </div> -->
 
         <!-- 這是負責施展切換魔法的隱藏單選按鈕 (Radio Hack) -->
         <input type="radio" id="btn-digital" name="gallery-tab" class="tab-input" checked>
@@ -50,6 +50,7 @@
     </div>
 
         <!-- 1️⃣ 電繪畫廊區塊 -->
+        <div style="padding-top: 100px;"></div>
         <div class="gallery-content digital-gallery">
             <div class="gallery-grid">
             <!-- 每一張圖都加上 polaroid 類別，以及防右鍵/拖曳屬性 -->
@@ -107,14 +108,14 @@
 <script>
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxText = document.getElementById('lightbox-text'); 
+    const lightboxText = document.getElementById('lightbox-text');
     const images = document.querySelectorAll('.polaroid');
     const closeBtn = document.querySelector('.close-btn');
 
     // 當點擊小圖時，幫 Lightbox 穿上 'show' 的衣服，觸發淡入魔法！
     images.forEach(img => {
         img.addEventListener('click', function() {
-            lightbox.classList.add('show'); 
+            lightbox.classList.add('show');
             lightboxImg.src = this.src;
             lightboxText.innerText = this.getAttribute('data-text') || ''; 
         });
@@ -122,13 +123,13 @@
 
     // 點擊右上角叉叉，脫掉 'show' 的衣服關閉
     closeBtn.addEventListener('click', function() {
-        lightbox.classList.remove('show'); 
+        lightbox.classList.remove('show');
     });
 
     // 點擊黑色背景任何一處也能關閉
     lightbox.addEventListener('click', function(e) {
         if (e.target !== lightboxImg && e.target !== lightboxText) {
-            lightbox.classList.remove('show'); 
+            lightbox.classList.remove('show');
         }
     });
 </script>

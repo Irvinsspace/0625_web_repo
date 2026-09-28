@@ -5,8 +5,7 @@
         <meta charset="UTF-8">
         <title>黑犬的部落格</title>
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="hashtags.css">
-        <link rel="stylesheet" href="booksModule.css">
+        <link rel="stylesheet" href="reading.css">
 </head>
 
 <body>
@@ -38,12 +37,12 @@
     <div class="sticky-anchor-right">
         <div class="tags-sidebar">
             <h3 class="sidebar-title">書本類型</h3>
-            <!-- 點擊按鈕就會觸發底下的 JS 篩選魔法 -->
-            <button class="tag-filter-btn" onclick="filterBooks('all')">#全部</button>
-            <button class="tag-filter-btn" onclick="filterBooks('psychology')">#心理學</button>
-            <button class="tag-filter-btn" onclick="filterBooks('philosophy')">#哲學</button>
-            <button class="tag-filter-btn" onclick="filterBooks('novel')">#小說</button>
-            <button class="tag-filter-btn" onclick="filterBooks('prose')">#散文</button>
+            <!-- 🌟 注意這裡：加入了 active 類別，並在 onclick 裡加了 this -->
+            <button class="tag-filter-btn active" onclick="filterBooks('all', this)">#全部</button>
+            <button class="tag-filter-btn" onclick="filterBooks('psychology', this)">#心理學</button>
+            <button class="tag-filter-btn" onclick="filterBooks('philosophy', this)">#哲學</button>
+            <button class="tag-filter-btn" onclick="filterBooks('novel', this)">#小說</button>
+            <button class="tag-filter-btn" onclick="filterBooks('prose', this)">#散文</button>
         </div>
     </div>
 
@@ -69,8 +68,10 @@
                 <h2 class="book-title">活出生命的意義 - 維克多·E·法蘭克</h2>
                 <!-- 閱讀心得預覽 (點擊框框內任何一處都會跳轉) -->
                 <a href="reflections\book1.html" class="reflection-preview">
-                    <p>這是第一段的閱讀心得預覽。這本書主要在探討...</p>
-                    <p>這是第二段的閱讀心得預覽。看完之後我覺得...</p>
+                    <element class="reflection-text">
+                    <p>這是第一段的閱讀心得預覽。這本書主要在探討...
+                    這是第二段的閱讀心得預覽。看完之後我覺得...</p></element>
+                    </element>
                     <span class="read-more">閱讀完整心得與反思 ➔</span>
                 </a>
             </div>
@@ -90,7 +91,9 @@
             <div class="book-right">
                 <h2 class="book-title">焦慮的意義 - 羅洛·梅</h2>
                 <a href="reflections\book2.html" class="reflection-preview">
-                    <p>這是書籍的心得預覽...</p>
+
+                        <p>這是書籍的心得預覽...</p>
+
                     <span class="read-more">閱讀完整心得與反思 ➔</span>
                 </a>
             </div>
@@ -108,7 +111,7 @@
             <div class="book-right">
                 <h2 class="book-title">孤獨的哲學 - 拉斯·史文德森</h2>
                 <a href="reflections\APOfLoneliness.html" class="reflection-preview">
-                    <p>這是書籍的心得預覽...</p>
+                    <p class="reflection-text">這是書籍的心得預覽...</p>
                     <span class="read-more">閱讀完整心得與反思 ➔</span>
                 </a>
             </div>
@@ -126,7 +129,7 @@
             <div class="book-right">
                 <h2 class="book-title">希望的哲學 - 拉斯·史文德森</h2>
                 <a href="reflections\APOfHope.html" class="reflection-preview">
-                    <p>這是書籍的心得預覽...</p>
+                    <p class="reflection-text">這是書籍的心得預覽...</p>
                     <span class="read-more">閱讀完整心得與反思 ➔</span>
                 </a>
             </div>
@@ -137,7 +140,19 @@
 
 <!-- 🌟 負責篩選書籍的超簡單 JavaScript 魔法 -->
 <script>
-    function filterBooks(category) {
+    // 🌟 注意這裡的括號裡多了一個 btn 參數，用來接收剛剛傳過來的 this
+    function filterBooks(category, btn) {
+
+        // --- 新增的魔法：處理按鈕變色 ---
+        // 1. 先把所有按鈕身上的 'active' 衣服脫掉
+        const allBtns = document.querySelectorAll('.tag-filter-btn');
+        allBtns.forEach(b => b.classList.remove('active'));
+
+        // 2. 幫剛剛被點擊的那個按鈕，單獨穿上 'active' 衣服
+        btn.classList.add('active');
+
+
+        // --- 原本的魔法：處理書本顯示與隱藏 ---
         const books = document.querySelectorAll('.book-card');
         books.forEach(book => {
             // 如果點擊「全部」或是該本書有對應的 class，就顯示出來

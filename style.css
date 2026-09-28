@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "MyHanaMin"; /* 你可以自己取一個好記的名字，不要有空格最好 */
+  src: url("./fonts/HanaMinA.ttf") format("truetype"); /* 這裡換成你實際的檔案路徑 */
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -8,12 +16,15 @@ body {
     margin: 0;
     padding: 0;
     background-size: cover; /* 讓背景圖填滿整個螢幕 */
-    background-image: url("pictures/background.png"); /* 設定背景圖 */
+  /*background-image: url("pictures/background.png"); /* 設定背景圖 */
     background-attachment: fixed; /* (選擇性) 讓背景圖固定，滑動網頁時只有中間區塊會動，很有質感！ */
-    background-color: #f1efe9;
-    font-family: "Noto Serif CJK TC", Arial, sans-serif;
+    background-color: #f8f7f3;
     color: #333;
     z-index: 2;
+
+    /* 這裡的名稱必須和 @font-face 裡自己取的 font-family 一模一樣 */
+    font-family: "MyHanaMin", Arial, sans-serif;
+
 }
 
 p {
@@ -22,28 +33,30 @@ p {
     line-height: 1.6;
 
     padding: 0 0 0 5px;
-    font-size: 19px;
-    color: #222222;
-    font-family:"Noto Sans CJK TC", Arial, sans-serif;
+    font-size: 25px;
+    color: #5C5445;
+    font-family: "MyHanaMin", Arial, sans-serif;
 }
+
 
 h1 {
     text-align: left;
-    color: #161616;
-    font-size: 42px;
+    color: #524741;
+    font-size: 45px;
     padding: 10px 0;
-    font-family: "Noto Serif CJK TC", Arial, sans-serif;
+
+    font-family: "MyHanaMin", Arial, sans-serif;
     font-weight: bold;
   }
 
 
 h3 {
   text-align: left;
-  color: #4c508a;
-  font-size: 26px;
+  color: #AA9F71;
+  font-size: 28px;
   padding: 5px 0;
-  font-family: "Noto Serif CJK TC", Arial, sans-serif;
-  font-weight: bold;
+  font-family: "MyHanaMin", Arial, sans-serif;
+  font-weight: normal;
 }
 
 
@@ -55,7 +68,7 @@ h3 {
 
   /* 以下保留你原本寫好的超棒設定 */
   top: 0;
-  background: rgba(105, 96, 84, 0.829);
+  background: #948f81ad;
   z-index: 100;
   padding: 15px 0;
   backdrop-filter: blur(11px);
@@ -75,10 +88,10 @@ h3 {
 
 /* 連結文字的樣式 */
 .nav-links a {
-  color: rgb(240, 238, 237); /* 文字顏色 */
+  color: #ffffff; /* 文字顏色 */
   text-decoration: none; /* 拿掉預設的超連結底線 */
   font-size: 16px;
-  font-family: "Noto Sans CJK TC", Arial, sans-serif;
+  font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
   transition: 0.25s ease;
 }
 
@@ -103,7 +116,7 @@ h3 {
   /* 🌟 動畫關鍵：除了原本的水平置中 (-50%)，我們多加了 Y 軸往上偏移 (-15px) */
   transform: translate(-50%, -15px);
 
-  background-color: rgba(105, 96, 84, 0.829);
+  background-color: #948f81ad;
   backdrop-filter: blur(10px);
 
   padding: 10px 0;
@@ -117,11 +130,11 @@ h3 {
 
 .dropdown-menu li a {
   display: block; /* 讓整個選項都可以點擊 */
-  color: rgb(240, 238, 237); /* 文字顏色 */
+  color: #ffffff; /* 文字顏色 */
   padding: 10px 15px;
   border-bottom: 1px solid rgba(224, 222, 219, 0.829); /* 每個選項之間的間距 */
   text-decoration: none;
-  font-family: "Noto Sans CJK TC", Arial, sans-serif;
+  font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
 }
 
 /* 3. 下拉選單裡面的選項排版 */
@@ -169,7 +182,7 @@ h3 {
     top: 30px;
     left: 0;
     text-align: center;
-    font-family: "Noto Sans CJK TC", Arial, sans-serif;
+    font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
   }
 
   /* 調整直向選單裡的間距 */
@@ -211,7 +224,7 @@ h3 {
   position: relative;
   max-width: 1200px; /* 限制這個區塊的大小 */
   margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
-  background-color: #ffffff;
+  background-color: #f8f7f3;;
 
   /*給便當盒內部安全的留白空間，解決貼壁問題 */
   padding: 40px;
@@ -223,19 +236,48 @@ h3 {
   /*改成 100vh (剛好一個螢幕高) 就好，內容變多它會自己往下長 */
   min-height: 100vh;
 
-  box-shadow: 0 0 15px rgba(0,0,0,0.3); /* 加一點陰影 */
 }
 
 .header-container {
     position: relative;
     width: 100%;
-    height: 400px; /* 可調整橫幅高度 */
+    height: 500px; /* 可調整橫幅高度 */
     margin-top: -40px;
     margin-left: -40px;
     margin-right: -40px;
     /* 因為它突破了，所以寬度要加上被扣掉的 padding 才會填滿 */
     width: calc(100% + 80px);
 }
+
+/* 1. 建立座標參考點 */
+.full-width-section {
+    position: relative; /* 🌟 告訴裡面的貼紙：以我為基準點來擺放位置！ */
+    width: 100%;
+    min-height: 800px; /* 給這個區塊一個高度，才有空間貼貼紙 */
+}
+
+/* 2. 控制第一張貼紙的位置 */
+.sticker-1 {
+    position: absolute; /* 🌟 脫離排版，準備自由移動 */
+    width: 150px; /* 直接在 CSS 設寬度 */
+
+    /* 🌟 座標設定：距離父容器上方 50px，距離左邊 100px */
+    top: 50px;
+    left: 100px;
+
+    z-index: 5; /* 如果圖片重疊，可以用 z-index 決定誰在上面 */
+}
+
+/* 3. 控制第二張貼紙的位置 */
+.sticker-2 {
+    position: absolute;
+    width: 200px;
+
+    /* 🌟 座標設定：距離父容器底部 20px，距離右邊 50px */
+    bottom: 20px;
+    right: 50px;
+}
+
 
 .tags-box {
     position: absolute;
@@ -248,8 +290,8 @@ h3 {
 }
 
 .tag {
-  background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
-  color: #a06732; /* 文字顏色 */
+  background-color: rgba(233, 227, 220, 0.8); /* 半透明白色背景 */
+  color: #524741; /* 文字顏色 */
   padding: 5px 15px; /* 上下 5px，左右 15px 的呼吸空間 */
   border-radius: 20px; /* 讓邊角變成圓潤的膠囊狀 */
   font-size: 14px;
@@ -264,7 +306,7 @@ h3 {
     border-radius: 50%;
     width: 250px;
     height: 250px;
-    border: 7px solid #aca49de3;
+    border: 7px solid #b6b1a5;
     box-shadow: 0 0 10px rgba(63, 60, 60, 0.3);
     z-index: 10;
 }
