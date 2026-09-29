@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <title>黑犬的部落格</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="about.css">
 </head>
 <body>
 
@@ -34,15 +35,6 @@
 
     </nav>
     <div class="main-container">
-        <div class="header-container">
-            <img src="pictures\banner.png"  class="Banner" width="1200" height="400">
-            <img src="pictures\NewProfile.png" alt="My Profile Picture" class="Profile-pic" width="200" height="200">
-            <div class="tags-box">
-                <span class="tag">#畫畫</span>
-                <span class="tag">#生活</span>
-                <span class="tag">#自我探索</span>
-            </div>
-        </div>
 
         <div class="text-content">
         <h1>關於我</h1>
@@ -50,17 +42,71 @@
         我熱愛所有能幫助我獲取知識和靈感的事物，因為這些喜好都能成為我一路上認識自己的過程中很重要的一個途徑。
         無論是創作還是閱讀，都能夠讓我去看見更多的想法和可能性，懂得如何去思考更多層面的事情，能夠讓自己不斷成長和進步。
         </p>
-        <img src="pictures\Hobbies_reading.png" alt="Reading" class="writing-down" width="1200" height="800">
         </div>
-        <div class="full-width-section">
-        <!-- 這裡放你想橫跨全螢幕的互動圖片排版，完全不受 main-container 的限制！ -->
+
+    <div class="full-width-section">
+
+    <div class="carousel-container">
+        <!-- 1. 隱藏的開關 -->
+        <input type="radio" name="slider" id="slide1" checked>
+        <input type="radio" name="slider" id="slide2">
+        <input type="radio" name="slider" id="slide3">
+
+        <!-- 2. 輪播的內容區 -->
+        <div class="carousel-slides">
+
+            <!-- 第一張圖與文字 -->
+            <div class="slide slide-1">
+
+                <label for = "slide2" class="image-btn">
+                <img src="pictures\Hobbies_reading.png" alt="reading">
+                </label>
+
+                <div class="slide-text">
+                    <h2>Reading</h2>
+                    <h1>在文字中探索世界</h1>
+                </div>
+            </div>
+
+            <!-- 第二張圖與文字 -->
+            <div class="slide slide-2">
+                <label for = "slide3" class="image-btn">
+                <img src="pictures\traveling.png" alt="traveling">
+                </label>
+
+                <div class="slide-text">
+                    <h2>Traveling</h2>
+                    <h1>踏上未知的旅程</h1>
+                </div>
+            </div>
+
+            <!-- 第三張圖與文字 -->
+            <div class="slide slide-3">
+                <label for = "slide1" class="image-btn">
+                <img src="pictures\painting.png" alt="write and paint">
+                </label>
+                <div class="slide-text">
+                    <h2>Creation</h2>
+                    <h1>描繪心之所向</h1>
+                </div>
+            </div>
+
         </div>
+
+        <!-- 3. 底部的導覽圓點 -->
+            <div class="carousel-dots">
+                <label for="slide1"></label>
+                <label for="slide2"></label>
+                <label for="slide3"></label>
+            </div>
+        </div>
+    </div>
 
         <div class="main-container">
         <!-- 下面的文字內容，再用一個新的 main-container 包起來繼續寫 -->
         </div>
-  </div>
-</div>
+
+
 </body>
 <footer>
         <p>版權所有 &copy; 2026 黑犬</p>
