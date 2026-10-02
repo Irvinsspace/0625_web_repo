@@ -1,0 +1,14 @@
+
+.full-width-section {
+    position: relative; /* 🌟 告訴裡面的貼紙：以我為基準點來擺放位置！ */
+    width: 100vw;
+    min-height: 960px; /* 給這個區塊一個高度，才有空間貼貼紙 */
+}
+
+.memories {
+    position: absolute;
+    width: 1440px;
+    height: 1000px;
+    left: 300px;
+    z-index: 1;
+}

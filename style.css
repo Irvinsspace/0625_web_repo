@@ -18,7 +18,7 @@ body {
     background-size: cover; /* 讓背景圖填滿整個螢幕 */
   /*background-image: url("pictures/background.png"); /* 設定背景圖 */
     background-attachment: fixed; /* (選擇性) 讓背景圖固定，滑動網頁時只有中間區塊會動，很有質感！ */
-    background-color: #f8f7f3;
+    background-color: #f5f4f3;
     color: #333;
     z-index: 2;
 
@@ -224,7 +224,7 @@ h3 {
   position: relative;
   max-width: 1200px; /* 限制這個區塊的大小 */
   margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
-  background-color: #f8f7f3;;
+  background-color: #f5f4f3;
 
   /*給便當盒內部安全的留白空間，解決貼壁問題 */
   padding: 40px;
@@ -290,12 +290,12 @@ h3 {
 }
 
 .tag {
-  background-color: rgba(233, 227, 220, 0.8); /* 半透明白色背景 */
-  color: #524741; /* 文字顏色 */
+  background-color: #948f81ad; /* 半透明白色背景 */
+  color: #f5f4f3; /* 文字顏色 */
   padding: 5px 15px; /* 上下 5px，左右 15px 的呼吸空間 */
   border-radius: 20px; /* 讓邊角變成圓潤的膠囊狀 */
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 400;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* 加點小陰影更有質感 */
 }
 
