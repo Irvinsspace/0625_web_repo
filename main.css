@@ -1,14 +1,318 @@
+@font-face {
+  font-family: "Bodoni";
+  src: url("./fonts/LibreBodoni-Bold.ttf") format("truetype"); /* 這裡換成你實際的檔案路徑 */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MyHanaMin"; /* 你可以自己取一個好記的名字，不要有空格最好 */
+  src: url("./fonts/HanaMinA.ttf") format("truetype"); /* 這裡換成你實際的檔案路徑 */
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.main-container {
+  position: relative;
+  max-width: 1200px; /* 限制這個區塊的大小 */
+  margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
+  background-color: #faf9f9;
+
+  /*給便當盒內部安全的留白空間，解決貼壁問題 */
+  padding: 40px;
+  box-sizing: border-box; /* 確保 padding 不會把 1200px 的寬度撐破 */
+
+  /* 把 % 改成固定的 px (像素)，這樣就算網頁再長，圓角永遠都是 20px 不會變形 */
+  border-radius: 0 0 20px 20px;
+
+  /*改成 100vh (剛好一個螢幕高) 就好，內容變多它會自己往下長 */
+  min-height: 0px;
+
+}
 
 .full-width-section {
     position: relative; /* 🌟 告訴裡面的貼紙：以我為基準點來擺放位置！ */
     width: 100vw;
-    min-height: 960px; /* 給這個區塊一個高度，才有空間貼貼紙 */
+    min-height: 5000px; /* 給這個區塊一個高度，才有空間貼貼紙 */
+    overflow: hidden;
 }
 
-.memories {
-    position: absolute;
-    width: 1440px;
-    height: 1000px;
+
+.text-content h1 {
+    font-size: 90px;
+    top:  900px;
     left: 300px;
-    z-index: 1;
+    position: absolute;
+    color: #ffffff;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+    z-index: 30;
+}
+
+
+.Explore-png {
+    position: relative;
+    width: 2160px;
+    height: 1440px;
+    left: -100px;
+    z-index: 20;
+}
+
+.text-content-1 h3 {
+    position: absolute;
+    font-size: 50px;
+    color: #ffffff;
+    top: 1600px;
+    left: 300px;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+    z-index: 30;
+}
+
+.text-content-2 h3 {
+    position: absolute;
+    font-size: 100px;
+    color: #524741;
+    top: 2150px;
+    left: 300px;
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+    z-index: 30;
+}
+
+.text-content-3 h1 {
+    position: absolute;
+    font-size: 50px;
+    color: #524741;
+    top: 190px;
+    left: 300px;
+    font-weight: 400;
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+    z-index: 34;
+    line-height: 1.7;
+}
+
+.text-content-3 h3 {
+    position: absolute;
+    font-size: 50px;
+    color: #524741;
+    top: 500px;
+    left: 300px;
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+    z-index: 34;
+    line-height: 1.7;
+}
+
+.text-content-4 h1 {
+    position: absolute;
+    font-size: 80px;
+    color: #ffffff;
+    top: 100px;
+    left: 300px;
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7);
+    z-index: 34;
+    line-height: 1.7;
+}
+
+.text-content-4 h3 {
+    position: absolute;
+    font-size: 50px;
+    color: #ffffff;
+    top: 250px;
+    left: 300px;
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7);
+    z-index: 34;
+    line-height: 1.7;
+}
+
+
+.full-width-section-2 {
+    position: relative;
+    width: 100%;
+    min-height: 800px; /* 給這個區塊一個高度，才有空間貼貼紙 */
+    overflow: hidden;
+}
+
+.full-width-section-3 {
+    position: relative;
+    width: 100%;
+    min-height: 1000px; /* 給這個區塊一個高度，才有空間貼貼紙 */
+    overflow: hidden;
+}
+
+.banner-png {
+    position: absolute;
+    width: 1950px;
+    height: 1300px;
+    top: 0px;
+    left: 0px;
+    z-index: 20;
+}
+/* =================================輪播圖主容器==================================== */
+
+.full-width-section-1 {
+    position: relative;
+    width: 100%;
+    top:-3270px;
+    min-height: 1200px; /* 給這個區塊一個高度，才有空間貼貼紙 */
+}
+.image-btn {
+    display: block;
+    width: 1200px;
+    height: 800px;
+    cursor: pointer; /* 滑鼠移上去會變成點擊的小手圖案 */
+}
+
+.reading-book {
+    position: absolute; /* 🌟 脫離排版，準備自由移動 */
+    width: 1200px ;
+    height: 800px ;
+    top: -50px;
+    /* 🌟 座標設定：距離父容器上方 100px，距離左邊 50px */
+    z-index: 10; /* 如果圖片重疊，可以用 z-index 決定誰在上面 */
+}
+/* 2. 控制第一張貼紙的位置 */
+.traveling {
+    position: absolute; /* 🌟 脫離排版，準備自由移動 */
+    width: 1200px ;
+    height: 800px ;
+    /* 🌟 座標設定：距離父容器上方 50px，距離左邊 100px */
+    top: 800px;
+
+    z-index: 11; /* 如果圖片重疊，可以用 z-index 決定誰在上面 */
+}
+
+/* 3. 控制第二張貼紙的位置 */
+.sticker-2 {
+    position: absolute;
+    width: 200px;
+
+    /* 🌟 座標設定：距離父容器底部 20px，距離右邊 50px */
+    top: 990px;
+    left: 100px;
+    z-index: 12;
+}
+
+/* 輪播圖主容器 */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 800px; /* 輪播圖的固定高度 */
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
+    top: 0px;
+}
+
+/* 隱藏預設按鈕 */
+.carousel-container input[type="radio"] {
+    display: none;
+}
+
+/* 每一頁投影片的設定 */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* 預設全部隱藏 */
+    transition: opacity 0.6s ease-in-out;
+
+    /* 🌟 關鍵修正 1：滑動時其他圖片隱藏起來，才不會像隱形盾牌一樣擋住下方的點擊！ */
+    visibility: hidden;
+
+    /* 🌟 把 visibility 也加入動畫漸變中 */
+    transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+}
+
+/* 讓圖片填滿空間 */
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 🌟 你草圖中要求的：疊在左下角的文字設計 */
+.slide-text {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    padding: 20px 40px;
+    border-radius: 10px;
+    z-index: 10;
+
+    /* 1. 初始狀態：往下沉 30px，並且完全透明 */
+    transform: translateY(30px);
+    opacity: 0;
+
+    /* 2. 動畫時間：文字浮現 0.6 秒，並且延遲 0.2 秒才開始 (這樣會比圖片慢一點點浮現，超有質感！) */
+    transition: transform 0.6s ease-out 0.2s, opacity 0.6s ease-out 0.2s;
+}
+
+.slide-text h2 {
+    font-size: 90px;
+    color: #ffffff;
+    margin: 0 0 10px 0;
+    font-family: 'MyHanaMin', serif;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.slide-text h1 {
+    font-size: 50px;
+    color: #ffffff;
+    margin: 0;
+    font-family: "Libre Bodoni", serif;
+    letter-spacing: 2px;
+    font-weight: 900;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 圓點排版 */
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 20;
+}
+
+.carousel-dots label {
+    width: 15px;
+    height: 15px;
+    background-color: #5c544594;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+
+/* 🌟 第一段：控制大圖片的顯示與點擊 */
+#slide1:checked ~ .carousel-slides .slide-1,
+#slide2:checked ~ .carousel-slides .slide-2,
+#slide3:checked ~ .carousel-slides .slide-3 {
+    opacity: 1;
+    visibility: visible; /* 🌟 讓當前的圖片現身，並且可以被點擊！ */
+}
+
+/* 🌟 第二段：控制文字專屬的 translateY 浮現動畫 (注意這裡沒有逗號！) */
+#slide1:checked ~ .carousel-slides .slide-1 .slide-text,
+#slide2:checked ~ .carousel-slides .slide-2 .slide-text,
+#slide3:checked ~ .carousel-slides .slide-3 .slide-text {
+    transform: translateY(0); /* 回到原本的位置 */
+    opacity: 1;
+}
+
+#slide1:checked ~ .carousel-dots label[for="slide1"],
+#slide2:checked ~ .carousel-dots label[for="slide2"],
+#slide3:checked ~ .carousel-dots label[for="slide3"] {
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(187, 178, 178, 0.8);
 }

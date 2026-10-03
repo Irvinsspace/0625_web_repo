@@ -18,7 +18,7 @@ body {
     background-size: cover; /* 讓背景圖填滿整個螢幕 */
   /*background-image: url("pictures/background.png"); /* 設定背景圖 */
     background-attachment: fixed; /* (選擇性) 讓背景圖固定，滑動網頁時只有中間區塊會動，很有質感！ */
-    background-color: #f5f4f3;
+    background-color: #faf9f9;
     color: #333;
     z-index: 2;
 
@@ -224,7 +224,7 @@ h3 {
   position: relative;
   max-width: 1200px; /* 限制這個區塊的大小 */
   margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
-  background-color: #f5f4f3;
+  background-color: #faf9f9;
 
   /*給便當盒內部安全的留白空間，解決貼壁問題 */
   padding: 40px;
@@ -249,12 +249,7 @@ h3 {
     width: calc(100% + 80px);
 }
 
-/* 1. 建立座標參考點 */
-.full-width-section {
-    position: relative; /* 🌟 告訴裡面的貼紙：以我為基準點來擺放位置！ */
-    width: 100%;
-    min-height: 800px; /* 給這個區塊一個高度，才有空間貼貼紙 */
-}
+
 
 /* 2. 控制第一張貼紙的位置 */
 .sticker-1 {
