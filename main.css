@@ -16,6 +16,21 @@ body {
     overflow-x: hidden;
 }
 
+/* 🌟 準備浮現的元素：一開始透明且往下沉 40px */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* 🌟 當觀察員幫它加上 .visible 時，就會浮現並回到原位！ */
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
 .main-container {
   position: relative;
   max-width: 1200px; /* 限制這個區塊的大小 */
@@ -34,129 +49,152 @@ body {
 
 }
 
-.full-width-section {
+.hero-section {
     position: relative; /* 🌟 告訴裡面的貼紙：以我為基準點來擺放位置！ */
-    width: 100vw;
-    min-height: 5000px; /* 給這個區塊一個高度，才有空間貼貼紙 */
+    width: 100%;
     overflow: hidden;
 }
 
+.intro-section,
+.intro-section-2,
+.intro-section-3,
+.intro-section-4 {
+    position: relative;
+    width: 100%;
+    /* 給每個區塊上下各 150px 的留白，你可以自由調整數字來改變間距 */
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+
+.text-content {
+    position: absolute; /* 脫離一般排版，浮在空中 */
+    top: 150px;          /* 距離頂部 50px */
+    left: 200px;        /* 距離左邊 200px */
+    z-index: 10;        /* 確保在圖片上面 */
+}
+
+.text-content-1 {
+    position: absolute;
+    bottom: 190px;
+    left: 200px;
+    z-index: 10;
+}
 
 .text-content h1 {
     font-size: 90px;
-    top:  900px;
-    left: 300px;
-    position: absolute;
     color: #ffffff;
     text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
-    z-index: 30;
+    margin: 0; /* 記得清掉原本混亂的 margin */
+}
+
+
+.text-content-1 h3 {
+    font-size: 50px;
+    color: #ffffff;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+    z-index: 10;
+    line-height: 1.7;
+    margin: 0;
 }
 
 
 .Explore-png {
-    position: relative;
-    width: 2160px;
-    height: 1440px;
-    left: -100px;
-    z-index: 20;
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.text-content-1 h3 {
-    position: absolute;
-    font-size: 50px;
-    color: #ffffff;
-    top: 1600px;
-    left: 300px;
-    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
-    z-index: 30;
+
+.text-content-2 {
+    margin-left: 400px;
+    z-index: 10;
 }
 
 .text-content-2 h3 {
-    position: absolute;
-    font-size: 100px;
+    font-size:90px;
     color: #524741;
-    top: 2150px;
-    left: 300px;
     text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
     z-index: 30;
+    margin: 0;
+}
+
+
+.text-content-3 {
+    margin-left: 200px;
+    z-index: 10;
 }
 
 .text-content-3 h1 {
-    position: absolute;
     font-size: 50px;
     color: #524741;
-    top: 190px;
-    left: 300px;
     font-weight: 400;
     text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-    z-index: 34;
     line-height: 1.7;
+    margin-bottom: 30px; /* 讓 h1 和下方的 h3 保持一點距離 */
 }
 
 .text-content-3 h3 {
-    position: absolute;
     font-size: 50px;
     color: #524741;
-    top: 500px;
-    left: 300px;
     text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
     z-index: 34;
     line-height: 1.7;
+    margin: 0;
 }
 
-.text-content-4 h1 {
-    position: absolute;
-    font-size: 80px;
-    color: #ffffff;
-    top: 100px;
-    left: 300px;
-    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7);
-    z-index: 34;
-    line-height: 1.7;
+.text-content-4 {
+    margin-left: 200px;
 }
 
 .text-content-4 h3 {
-    position: absolute;
     font-size: 50px;
-    color: #ffffff;
-    top: 250px;
-    left: 300px;
-    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7);
+    color: #524741;
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
     z-index: 34;
     line-height: 1.7;
+    margin: 0;
 }
 
-
-.full-width-section-2 {
-    position: relative;
-    width: 100%;
-    min-height: 800px; /* 給這個區塊一個高度，才有空間貼貼紙 */
-    overflow: hidden;
-}
-
-.full-width-section-3 {
-    position: relative;
-    width: 100%;
-    min-height: 1000px; /* 給這個區塊一個高度，才有空間貼貼紙 */
-    overflow: hidden;
-}
-
-.banner-png {
+.text-content-5 {
     position: absolute;
-    width: 1950px;
-    height: 1300px;
-    top: 0px;
-    left: 0px;
-    z-index: 20;
+    top: 50px;
+    margin-left: 250px;
 }
+
+.text-content-5 h3 {
+    font-size: 70px;
+    color: #524741; /* 同上，原本是白色 */
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.writing-down {
+    width: 700px;
+    height: auto;
+    left: 550px;
+    z-index: 10;
+}
+
 /* =================================輪播圖主容器==================================== */
 
-.full-width-section-1 {
+/* 輪播圖主容器 */
+.carousel-section {
+    top: 0px;
     position: relative;
     width: 100%;
-    top:-3270px;
-    min-height: 1200px; /* 給這個區塊一個高度，才有空間貼貼紙 */
+    max-width: 1200px;
+    height: 800px; /* 輪播圖的固定高度 */
+    margin: auto;
+    overflow: hidden;
+    border-radius: 20px;
 }
+
+/* 隱藏預設按鈕 */
+.carousel-section input[type="radio"] {
+    display: none;
+}
+
 .image-btn {
     display: block;
     width: 1200px;
@@ -194,22 +232,6 @@ body {
     z-index: 12;
 }
 
-/* 輪播圖主容器 */
-.carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    height: 800px; /* 輪播圖的固定高度 */
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 20px;
-    top: 0px;
-}
-
-/* 隱藏預設按鈕 */
-.carousel-container input[type="radio"] {
-    display: none;
-}
 
 /* 每一頁投影片的設定 */
 .slide {
@@ -310,9 +332,84 @@ body {
     opacity: 1;
 }
 
-#slide1:checked ~ .carousel-dots label[for="slide1"],
-#slide2:checked ~ .carousel-dots label[for="slide2"],
-#slide3:checked ~ .carousel-dots label[for="slide3"] {
+#slide1:checked ~ .carousel-slides .carousel-dots label[for="slide1"],
+#slide2:checked ~ .carousel-slides .carousel-dots label[for="slide2"],
+#slide3:checked ~ .carousel-slides .carousel-dots label[for="slide3"] {
     background-color: #ffffff;
     box-shadow: 0 0 20px rgba(187, 178, 178, 0.8);
+}
+
+/* ==================================================== */
+/* 底部互動導覽區塊設計                                    */
+/* ==================================================== */
+
+/* 1. 人物與泡泡的專屬容器 */
+.character-nav-container {
+    position: relative; /* 🌟 關鍵！這就是那四顆泡泡的座標基準點 */
+    width: 800px;       /* 限制一個固定的畫布寬度，讓泡泡好排版 */
+    height: 600px;      /* 根據你人物的高度抓一個適當的畫布高度 */
+    margin: 0 auto;     /* 讓這整組插圖在網頁正中間 */
+    margin-top: 50px;   /* 距離上方標題的距離 */
+}
+
+/* 2. 中間的 Q 版人物 */
+.writing-down {
+    position: absolute; /* 把人物也變成貼紙 */
+    bottom: 0;          /* 貼齊容器底部 */
+    left: 50%;          /* 移動到中間 */
+    transform: translateX(-50%); /* 完美的水平置中魔法 */
+    width: 600px;       /* 你可以依據需要調整人物大小 */
+    height: auto;
+    z-index: 10;
+}
+
+/* 3. 氣泡按鈕的共通設定 */
+.bubble {
+    position: absolute; /* 變成貼紙 */
+    z-index: 20;        /* 確保疊在人物上面 */
+
+    /* 文字排版設定 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none; /* 拿掉超連結預設的醜醜底線 */
+    color: #524741;        /* 文字顏色 */
+    font-size: 30px;
+    font-family: "MyHanaMin", serif; /* 延用你的質感字體 */
+    font-weight: bold;
+
+    /* 🌟 將你自己畫的雲朵放上來當背景 */
+    background-image: url('pictures/thought-bubble.png'); /* 記得換成你的圖檔名！ */
+    background-size: 100% 100%; /* 讓雲朵完美填滿這個按鈕大小 */
+    background-repeat: no-repeat;
+
+    width: 300px;  /* 泡泡的寬度 */
+    height: 200px; /* 泡泡的高度 */
+
+    /* 加上滑鼠移過去的 Q 彈動畫 */
+    transition: transform 0.3s ease;
+}
+
+/* 滑鼠移過去時，泡泡會稍微放大，告訴使用者「可以點我喔！」 */
+.bubble:hover {
+    transform: scale(1.1);
+}
+
+/* 4. 將四顆泡泡釘在畫布的不同角落 (你可以自由微調這些 top, bottom, left, right 的數值) */
+.bubble-1 {
+    top: -20px;
+    left: -50px;
+}
+.bubble-2 {
+    top: -30px;
+    right: -50px;
+}
+.bubble-3 {
+    bottom: 150px;
+    left: 20px;
+}
+.bubble-4 {
+    bottom: 100px;
+    right: 20px;
 }
