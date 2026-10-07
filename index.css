@@ -16,6 +16,17 @@ body {
     overflow-x: hidden;
 }
 
+img {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE10+/Edge */
+    user-select: none;         /* 標準語法 */
+
+    /* 防止圖片被拖曳 */
+    -webkit-user-drag: none;
+    user-drag: none;
+}
+
 /* 🌟 準備浮現的元素：一開始透明且往下沉 40px */
 .fade-in {
     opacity: 0;
@@ -53,6 +64,8 @@ body {
     position: relative;
     width: 100%;
     overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .intro-section,
@@ -104,6 +117,7 @@ body {
     width: 100%;
     height: auto;
     display: block;
+
 }
 
 
