@@ -41,7 +41,8 @@
     padding-top: 100px;
     text-align: center; /*圖片或任何內容物置中 */
     margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
-
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .about-me-img {
@@ -99,12 +100,18 @@
 }
 
 
-.paintingPage-link{
+.paintingPage-link {
     display: flex;
     text-decoration: none; /* 拿掉超連結預設的醜醜底線 */
     color: #524741;        /* 文字顏色 */
     font-size: 28px;
     font-weight: 900;
+    transition: all 0.3s ease;
+}
+
+.paintingPage-link:hover {
+    color: #887469;
+    transform: translateX(5px); /* 文字微微往右彈 */
 }
 
 .content-divider {
@@ -115,6 +122,96 @@
 }
 
 
+/* =========================================
+   文章區塊左右排版與新標題設定*
+========================================= */
+.reflection-layout {
+    display: flex;
+    gap: 10px; /* 目錄和文章之間的間距 */
+    padding: 20px 80px; /* 調整整體的左右間距 */
+    align-items: flex-start; /* 讓兩邊都對齊頂部 */
+}
+
+/* 重新調整右側文章區塊，讓它填滿剩餘空間 */
+.reflection-content {
+    flex-grow: 1;
+    padding: 0; /* 把原本的 padding 歸零，交給外層的 layout 控制 */
+}
+
+/* 專屬小標題的樣式 */
+.section-title {
+    font-size: 30px;
+    color: #52474180;
+    margin-top: 150px; /* 讓每個段落上方多一點呼吸空間 */
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    font-weight: 900;
+}
+
+/* =========================================
+   左側時間軸浮動目錄 (Timeline TOC)
+========================================= */
+
+
+.toc-sidebar {
+    position: sticky; /* 讓目錄黏在畫面上 */
+    top: 300px; /* 往下滾動時會黏在距離上方 100px 的位置 */
+    width: 220px;
+    flex-shrink: 0; /* 確保目錄寬度不會被壓縮 */
+}
+
+.toc-title {
+    font-size: 35px;
+    color: #5C5445;
+    margin-bottom: 20px;
+    font-weight: 900;
+}
+
+/* 實線軌道 */
+.toc-timeline {
+    border-left: 2px solid #ccc;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* 每個目錄連結的間距 */
+}
+
+/* 目錄連結文字 */
+.toc-link {
+    position: relative;
+    text-decoration: none;
+    color: #5a50508c;
+    font-weight: bold;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+/* 🌟 利用 ::before 偽元素畫出圓點「•」 */
+.toc-link::before {
+    content: ''; /* 雖然沒有文字，但我們畫一個圓 */
+    position: absolute;
+    left: -27px; /* 往左推，剛好壓在剛剛畫的虛線上 */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background-color: #ccc;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+/* 滑鼠摸到目錄時的變化 */
+.toc-link:hover {
+    color: #524741;
+    transform: translateX(5px); /* 文字微微往右彈 */
+}
+
+/* 滑鼠摸到目錄時，圓點也會變色 */
+.toc-link:hover::before {
+    background-color: #524741; /* 變成可愛的黃色 */
+    box-shadow: 0 0 8px #201f1bcc; /* 微微發光 */
+}
 
 /* .reading-book {
     position: absolute;
