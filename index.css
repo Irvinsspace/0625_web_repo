@@ -437,6 +437,81 @@ img {
     right: 20px;
 }
 
+/* ==================================================== */
+/* 平板與小筆電響應式設計 (當螢幕寬度小於 1680px 時生效)      */
+/* ==================================================== */
+@media screen and (max-width: 1680px) {
+
+    .text-content {
+        bottom: auto;
+        bottom: 25%;      /* 改用百分比，讓文字跟著畫面比例走 */
+        left: 5%;
+    }
+    .text-content h1 {
+        font-size: 60px; /* 縮小手機版標題 */
+    }
+
+    .text-content-1 {
+        bottom: 7%;
+        left: 13%;
+        width: 90%;
+    }
+
+    .text-content-1 h3 {
+        font-size: 30px; /* 縮小內文 */
+    }
+
+    /* 縮小左側巨大的留白，改用百分比才不會把文字擠出畫面 */
+    .text-content-2 {
+        margin-left: 10%;
+    }
+    .text-content-3, .text-content-4, .text-content-5 {
+        margin-left: 10%;
+    }
+
+    /* 把輪播圖的固定 1200px 寬高解除，讓它跟著螢幕大小彈性縮放 */
+    .carousel-section {
+        width: 90%;
+        height: auto;
+        aspect-ratio: 3 / 2;
+    }
+    .image-btn, .reading-book, .traveling {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* 底部互動區的人物與泡泡也可以稍微縮小畫布寬度 */
+    .character-nav-container {
+        width: 100%;
+    }
+
+    .text-content-5 {
+        position: relative; /* 取消絕對定位，讓它乖乖待在上層 */
+        top: 0;
+        margin-left: 0;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .text-content-5 h3 {
+        font-size: 70px;
+        padding-left: 50px;
+        margin-bottom: 100px;
+    }
+
+    /* 縮小泡泡按鈕並重新調整位置 */
+    .bubble {
+        width: 300px;
+        height: 200px;
+        font-size: 22px;   /* 泡泡裡的字也要縮小 */
+    }
+
+    /* 重新分配四個泡泡在手機上的位置 */
+    .bubble-1 { top: 10%; left: 10%; }
+    .bubble-2 { top: 4%; right: 10%; }
+    .bubble-3 { bottom: 15%; left: 8%; }
+    .bubble-4 { bottom: 21%; right: 10%; }
+}
+
 
 /* ==================================================== */
 /* 平板與小筆電響應式設計 (當螢幕寬度小於 1200px 時生效)      */
