@@ -54,6 +54,13 @@
     line-height: 1.6;
     font-size: 20px;
     font-weight: 900;
+
+    /* === 解決文字過長的魔法 === */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* 限制最多顯示 3 行 (你可以依照喜好改為 2 或 4) */
+    overflow: hidden;      /* 把超過 3 行的內容隱藏起來 */
+    text-overflow: ellipsis; /* 在結尾加上刪節號 (...) */
 }
 
 /* 滑鼠摸到預覽框時的效果 */
@@ -231,4 +238,39 @@
     color: #6b6262;
     font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
     font-weight: bold;
+}
+
+/* ==================================================== */
+/* 螢幕寬度小於 1440px 時，將標籤選單移至上方 */
+/* ==================================================== */
+@media screen and (max-width: 1920px) {
+    .sticky-anchor-right {
+        position: static; /* 取消 sticky 定位 */
+        float: none;      /* 取消靠右浮動 */
+        width: 100%;
+        height: auto;
+        margin-bottom: 30px; /* 與下方的書籍列表保持距離 */
+    }
+
+    .tags-sidebar {
+        position: static;    /* 取消 absolute 絕對定位 */
+        flex-direction: row; /* 讓按鈕從垂直變成橫向排列 */
+        justify-content: center; /* 讓按鈕在畫面上方置中 */
+        padding-top: 60px;
+        flex-wrap: wrap;     /* 如果畫面變窄，按鈕會自動換行 */
+        width: 100%;
+    }
+
+    .tag-filter-btn {
+    background-color: #ffffff;
+    border: 2px solid #eee;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #6b6262;
+    transition: 0.3s;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+    font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
+}
 }

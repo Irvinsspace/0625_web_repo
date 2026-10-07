@@ -14,7 +14,7 @@
 ========================================= */
 .polaroid {
     width: 100%;
-    background-color: white; /* 拍立得的白色底 */
+    background-color: rgb(245, 243, 241); /* 拍立得的白色底 */
     padding: 10px 10px 15px 10px; /* 製造出白框效果，下方稍微寬一點更像拍立得 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 加上一點陰影看起來更立體 */
     cursor: pointer; /* 滑鼠移過去變成手指圖案，提示可以點擊 */
@@ -141,7 +141,7 @@
 /* 當按鈕被選中時的發光/變色效果 */
 #btn-digital:checked ~ .sticky-anchor .side-buttons [for="btn-digital"],
 #btn-traditional:checked ~ .sticky-anchor .side-buttons [for="btn-traditional"] {
-    background-color: #5e5847;
+    background-color: #b1a68e;
     color: #fffffc;
     box-shadow: 0 4px 15px rgba(100, 73, 57, 0.6);
 }
@@ -176,4 +176,22 @@
     /* 確保文字不會超出圖片寬度 */
     max-width: 100%;
     font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
+}
+
+/* ==================================================== */
+/* 手機版響應式設計 (當螢幕寬度小於 400px 時生效)          */
+/* ==================================================== */
+@media screen and (max-width: 400px) {
+    .gallery-grid {
+        /* 取消 400px 的限制，強制變成一排 1 張，並跟隨螢幕縮小 */
+        grid-template-columns: 1fr;
+
+        /* 原本的 padding 是 20px，可以微調小一點讓小螢幕不那麼擁擠 */
+        padding: 10px;
+    }
+
+    .side-buttons {
+        /* 原本按鈕間距是 30px，在小螢幕時縮小一點才不會超過畫面 */
+        gap: 15px;
+    }
 }
