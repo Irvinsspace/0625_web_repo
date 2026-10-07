@@ -323,19 +323,36 @@ h3 {
     height: auto; /* 保持圖片比例 */
 }
 
+/* ==================================================== */
+/* 手機與平板響應式設計2 (當螢幕寬度小於 770px 時生效)      */
+/* ==================================================== */
+@media screen and (max-width: 770px) {
+
+  /* 1. 修正外框高度，讓容器與 Banner 圖片等比例縮放 */
+    .header-container {
+      height: auto;
+      top: 20px;
+      aspect-ratio: 3 / 1; /* 你的 Banner 原圖是 1200x400，這個設定能讓容器維持完美的 3:1 比例[cite: 2] */
+    }
+
+    /* 2. 修正標籤排列，允許空間不足時自動換行 */
+
+}
+
 
 /* ==================================================== */
 /* 手機與平板響應式設計2 (當螢幕寬度小於 500px 時生效)      */
 /* ==================================================== */
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 640px) {
   .Profile-pic {
     /* 調整位置與大小，清除原本的 bottom */
-    top: 30px;
-    right: 40px;
+    top: 60px;
+    right: 30px;
     bottom: auto;
-
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     border: 3px solid #b6b1a5;
+
   }
 }
+

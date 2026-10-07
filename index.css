@@ -13,7 +13,10 @@
 }
 
 body {
-    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* 你原本寫好的防護網[cite: 5] */
+
 }
 
 img {
@@ -576,10 +579,39 @@ img {
 }
 
 /* ==================================================== */
-/* 手機與平板響應式設計 (當螢幕寬度小於 768px 時生效)      */
+/* 手機與平板響應式設計 (當螢幕寬度小於 770px 時生效)      */
 /* ==================================================== */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 770px) {
 
+    /* 1. 修正外框邊距，並讓高度由裡面的 Banner 自然撐開 */
+    .header-container {
+        height: auto;
+        /* 配合手機版 main-container 縮小的 padding (20px)[cite: 3] */
+        margin-top: -20px;
+        margin-left: -20px;
+        margin-right: -20px;
+        width: calc(100% + 40px); /* 左右突破各 20px，總共加 40px */
+    }
+
+    /* 2. 讓 Banner 回歸正常排版，撐出高度並把 hero-section 往下推 */
+    .Banner {
+        position: relative; /* 🌟 關鍵魔法：取消絕對定位，讓它佔用實際網頁空間 */
+        left: 0;            /* 取消原本電腦版的置中偏移[cite: 1] */
+        transform: none;    /* 取消原本電腦版的位移[cite: 1] */
+
+        /* 保留你原本在 index.css 寫好的完美防變形設定[cite: 3] */
+        width: 100%;
+        max-width: 1200px;
+        height: auto;
+        display: block;
+    }
+
+    .Banner {
+    width: 100%;       /* 讓它永遠填滿父容器 (也就是 main-container) 的寬度 */
+    max-width: 1200px; /* 最大不會超過原本的尺寸 */
+    height: auto;      /* 高度自動等比例縮放，確保圖片不會被壓扁變形 */
+    display: block;    /* 消除圖片下方預設的幾像素神祕空隙 */
+    }
     /* 1. 調整整體區塊的留白 */
     .intro-section, .intro-section-2, .intro-section-3, .intro-section-4 {
         padding-top: 60px;
@@ -695,9 +727,9 @@ img {
 
 
 /* ==================================================== */
-/* 手機與平板響應式設計2 (當螢幕寬度小於 400px 時生效)      */
+/* 手機與平板響應式設計2 (當螢幕寬度小於 500px 時生效)      */
 /* ==================================================== */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
 
     /* 1. 調整整體區塊的留白 */
     .intro-section, .intro-section-2, .intro-section-3, .intro-section-4 {
@@ -705,7 +737,7 @@ img {
         padding-bottom: 60px;
     }
     .main-container {
-        padding: 20px;
+        padding: 10px;
     }
 
     /* 2. 修正首頁（你好，我是黑犬）的絕對定位與字體大小 */
@@ -782,7 +814,7 @@ img {
         margin-bottom: 30px;
     }
     .text-content-5 h3 {
-        font-size: 60px;
+        font-size: 30px;
         padding-left: 50px;
         margin-bottom: 100px;
     }
