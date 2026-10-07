@@ -12,6 +12,19 @@
   font-style: normal;
 }
 
+/* 🌟 準備浮現的元素：一開始透明且往下沉 40px */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* 🌟 當觀察員幫它加上 .visible 時，就會浮現並回到原位！ */
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .image-btn {
     display: block;
     width: 100%;
@@ -19,86 +32,152 @@
     cursor: pointer; /* 滑鼠移上去會變成點擊的小手圖案 */
 }
 
-/* 1. 建立座標參考點 */
-.full-width-section {
-    position: relative; /* 🌟 告訴裡面的貼紙：以我為基準點來擺放位置！ */
+
+.aboutMe-section {
+    position: relative;
+    width: auto;
+    max-width: 1200px; /* 限制這個區塊的大小 */
+    overflow: hidden;
+    padding-top: 100px;
+    text-align: center; /*圖片或任何內容物置中 */
+    margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
+
+}
+
+.about-me-img {
+    width: 850px;
+    height: auto;
+    z-index: 10;
+}
+
+.aLittleAboutMe-text-content,
+.creating-text-content,
+.gaming-text-content,
+.whatIAmCuriousAbout-content {
+    position: relative;
     width: 100%;
-    min-height: 2000px; /* 給這個區塊一個高度，才有空間貼貼紙 */
+    max-width: 1200px;
+    left:50px;
+    margin: auto;
+    z-index: 20;
+}
+
+.final-text-content {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    padding-bottom: 200px;
+    left:50px;
+    margin: auto;
+    z-index: 20;
 }
 
 
-.reading-book {
-    position: absolute; /* 🌟 脫離排版，準備自由移動 */
+.aLittleAboutMe-text-content h1,
+.creating-text-content h1,
+.gaming-text-content h1,
+.whatIAmCuriousAbout-content h1,
+.final-text-content h1 {
+    font-size: 70px;
+    color: #524741;
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+    line-height: 1.7;
+    font-weight: 100;
+    margin: 0;
+}
+
+.aLittleAboutMe-text-content p,
+.creating-text-content p,
+.gaming-text-content p,
+.whatIAmCuriousAbout-content p,
+.final-text-content p {
+    font-size: 28px;
+    color: #524741;
+    line-height: 1.7;
+    font-weight: 900;
+    margin: 0;
+}
+
+
+.paintingPage-link{
+    display: flex;
+    text-decoration: none; /* 拿掉超連結預設的醜醜底線 */
+    color: #524741;        /* 文字顏色 */
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.content-divider {
+    border: 0;
+    height: 1px;
+    background-color: #c59b6121;
+    margin: 60px 0;
+}
+
+
+
+/* .reading-book {
+    position: absolute;
     width: 1200px ;
     height: 800px ;
     top: -50px;
-    /* 🌟 座標設定：距離父容器上方 100px，距離左邊 50px */
-    z-index: 10; /* 如果圖片重疊，可以用 z-index 決定誰在上面 */
+    z-index: 10;
+
 }
-/* 2. 控制第一張貼紙的位置 */
+ 2. 控制第一張貼紙的位置
 .traveling {
-    position: absolute; /* 🌟 脫離排版，準備自由移動 */
+    position: absolute;
     width: 1200px ;
     height: 800px ;
-    /* 🌟 座標設定：距離父容器上方 50px，距離左邊 100px */
     top: 800px;
-
-    z-index: 11; /* 如果圖片重疊，可以用 z-index 決定誰在上面 */
+    z-index: 11;
 }
 
-/* 3. 控制第二張貼紙的位置 */
+    3. 控制第二張貼紙的位置
 .sticker-2 {
     position: absolute;
     width: 200px;
-
-    /* 🌟 座標設定：距離父容器底部 20px，距離右邊 50px */
     top: 990px;
     left: 100px;
     z-index: 12;
 }
 
-/* 輪播圖主容器 */
-.carousel-container {
+ 輪播圖主容器 
+.carousel-section {
     position: relative;
     width: 100%;
     max-width: 1200px;
-    height: 800px; /* 輪播圖的固定高度 */
+    height: 800px; 
     margin: 0 auto;
     overflow: hidden;
     border-radius: 20px;
     top: 0px;
 }
 
-/* 隱藏預設按鈕 */
-.carousel-container input[type="radio"] {
+
+.carousel-section input[type="radio"] {
     display: none;
 }
 
-/* 每一頁投影片的設定 */
+ 每一頁投影片的設定
 .slide {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0; /* 預設全部隱藏 */
+    opacity: 0
     transition: opacity 0.6s ease-in-out;
-
-    /* 🌟 關鍵修正 1：滑動時其他圖片隱藏起來，才不會像隱形盾牌一樣擋住下方的點擊！ */
     visibility: hidden;
-
-    /* 🌟 把 visibility 也加入動畫漸變中 */
     transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
 }
 
-/* 讓圖片填滿空間 */
 .slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* 🌟 你草圖中要求的：疊在左下角的文字設計 */
 .slide-text {
     position: absolute;
     bottom: 50px;
@@ -107,11 +186,8 @@
     border-radius: 10px;
     z-index: 10;
 
-    /* 1. 初始狀態：往下沉 30px，並且完全透明 */
     transform: translateY(30px);
     opacity: 0;
-
-    /* 2. 動畫時間：文字浮現 0.6 秒，並且延遲 0.2 秒才開始 (這樣會比圖片慢一點點浮現，超有質感！) */
     transition: transform 0.6s ease-out 0.2s, opacity 0.6s ease-out 0.2s;
 }
 
@@ -135,7 +211,6 @@
     text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* 圓點排版 */
 .carousel-dots {
     position: absolute;
     bottom: 20px;
@@ -155,27 +230,23 @@
     transition: 0.3s;
 }
 
-
-
-/* 🌟 第一段：控制大圖片的顯示與點擊 */
 #slide1:checked ~ .carousel-slides .slide-1,
 #slide2:checked ~ .carousel-slides .slide-2,
 #slide3:checked ~ .carousel-slides .slide-3 {
     opacity: 1;
-    visibility: visible; /* 🌟 讓當前的圖片現身，並且可以被點擊！ */
+    visibility: visible;
 }
 
-/* 🌟 第二段：控制文字專屬的 translateY 浮現動畫 (注意這裡沒有逗號！) */
 #slide1:checked ~ .carousel-slides .slide-1 .slide-text,
 #slide2:checked ~ .carousel-slides .slide-2 .slide-text,
 #slide3:checked ~ .carousel-slides .slide-3 .slide-text {
-    transform: translateY(0); /* 回到原本的位置 */
+    transform: translateY(0);
     opacity: 1;
 }
 
-#slide1:checked ~ .carousel-dots label[for="slide1"],
-#slide2:checked ~ .carousel-dots label[for="slide2"],
-#slide3:checked ~ .carousel-dots label[for="slide3"] {
+#slide1:checked ~ .carousel-slides .carousel-dots label[for="slide1"],
+#slide2:checked ~ .carousel-slides .carousel-dots label[for="slide2"],
+#slide3:checked ~ .carousel-slides .carousel-dots label[for="slide3"] {
     background-color: #ffffff;
     box-shadow: 0 0 20px rgba(187, 178, 178, 0.8);
-}
+} */

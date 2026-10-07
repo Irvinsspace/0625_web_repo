@@ -4,7 +4,7 @@
 .gallery-grid {
     display: grid;
     /* 這個魔法會自動幫你排版：螢幕大時一排 3 張，螢幕小時自動變成一排 1~2 張 */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 30px; /* 圖片之間的間距 */
     padding: 20px;
 }
@@ -141,7 +141,7 @@
 /* 當按鈕被選中時的發光/變色效果 */
 #btn-digital:checked ~ .sticky-anchor .side-buttons [for="btn-digital"],
 #btn-traditional:checked ~ .sticky-anchor .side-buttons [for="btn-traditional"] {
-    background-color: #b1a68e;
+    background-color: #5e5847;
     color: #fffffc;
     box-shadow: 0 4px 15px rgba(100, 73, 57, 0.6);
 }
@@ -163,7 +163,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* 讓內容對齊左邊 */
-    max-width: 90%;
+    max-width: 100%;
 }
 
 /* 你許願的左下角白色文字 */

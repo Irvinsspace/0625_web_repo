@@ -35,7 +35,7 @@ body {
   position: relative;
   max-width: 1200px; /* 限制這個區塊的大小 */
   margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
-  background-color: #faf9f9;
+  background-color: #f0efee;
 
   /*給便當盒內部安全的留白空間，解決貼壁問題 */
   padding: 40px;
@@ -50,7 +50,7 @@ body {
 }
 
 .hero-section {
-    position: relative; /* 🌟 告訴裡面的貼紙：以我為基準點來擺放位置！ */
+    position: relative;
     width: 100%;
     overflow: hidden;
 }
@@ -68,9 +68,19 @@ body {
 
 .text-content {
     position: absolute; /* 脫離一般排版，浮在空中 */
-    top: 150px;          /* 距離頂部 50px */
-    left: 200px;        /* 距離左邊 200px */
+    bottom: 450px;          /* 距離頂部 50px */
+    left: 100px;        /* 距離左邊 200px */
     z-index: 10;        /* 確保在圖片上面 */
+}
+
+
+.text-content h1 {
+    font-size: 90px;
+    color: #ffffff;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+    z-index: 10;
+    font-weight: 400;
+    margin: 0;
 }
 
 .text-content-1 {
@@ -79,14 +89,6 @@ body {
     left: 200px;
     z-index: 10;
 }
-
-.text-content h1 {
-    font-size: 90px;
-    color: #ffffff;
-    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
-    margin: 0; /* 記得清掉原本混亂的 margin */
-}
-
 
 .text-content-1 h3 {
     font-size: 50px;
@@ -111,7 +113,8 @@ body {
 }
 
 .text-content-2 h3 {
-    font-size:90px;
+
+    font-size:70px;
     color: #524741;
     text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
     z-index: 30;
@@ -280,7 +283,7 @@ body {
     margin: 0 0 10px 0;
     font-family: 'MyHanaMin', serif;
     letter-spacing: 2px;
-    font-weight: 600;
+    font-weight: 400;
     text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -290,7 +293,7 @@ body {
     margin: 0;
     font-family: "Libre Bodoni", serif;
     letter-spacing: 2px;
-    font-weight: 900;
+    font-weight: 400;
     text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 

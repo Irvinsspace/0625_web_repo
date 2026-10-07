@@ -18,13 +18,42 @@ body {
     background-size: cover; /* 讓背景圖填滿整個螢幕 */
   /*background-image: url("pictures/background.png"); /* 設定背景圖 */
     background-attachment: fixed; /* (選擇性) 讓背景圖固定，滑動網頁時只有中間區塊會動，很有質感！ */
-    background-color: #faf9f9;
+    background-color: #f0efee;
     color: #333;
     z-index: 2;
 
     /* 這裡的名稱必須和 @font-face 裡自己取的 font-family 一模一樣 */
     font-family: "MyHanaMin", Arial, sans-serif;
 
+}
+
+.main-container {
+  position: relative;
+  max-width: 1200px; /* 限制這個區塊的大小 */
+  margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
+  background-color: #f0efee;
+
+  /*給便當盒內部安全的留白空間，解決貼壁問題 */
+  padding: 40px;
+  box-sizing: border-box; /* 確保 padding 不會把 1200px 的寬度撐破 */
+
+  /* 把 % 改成固定的 px (像素)，這樣就算網頁再長，圓角永遠都是 20px 不會變形 */
+  border-radius: 0 0 20px 20px;
+
+  /*改成 100vh (剛好一個螢幕高) 就好，內容變多它會自己往下長 */
+  min-height: 100vh;
+
+}
+
+.header-container {
+    position: relative;
+    width: 100%;
+    height: 500px; /* 可調整橫幅高度 */
+    margin-top: -40px;
+    margin-left: -40px;
+    margin-right: -40px;
+    /* 因為它突破了，所以寬度要加上被扣掉的 padding 才會填滿 */
+    width: calc(100% + 80px);
 }
 
 p {
@@ -68,7 +97,7 @@ h3 {
 
   /* 以下保留你原本寫好的超棒設定 */
   top: 0;
-  background: #948f81ad;
+  background: #524e41b6;
   z-index: 100;
   padding: 15px 0;
   backdrop-filter: blur(11px);
@@ -91,13 +120,14 @@ h3 {
   color: #ffffff; /* 文字顏色 */
   text-decoration: none; /* 拿掉預設的超連結底線 */
   font-size: 16px;
-  font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
+  text-shadow: 0 0 10px #070707; /* 文字光暈 */
+  font-family:"MyHanaMin", Arial, sans-serif;
   transition: 0.25s ease;
 }
 
 .nav-links a:hover {
   color: #ffffff; /* 滑鼠移上去的顏色 */
-  text-shadow: 0 0 20px #f1efee; /* 滑鼠移上去的文字光暈 */ /* 滑鼠移上去的透明度 */
+  text-shadow: 0 0 30px #f1efee; /* 滑鼠移上去的文字光暈 */ /* 滑鼠移上去的透明度 */
 }
 
 .dropdown-parent {
@@ -116,13 +146,11 @@ h3 {
   /* 🌟 動畫關鍵：除了原本的水平置中 (-50%)，我們多加了 Y 軸往上偏移 (-15px) */
   transform: translate(-50%, -15px);
 
-  background-color: #948f81ad;
+  background-color: #524e41b6;
   backdrop-filter: blur(10px);
-
-  padding: 10px 0;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  min-width: 120px;
+  min-width: 150px;
 
   /* 🌟 設定轉場動畫：讓透明度、位移都能順暢漸變 */
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
@@ -134,7 +162,8 @@ h3 {
   padding: 10px 15px;
   border-bottom: 1px solid rgba(224, 222, 219, 0.829); /* 每個選項之間的間距 */
   text-decoration: none;
-  font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
+  text-shadow: 0 0 30px #1b1a19; /* 滑鼠移上去的文字光暈 */
+  font-family:"MyHanaMin", Arial, sans-serif;
 }
 
 /* 3. 下拉選單裡面的選項排版 */
@@ -220,34 +249,7 @@ h3 {
 
     /* 🌟 記得把原本這行 border-radius 刪掉！因為現在圖片要貼齊螢幕最邊緣，不需要上方圓角了 */
 }
-.main-container {
-  position: relative;
-  max-width: 1200px; /* 限制這個區塊的大小 */
-  margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
-  background-color: #faf9f9;
 
-  /*給便當盒內部安全的留白空間，解決貼壁問題 */
-  padding: 40px;
-  box-sizing: border-box; /* 確保 padding 不會把 1200px 的寬度撐破 */
-
-  /* 把 % 改成固定的 px (像素)，這樣就算網頁再長，圓角永遠都是 20px 不會變形 */
-  border-radius: 0 0 20px 20px;
-
-  /*改成 100vh (剛好一個螢幕高) 就好，內容變多它會自己往下長 */
-  min-height: 100vh;
-
-}
-
-.header-container {
-    position: relative;
-    width: 100%;
-    height: 500px; /* 可調整橫幅高度 */
-    margin-top: -40px;
-    margin-left: -40px;
-    margin-right: -40px;
-    /* 因為它突破了，所以寬度要加上被扣掉的 padding 才會填滿 */
-    width: calc(100% + 80px);
-}
 
 
 
@@ -285,13 +287,13 @@ h3 {
 }
 
 .tag {
-  background-color: #948f81ad; /* 半透明白色背景 */
+  background-color: #524e41b6;
   color: #f5f4f3; /* 文字顏色 */
-  padding: 5px 15px; /* 上下 5px，左右 15px 的呼吸空間 */
+  padding: 10px 20px; /* 上下 10px，左右 20px 的呼吸空間 */
   border-radius: 20px; /* 讓邊角變成圓潤的膠囊狀 */
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 400;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* 加點小陰影更有質感 */
+  box-shadow: 0 0 10px rgba(0,0,0,0.6); /* 加點小陰影更有質感 */
 }
 
 .Profile-pic {
