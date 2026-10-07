@@ -25,6 +25,9 @@ img {
     /* 防止圖片被拖曳 */
     -webkit-user-drag: none;
     user-drag: none;
+
+    /* 🌟 讓圖片無法被滑鼠互動（無法點擊、無法按右鍵） */
+    pointer-events: none;
 }
 
 /* 🌟 準備浮現的元素：一開始透明且往下沉 40px */
