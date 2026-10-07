@@ -206,7 +206,7 @@ body {
 }
 
 .reading-book {
-    position: absolute; /* 🌟 脫離排版，準備自由移動 */
+    position: block; /* 🌟 脫離排版，準備自由移動 */
     width: 1200px ;
     height: 800px ;
     top: -50px;
@@ -215,7 +215,7 @@ body {
 }
 /* 2. 控制第一張貼紙的位置 */
 .traveling {
-    position: absolute; /* 🌟 脫離排版，準備自由移動 */
+    position: block; /* 🌟 脫離排版，準備自由移動 */
     width: 1200px ;
     height: 800px ;
     /* 🌟 座標設定：距離父容器上方 50px，距離左邊 100px */
@@ -226,7 +226,7 @@ body {
 
 /* 3. 控制第二張貼紙的位置 */
 .sticker-2 {
-    position: absolute;
+    position: block;
     width: 200px;
 
     /* 🌟 座標設定：距離父容器底部 20px，距離右邊 50px */
@@ -415,4 +415,122 @@ body {
 .bubble-4 {
     bottom: 100px;
     right: 20px;
+}
+
+/* ==================================================== */
+/* 手機與平板響應式設計 (當螢幕寬度小於 768px 時生效)      */
+/* ==================================================== */
+@media screen and (max-width: 768px) {
+
+    /* 1. 調整整體區塊的留白 */
+    .intro-section, .intro-section-2, .intro-section-3, .intro-section-4 {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    .main-container {
+        padding: 20px;
+    }
+
+    /* 2. 修正首頁（你好，我是黑犬）的絕對定位與字體大小 */
+    .text-content {
+        bottom: auto;
+        bottom: 20%;      /* 改用百分比，讓文字跟著畫面比例走 */
+        left: -5%;
+    }
+    .text-content h1 {
+        font-size: 40px; /* 縮小手機版標題 */
+    }
+
+    .text-content-1 {
+        bottom: 5%;
+        left: 7%;
+        width: 90%;
+    }
+
+    .text-content-1 h3 {
+        font-size: 20px; /* 縮小內文 */
+    }
+
+    /* 3. 修正其他區塊的推擠 (移除原本過大的 margin-left) */
+    .text-content-2,
+    .text-content-3,
+    .text-content-4 {
+        margin-left: 5%;
+        width: 90%;
+    }
+    .text-content-2 h3,
+    .text-content-3 h3,
+    .text-content-4 h3 {
+        font-size: 24px;
+    }
+    .text-content-3 h1 {
+        font-size: 24px;
+    }
+
+
+    /* 4. 修正輪播圖 (保持 3:2 原圖比例) */
+    .carousel-section {
+        height: auto;          /* 取消固定高度 */
+        aspect-ratio: 3 / 2;   /* 讓高度自動跟隨寬度，保持 3:2 的完美比例 */
+    }
+
+    /* 🌟 關鍵修正：把按鈕的固定寬度解除，改成跟著外層 100% */
+    .image-btn {
+        width: 100%;
+        height: 100%;
+    }
+
+    .slide img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .slide-text {
+        bottom: 20px;
+        left: 20px;
+        padding: 10px;
+    }
+
+    .slide-text h2 {
+        font-size: 60px;       /* 手機版文字大小保持縮小 */
+    }
+
+    /* 5. 修正「想從哪裡開始？」的標題，避免被泡泡擋住 */
+    .text-content-5 {
+        position: relative; /* 取消絕對定位，讓它乖乖待在上層 */
+        top: 0;
+        margin-left: 0;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .text-content-5 h3 {
+        font-size: 60px;
+        padding-left: 50px;
+        margin-bottom: 100px;
+    }
+
+    /* 6. 修正底部互動導覽區塊 (人物與泡泡) */
+    .character-nav-container {
+        width: 100%;       /* 讓畫布符合手機寬度 */
+        height: 400px;     /* 縮小畫布高度 */
+        margin-top: 20px;
+    }
+
+    .writing-down {
+        width: 60%;        /* 讓人物圖縮小 */
+    }
+
+    /* 縮小泡泡按鈕並重新調整位置 */
+    .bubble {
+        width: 230px;
+        height: 120px;
+        font-size: 22px;   /* 泡泡裡的字也要縮小 */
+    }
+
+    /* 重新分配四個泡泡在手機上的位置 */
+    .bubble-1 { top: -10%; left: 8%; }
+    .bubble-2 { top: 0; right: 10%; }
+    .bubble-3 { bottom: 30%; left: 9%; }
+    .bubble-4 { bottom: 27%; right: 10%; }
 }
