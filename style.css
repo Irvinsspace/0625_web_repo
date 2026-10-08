@@ -192,8 +192,8 @@ h3 {
   /* 1. 把漢堡按鈕呼叫出來，放在左上角 */
 .menu-btn {
     display: block;
-    color: white;
-    font-size: 30px;
+    color: rgb(39, 37, 36);
+    font-size: 40px;
     cursor: pointer;
     position: absolute;
     font-size: 50px;
