@@ -179,6 +179,7 @@
 /* 1. 整體佈局調整：改為上下排列，而不是左右並排 */
     .reflection-layout {
         flex-direction: column; /* 讓目錄和文章變成上下排列 */
+        padding: 18px;
         margin: auto;        /* 縮小整體的左右間距 */
         gap: 30px;              /* 調整目錄和文章的間距 */
     }
@@ -201,7 +202,7 @@
         /* 如果想讓目錄的項目變成橫向排列，可以加入以下設定： */
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: 30px;
         border-left: 0px solid #cccccc00;
     }
 
@@ -219,7 +220,8 @@
     }
 
     .toc-title {
-        font-size: 20px;    /* 縮小目錄標題字體 */
+        margin-top: 30px;
+        font-size: 30px;    /* 縮小目錄標題字體 */
         text-align: center;
         color: #524741c7
     }
@@ -235,37 +237,21 @@
     }
 
     /* 4. 各個文字內容區塊調整 */
-    .aLittleAboutMe-text-content,
-    .creating-text-content,
-    .gaming-text-content,
-    .whatIAmCuriousAbout-content,
-    .final-text-content {
+    .reflection-content {
         left: 0;            /* 移除原本往右推的設定 */
         width: 100%;        /* 讓內容填滿寬度 */
         padding: 0 10px;    /* 加上一點左右內邊距，避免文字太貼齊邊緣 */
         box-sizing: border-box; /* 確保 padding 不會撐破寬度 */
     }
 
-    /* .final-text-content 原本的 bottom padding 稍微縮小 */
-    .final-text-content {
-        padding-bottom: 60px;
-    }
 
     /* 5. 調整字體大小 */
-    .aLittleAboutMe-text-content h1,
-    .creating-text-content h1,
-    .gaming-text-content h1,
-    .whatIAmCuriousAbout-content h1,
-    .final-text-content h1 {
-        font-size: 36px;    /* 大幅縮小大標題字體 */
+    .reflection-content h2 {
+        font-size: 28px;    /* 大幅縮小大標題字體 */
         text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* 陰影也跟著縮小 */
     }
 
-    .aLittleAboutMe-text-content p,
-    .creating-text-content p,
-    .gaming-text-content p,
-    .whatIAmCuriousAbout-content p,
-    .final-text-content p {
+    .reflection-content p {
         font-size: 18px;    /* 縮小內文字體 */
     }
 
@@ -274,13 +260,4 @@
         margin-top: 60px;   /* 縮小上方間距 */
     }
 
-    .paintingPage-link {
-        font-size: 20px;    /* 縮小連結字體 */
-        justify-content: center; /* 讓連結置中 */
-        margin-top: 20px;
-    }
-
-    .content-divider {
-        margin: 40px 0;     /* 縮小分隔線的間距 */
-    }
 }

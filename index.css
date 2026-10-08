@@ -15,7 +15,7 @@
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* 你原本寫好的防護網[cite: 5] */
+    overflow-x: hidden;
 
 }
 
@@ -45,7 +45,6 @@ img {
     opacity: 1;
     transform: translateY(0);
 }
-
 
 
 .main-container {
@@ -527,7 +526,7 @@ img {
         left: 3%;
     }
     .text-content h1 {
-        font-size: 50px; /* 縮小手機版標題 */
+        font-size: 40px; /* 縮小手機版標題 */
     }
 
     .text-content-1 {

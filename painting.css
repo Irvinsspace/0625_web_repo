@@ -1,3 +1,27 @@
+
+.hint-box {
+    position: flex;
+    width: 100%;
+    padding: 30px 40px;
+    margin:auto;
+    margin-top: 100px;
+    background-color: #f1f1ef;
+    border: 2px solid #8d8980;
+    border-radius: 5px;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+
+.hint-box p {
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    color: #79746c;
+    font-weight: 900;
+}
+
 /* =========================================
    畫廊網格：處理一排 2~3 張的排版
 ========================================= */
@@ -44,6 +68,7 @@
     top: 0;
     width: 100%;
     height: 100%;
+    margin: auto;
     background-color: rgba(0, 0, 0, 0.85);
     display: flex; /* 改成平常就保持 flex，只是隱藏起來 */
     align-items: center;
@@ -69,6 +94,8 @@
 }
 /* 放大預覽區裡面的大圖片（一樣套用白框） */
 .lightbox img {
+    margin: auto;
+    margin-left: 25px;
     max-width: 90%;
     max-height: 85vh; /* 確保不管多大都不會超過螢幕高度 */
     background-color: white;
@@ -179,16 +206,37 @@
 }
 
 /* ==================================================== */
-/* 手機版響應式設計 (當螢幕寬度小於 400px 時生效)          */
+/* 手機版響應式設計 (當螢幕寬度小於 475px 時生效)          */
 /* ==================================================== */
-@media screen and (max-width: 400px) {
-    .gallery-grid {
-        /* 取消 400px 的限制，強制變成一排 1 張，並跟隨螢幕縮小 */
-        grid-template-columns: 1fr;
+@media screen and (max-width: 475px) {
 
-        /* 原本的 padding 是 20px，可以微調小一點讓小螢幕不那麼擁擠 */
-        padding: 10px;
+    .hint-box {
+    position: static;
+    width: 50%;
+    padding: 10px 20px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+    .hint-box p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    font-size: 20px;
     }
+
+    .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 2fr));
+    gap: 10px; /* 圖片之間的間距 */
+    padding: 5px;
+    }
+
+    .polaroid {
+    width: 100%;
+    background-color: rgb(245, 243, 241); /* 拍立得的白色底 */
+    padding: 10px 10px 15px 10px; /* 製造出白框效果，下方稍微寬一點更像拍立得 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 加上一點陰影看起來更立體 */
+    }
+
 
     .side-buttons {
         /* 原本按鈕間距是 30px，在小螢幕時縮小一點才不會超過畫面 */

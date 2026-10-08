@@ -213,6 +213,63 @@
     box-shadow: 0 0 8px #201f1bcc; /* 微微發光 */
 }
 
+/* ==================================================== */
+/* TOC響應式設計 (當螢幕寬度小於 1200px 時生效)      */
+/* ==================================================== */
+
+.sticky-toc-section {
+  position: fixed; /* 🌟 關鍵修改 1：將原本的 sticky 改成 fixed，讓導覽列脫離排版空間，懸浮在最上層 */
+  width: 100%; /* 🌟 關鍵修改 2：脫離排版後，必須手動告訴它要填滿 100% 寬度 */
+  left: 0; /* 🌟 確保它從畫面最左邊開始貼齊 */
+}
+
+.dropdown-parent-toc {
+  position: relative; /* 讓下拉選單的子元素絕對定位 */
+}
+
+/* 2. 下拉選單的預設樣式 (先藏起來！) */
+.dropdown-menu-toc {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+
+
+  transform: translate(-50%, -15px);
+  background-color: #524e41b6;;
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  min-width: 150px;
+
+  /* 🌟 設定轉場動畫：讓透明度、位移都能順暢漸變 */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.dropdown-menu-toc li a {
+  display: block; /* 讓整個選項都可以點擊 */
+  color: #ffffff; /* 文字顏色 */
+  padding: 10px 15px;
+  border-bottom: 1px solid rgba(224, 222, 219, 0.829); /* 每個選項之間的間距 */
+  text-decoration: none;
+  text-shadow: 0 0 30px #1b1a19; /* 滑鼠移上去的文字光暈 */
+  font-family:"MyHanaMin", Arial, sans-serif;
+}
+
+/* 3. 下拉選單裡面的選項排版 */
+.dropdown-menu-toc li {
+  padding: 10px 20px;
+  list-style: none;
+}
+
+
+.dropdown-parent-toc:hover .dropdown-menu-toc {
+  /* 把選單秀出來 */
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
 
 /* ==================================================== */
 /* 平板與小筆電響應式設計 (當螢幕寬度小於 1200px 時生效)      */
@@ -226,18 +283,12 @@
     }
 
     /* 2. 調整文章目錄（TOC） */
-    .toc-sidebar {
-        position: sticky; /* 取消黏性定位（sticky），讓它跟著滾動 */
-        top: 60px;
-        width: 100%;        /* 讓目錄填滿螢幕寬度 */
-        margin-bottom: 20px;
-        z-index: 50;
-    }
 
     .toc-sidebar {
-        position: sticky; /* 取消黏性定位（sticky），讓它跟著滾動 */
+        position: relative; /* 取消黏性定位（sticky），讓它跟著滾動 */
         top: 55px;
         width: 100%;        /* 讓目錄填滿螢幕寬度 */
+        margin-top: 50px;
         margin-bottom: 20px;
         background-color: #f0efeecb;
         padding: 10px;
@@ -245,13 +296,14 @@
         backdrop-filter: blur(2px);
         -webkit-backdrop-filter: blur(2px);
         justify-content: center;
+        z-index: 50;
     }
 
     .toc-timeline {
         /* 如果想讓目錄的項目變成橫向排列，可以加入以下設定： */
-         flex-direction: row;
-         flex-wrap: wrap;
-        gap: 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 30px;
         border-left: 0px solid #cccccc00;
 
     }
@@ -270,7 +322,7 @@
     }
 
     .toc-title {
-        font-size: 40px;    /* 縮小目錄標題字體 */
+        font-size: 70px;    /* 縮小目錄標題字體 */
         text-align: center;
         color: #524741c7
     }
@@ -336,6 +388,14 @@
         margin: 40px 0;     /* 縮小分隔線的間距 */
     }
 
+    .toc-title {
+    font-size: 50px;
+    color: #524741;
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+    line-height: 1.7;
+    font-weight: 100;
+    margin: 0;
+}
 }
     /* ==================================================== */
 /* 手機與平板響應式設計 (當螢幕寬度小於 768px 時生效)      */
@@ -349,59 +409,25 @@
         gap: 30px;              /* 調整目錄和文章的間距 */
     }
 
-    /* 2. 調整文章目錄（TOC） */
-    .toc-sidebar {
-        position: sticky; /* 取消黏性定位（sticky），讓它跟著滾動 */
-        top: 60px;
-        width: 100%;        /* 讓目錄填滿螢幕寬度 */
-        margin-bottom: 20px;
-        z-index: 50;
-    }
-
-    .toc-sidebar {
-        position: sticky; /* 取消黏性定位（sticky），讓它跟著滾動 */
-        top: 30px;
-        width: 100%;        /* 讓目錄填滿螢幕寬度 */
-        margin-bottom: 20px;
-        background-color: #f0efeecb;
-        padding: 10px;
-        z-index: 50;
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
-        justify-content: center;
-    }
-
-    .toc-timeline {
-        /* 如果想讓目錄的項目變成橫向排列，可以加入以下設定： */
-         flex-direction: row;
-         flex-wrap: wrap;
-        gap: 20px;
+    /* .toc-timeline {
+        /* 如果想讓目錄的項目變成橫向排列，可以加入以下設定：
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 30px;
         border-left: 0px solid #cccccc00;
 
-    }
-
-    .toc-link::before {
-    content: ''; /* 雖然沒有文字，但我們畫一個圓 */
-    position: absolute;
-    left: -27px; /* 往左推，剛好壓在剛剛畫的虛線上 */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 12px;
-    height: 12px;
-    background-color: #cccccc00;
-    border-radius: 50%;
-    transition: 0.3s;
-    }
+    } */
 
     .toc-title {
-        font-size: 20px;    /* 縮小目錄標題字體 */
+        margin-top: 25px;
+        font-size: 30px;    /* 縮小目錄標題字體 */
         text-align: center;
         color: #524741c7
     }
 
     .toc-link {
         text-align: center;
-        font-size: 15px;    /* 縮小目錄連結字體 */
+        font-size: 17px;    /* 縮小目錄連結字體 */
     }
 
     /* 3. 頂部主視覺圖片調整 */
@@ -409,6 +435,8 @@
         width: 100%;        /* 讓圖片寬度自適應螢幕 */
         height: auto;
     }
+
+
 
     /* 4. 各個文字內容區塊調整 */
     .aLittleAboutMe-text-content,
@@ -433,7 +461,7 @@
     .gaming-text-content h1,
     .whatIAmCuriousAbout-content h1,
     .final-text-content h1 {
-        font-size: 36px;    /* 大幅縮小大標題字體 */
+        font-size: 30px;    /* 大幅縮小大標題字體 */
         text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* 陰影也跟著縮小 */
     }
 

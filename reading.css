@@ -126,7 +126,6 @@
     color: #6b6262;
     transition: 0.3s;
     box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
-    font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
 }
 
 .tag-filter-btn:hover {
@@ -159,7 +158,6 @@
     border-radius: 15px;
     font-size: 13px;
     color: #6b6262;
-    font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
     font-weight: bold;
 }
 
