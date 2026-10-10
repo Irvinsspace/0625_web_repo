@@ -5,12 +5,20 @@
     padding: 30px 40px;
     margin:auto;
     margin-top: 100px;
-    background-color: #f1f1ef;
-    border: 2px solid #8d8980;
-    border-radius: 5px;
+    background-color: #f5f5f7;
+    border: 7px solid #b6b1a5;
+    border-radius: 3px;
     overflow: hidden;
     user-select: none;
     -webkit-user-select: none;
+}
+
+.hint-box h3 {
+    position: relative;
+    text-align: center;
+    font-size: 40px;
+    color: #413c34;
+    font-weight: 900;
 }
 
 

@@ -1,197 +1,253 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
-
-<head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>黑犬的部落格</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="index.css">
-</head>
-<body>
-    <nav class="sticky-navbar">
-
-    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-
-    <label for="menu-toggle" class="menu-btn">☰</label>
-
-    <ul class="nav-links">
-    <li><a href="index.html">首頁</a></li>
-    <li><a href="about.html">自我介紹</a></li>
-
-    <li class="dropdown-parent">
-        <a href="#">喜好專欄</a>
-        <ul class="dropdown-menu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="默文的個人創作網站：畫作、閱讀心得、小說與生活日誌。"
+    />
+    <title>默文的部落格</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="index.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <!-- 導覽列（樣式在 style.css） -->
+    <nav class="sticky-navbar" aria-label="主選單">
+      <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="about.html">自我介紹</a></li>
+        <li class="dropdown-parent">
+          <a href="#">喜好專欄</a>
+          <ul class="dropdown-menu">
             <li><a href="painting.html">畫畫作品集</a></li>
             <li><a href="reading.html">閱讀專欄</a></li>
             <li><a href="my_fiction.html">小說</a></li>
-        </ul>
-    </li>
-    <li><a href="diary.html">生活日誌</a></li>
-
-    </ul>
+          </ul>
+        </li>
+        <li><a href="diary.html">生活日誌</a></li>
+      </ul>
     </nav>
 
-        <div class="main-container">
-            <div class="header-container">
-                <img src="pictures\banner.png"  class="Banner" width="1200" height="400" draggable="false">
-                <img src="pictures\NewProfile.png" alt="My Profile Picture" class="Profile-pic" width="200" height="200" draggable="false">
-                <div class="tags-box">
-                    <span class="tag">#畫畫</span>
-                    <span class="tag">#生活</span>
-                    <span class="tag">#自我探索</span>
-                </div>
-            </div>
+    <!-- 橫幅（結構與 style.css 對應，class 名稱維持不變） -->
+    <header class="main-container">
+      <div class="header-container">
+        <img
+          src="pictures/banner.png"
+          alt="網站橫幅"
+          class="Banner"
+          width="1200"
+          height="400"
+          draggable="false"
+        />
+        <img
+          src="pictures/NewProfile.png"
+          alt="默文的大頭貼"
+          class="Profile-pic"
+          width="250"
+          height="250"
+          draggable="false"
+        />
+        <div class="tags-box">
+          <span class="tag">#創作</span>
+          <span class="tag">#生活</span>
+          <span class="tag">#自我探索</span>
         </div>
+      </div>
+    </header>
 
-        <section class="hero-section">
-            <div class="text-content fade-in">
-                <h1>你好，我是黑犬。</h1>
-            </div>
+    <main>
+      <!-- 名片 -->
+      <section class="profile-card-section">
+        <div class="profile-card">
+          <h2>Mervyn / 默文</h2>
+          <p>
+            Taiwan<br />
+            Curious mind · Conscientious · Responsible<br />
+            Drawing / Reading / Psychology / Stories
+          </p>
+          <p class="profile-quote">📌「以你嚮往的方向持續努力。」</p>
+        </div>
+      </section>
 
-            <img src="pictures\Explore.png" alt="Explore" class="Explore-png" draggable="false" >
+      <!-- 主視覺：圖片與文字疊在同一個 grid 格子 -->
+      <section class="hero">
+        <img
+          src="pictures/Explore.png"
+          alt=""
+          class="hero-img"
+          draggable="false"
+        />
+        <div class="hero-text fade-in">
+          <h1>你好，我是默文。</h1>
+          <p>
+            一個住在台灣、喜歡畫畫和探索生活的人。<br />
+            我製作了這個網站，用來放置我的創作、旅行、閱讀，<br />
+            以及一些生活碎片的小地方。
+          </p>
+        </div>
+      </section>
 
-            <div class="text-content-1 fade-in">
-                <h3>一個住在台灣、喜歡畫畫和探索生活的人。 <br/>
-                這裡是用來放置我的創作、旅行、閱讀， <br/>
-                以及一些生活碎片的小地方。</h3>
-            </div>
+      <!-- 關於我：原本三段純文字合併成兩欄 -->
+      <div class="band">
+        <section class="about">
+          <div class="about-text fade-in">
+            <h2>歡迎來到我的個人創作網站</h2>
+            <p>
+              我喜歡創作，也喜歡旅行、閱讀，以及研究那些原本只是突然讓我好奇的事情。
+            </p>
+            <p>
+              常常因為腦袋裡忽然冒出來的小問題就開始查資料，最後不知不覺地一路查到完全不同的地方。
+            </p>
+            <p>
+              我正在持續上傳自己從過去到現在的繪圖作品，以及幾本很想留下心得的書。歡迎點開喜好專欄，和我一起在網站裡走走。
+            </p>
+          </div>
+          <img
+            src="pictures/raineyDay.png"
+            alt="下雨天的插畫"
+            class="about-img fade-in"
+            draggable="false"
+            loading="lazy"
+          />
         </section>
+      </div>
 
-        <section class="intro-section">
-            <div class="text-content-2 fade-in">
-                <h3>歡迎你來到我的個人創作網站。<br/>
-                    在這裡你能看到......</h3>
+      <!-- 輪播：預設第 1 張，每張都有明確的前往連結 -->
+      <section class="carousel-section" aria-label="內容精選">
+        <input type="radio" name="slider" id="slide1" checked />
+        <input type="radio" name="slider" id="slide2" />
+        <input type="radio" name="slider" id="slide3" />
+
+        <div class="carousel-slides">
+          <div class="slide slide-1">
+            <label for="slide2" class="image-btn">
+              <img
+                src="pictures/Hobbies_reading.png"
+                alt="閱讀"
+                loading="lazy"
+                draggable="false"
+              />
+            </label>
+            <div class="slide-text">
+              <h2>分享我喜愛的書籍</h2>
+              <a class="slide-link" href="reading.html">前往閱讀專欄</a>
             </div>
+          </div>
+
+          <div class="slide slide-2">
+            <label for="slide3" class="image-btn">
+              <img
+                src="pictures/traveling.png"
+                alt="旅行"
+                loading="lazy"
+                draggable="false"
+              />
+            </label>
+            <div class="slide-text">
+              <h2>我的旅行記事</h2>
+              <a class="slide-link" href="diary.html">前往生活日誌</a>
+            </div>
+          </div>
+
+          <div class="slide slide-3">
+            <label for="slide1" class="image-btn">
+              <img
+                src="pictures/painting.png"
+                alt="繪畫"
+                loading="lazy"
+                draggable="false"
+              />
+            </label>
+            <div class="slide-text">
+              <h2>我的圖畫作品</h2>
+              <a class="slide-link" href="painting.html">前往畫廊</a>
+            </div>
+          </div>
+
+          <div class="carousel-dots">
+            <label for="slide1" aria-label="第 1 張"></label>
+            <label for="slide2" aria-label="第 2 張"></label>
+            <label for="slide3" aria-label="第 3 張"></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 最新更新：請自行替換成真實內容 -->
+      <section class="latest">
+        <h2 class="section-title fade-in">最新更新</h2>
+        <div class="card-grid">
+          <a class="card fade-in" href="painting.html">
+            <span class="card-kind">畫作</span>
+            <h3>在這裡放最新的畫作標題</h3>
+            <p>一兩句簡短的說明。</p>
+          </a>
+          <a class="card fade-in" href="reading.html">
+            <span class="card-kind">閱讀</span>
+            <h3>在這裡放最新的書籍心得</h3>
+            <p>一兩句簡短的說明。</p>
+          </a>
+          <a class="card fade-in" href="diary.html">
+            <span class="card-kind">日誌</span>
+            <h3>在這裡放最新的日誌標題</h3>
+            <p>一兩句簡短的說明。</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- 泡泡導覽 -->
+    <div class="band">
+        <section class="start">
+          <h2 class="section-title fade-in">想從哪裡開始？</h2>
+          <div class="character-nav fade-in">
+            <img
+              src="pictures/writing_down.png"
+              alt=""
+              class="writing-down"
+              draggable="false"
+              loading="lazy"
+            />
+            <a href="about.html" class="bubble bubble-1">關於我</a>
+            <a href="painting.html" class="bubble bubble-2">我的畫廊</a>
+            <a href="reading.html" class="bubble bubble-3">我的書籍心得</a>
+            <span class="bubble bubble-4" aria-disabled="true"
+              >還有更多...<br />(更新中)</span
+            >
+          </div>
         </section>
+    </div>
+    </main>
 
-        <section class="carousel-section">
-            <!-- 1. 隱藏的開關 -->
-            <input type="radio" name="slider" id="slide1">
-            <input type="radio" name="slider" id="slide2">
-            <input type="radio" name="slider" id="slide3" checked>
-
-            <!-- 2. 輪播的內容區 -->
-            <div class="carousel-slides">
-
-            <!-- 第一張圖與文字 -->
-            <div class="slide slide-1">
-
-                <label for = "slide2" class="image-btn">
-                    <img src="pictures\Hobbies_reading.png" alt="reading" oncontextmenu="return false;" draggable="false">
-                </label>
-
-                <div class="slide-text">
-                    <h2>分享我喜愛的書籍</h2>
-                </div>
-            </div>
-
-            <!-- 第二張圖與文字 -->
-            <div class="slide slide-2">
-                <label for = "slide3" class="image-btn">
-                    <img src="pictures\traveling.png" alt="traveling" oncontextmenu="return false;" draggable="false">
-                </label>
-
-                <div class="slide-text">
-                    <h2>我的旅行記事</h2>
-                </div>
-            </div>
-
-            <!-- 第三張圖與文字 -->
-            <div class="slide slide-3">
-                <label for = "slide1" class="image-btn">
-                    <img src="pictures\painting.png" alt="write and paint" oncontextmenu="return false;" draggable="false">
-                </label>
-                <div class="slide-text">
-                    <h2>我的圖畫作品</h2>
-                </div>
-            </div>
-
-            <!-- 3. 底部的導覽圓點 -->
-            <div class="carousel-dots">
-                <label for="slide1"></label>
-                <label for="slide2"></label>
-                <label for="slide3"></label>
-            </div>
-        </section>
-
-
-        <section class="intro-section-2">
-            <div class="text-content-3 fade-in">
-                <h1>我喜歡創作，也喜歡旅行、閱讀，<br/>
-                    以及研究那些原本只是突然讓我好奇的事情。</h1>
-                    <br/><br/>
-                <h3>也常常會因為腦袋裡忽然冒出來的小問題就開始查找資料，<br/>
-                    最後不知不覺地一路查到完全不同的地方。</h3>
-            </div>
-        </section>
-
-        <section class="intro-section-3">
-            <div class="text-content-4 fade-in">
-                <h3>我目前正在持續上傳自己過去到現在的繪圖作品集、<br/>
-                    以及我某些很想放上心得的幾本書籍。
-                    <br/><br/>
-                    如果你對我正在做些什麼有興趣的話，歡迎點開我的喜好專欄，<br/>
-                    和我一起在網站裡走走吧！</h3>
-                </h3>
-            </div>
-        </section>
-
-        <section class="intro-section-4">
-            <div class="text-content-5 fade-in">
-                 <h3>想從哪裡開始？</h3>
-                 <!-- 🌟 新增一個「人物與泡泡專屬容器」，並讓它有 fade-in 浮現效果 -->
-            </div>
-
-            <div class="character-nav-container fade-in">
-
-                <!-- 這是中間的主角 -->
-                <img src="pictures\writing_down.png" alt="writing_down" class="writing-down" draggable="false">
-
-                <!-- 這是四顆泡泡按鈕，使用 a 標籤讓它們可以點擊跳轉 -->
-                <a href="about.html" class="bubble bubble-1">關於我</a>
-                <a href="painting.html" class="bubble bubble-2">我的畫廊</a>
-                <a href="reading.html" class="bubble bubble-3">我的書籍心得</a>
-                <a href="#" class="bubble bubble-4">還有更多...<br>(更新中)</a>
-            </div>
-        </section>
-
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // 建立觀察員
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // 如果元素進入畫面了，就幫它加上 visible 類別
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        });
-
-            // 尋找所有帶有 fade-in 的元素並開始觀察
-            const hiddenElements = document.querySelectorAll('.fade-in');
-            hiddenElements.forEach((el) => observer.observe(el));
-
-            // 🌟 1. 禁用所有圖片的右鍵選單 (防止另存圖片)
-            document.addEventListener('contextmenu', function(e) {
-                if (e.target.tagName === 'IMG') {
-                    e.preventDefault();
-                }
-            });
-
-            // 🌟 2. 禁用所有圖片的拖曳行為
-            document.addEventListener('dragstart', function(e) {
-                if (e.target.tagName === 'IMG') {
-                    e.preventDefault();
-                }
-            });
-        });
-    </script>
-</body>
-    <footer>
-        <p>版權所有，未經授權請勿轉載。 &copy; 2026 黑犬</p>
+    <footer class="site-footer">
+      <ul>
+        <li><a href="about.html">自我介紹</a></li>
+        <li><a href="painting.html">畫廊</a></li>
+        <li><a href="reading.html">閱讀</a></li>
+        <li><a href="diary.html">生活日誌</a></li>
+      </ul>
+      <p>版權所有，未經授權請勿轉載。&copy; 2026 默文</p>
     </footer>
 
+    <script>
+      // 區塊進入畫面時浮現（只觀察一次）
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      document
+        .querySelectorAll(".fade-in")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
 </html>
-
-

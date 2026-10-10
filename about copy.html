@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>默文的部落格</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="about.css">
+</head>
+<body>
+
+    <nav class="sticky-navbar">
+
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+
+    <label for="menu-toggle" class="menu-btn">☰</label>
+
+    <ul class="nav-links">
+    <li><a href="index.html">首頁</a></li>
+    <li><a href="about.html">自我介紹</a></li>
+
+    <li class="dropdown-parent">
+        <a href="#">喜好專欄</a>
+
+        <ul class="dropdown-menu">
+            <li><a href="painting.html">畫畫作品集</a></li>
+            <li><a href="reading.html">閱讀專欄</a></li>
+            <li><a href="my_fiction.html">小說</a></li>
+        </ul>
+
+    <li><a href="diary.html">生活日誌</a></li>
+    </li>
+
+    </ul>
+
+    </nav>
+
+    <div class="reflection-layout">
+        <div class="toc-sidebar">
+            <h4 class="toc-title">文章目錄</h4>
+            <div class="toc-timeline">
+                <!-- href 對應到右邊文章的 id 門牌 -->
+                <a href="#part1" class="toc-link">關於我</a>
+                <a href="#part2" class="toc-link">喜歡創作的原因</a>
+                <a href="#part3" class="toc-link">享受旅行的未知感</a>
+                <a href="#part4" class="toc-link">其他我感興趣的事情</a>
+                <a href="#part5" class="toc-link">回到現在</a>
+            </div>
+        </div>
+
+    <section class="aboutMe-section">
+
+        <img src="pictures\aboutMe.png" alt="about-me" class="about-me-img">
+        <div class="aLittleAboutMe-text-content fade-in">
+            <h1 id="part1" class="section-title">關於我</h1>
+            <p>
+                我是一個很喜歡觀察的人。比起快速得到一個問題的答案，我更喜歡去提問「 為什麼會這樣？」<br/>
+                為什麼人類會有相比其他生物都還要豐富的複雜情感...<br/><br/>
+                因此，我的興趣也越來越廣，承接了越來越多的面向。...<br/><br/>
+            </p>
+        </div>
+
+        <hr class="content-divider">
+
+        <div class= "creating-text-content fade-in">
+
+            <h1 id="part2" class="section-title">喜歡創作的原因</h1>
+            <p>
+                畫畫是陪伴了我十幾年來的喜好，從小我就已經喜歡透過畫筆表達自己的情感...<br/><br/>
+                在畫畫這方面，大多數我最常畫的主題無非是人物繪製了。我很喜歡畫人物、設計屬於自己的角色，...<br/><br/>
+            </p>
+            <a href="painting.html" class="paintingPage-link">作品集/插畫頁⟹</a>
+        </div>
+
+        <hr class="content-divider">
+
+        <div class="gaming-text-content fade-in">
+            <h1 id="part3" class="section-title">享受旅行的未知感</h1>
+            <p>
+                第一次發現自己喜歡旅行，已經不曉得是什麼時候的事情了...<br/><br/>
+
+                除了感受全新的感官經驗與想要探索新地方的心理歷程，讓我喜歡旅行的另一個原因，大概就是...
+            </p>
+
+
+        </div>
+
+        <hr class="content-divider">
+
+        <div class="whatIAmCuriousAbout-content fade-in">
+            <h1 id="part4" class="section-title">其他我感興趣的事情</h1>
+            <p>
+                最近我買了大學教材在研究心理學導論，也喜歡研究哲學和科學，...<br/><br/>
+
+                有些時候當我太執著找到問題的答案，時常也會發現有些...
+            </p>
+        </div>
+
+        <hr class="content-divider">
+
+        <div class="final-text-content fade-in">
+            <h1 id="part5" class="section-title">回到現在</h1>
+            <p>
+                現階段的我仍然在慢慢探索自己未來想走的方向。<br/>
+                我還沒有一個非常完整的答案能夠告訴自己「我是誰」，我不曉得未來的自己會成為什麼樣子的人...<br/>
+                每天畫一點畫、讀一點書、去一些自己想去的地方、記下旅途上遇到的故事。也許有一天回頭看的時候，
+                我會發現，本來那些自己走過的、看起來零零散散的經驗與回憶，早就一點一點地慢慢拼成了現在的自己。<br/><br/>
+
+                謝謝你來到這裡。<br/>希望你會在這個小小的網站中，找到一些自己也會喜歡的東西。
+            </p>
+        </div>
+    </section>
+    </div>
+
+    <footer class="site-footer">
+      <ul>
+        <li><a href="about.html">自我介紹</a></li>
+        <li><a href="painting.html">畫廊</a></li>
+        <li><a href="reading.html">閱讀</a></li>
+        <li><a href="diary.html">生活日誌</a></li>
+      </ul>
+      <p>版權所有，未經授權請勿轉載。&copy; 2026 默文</p>
+    </footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 建立觀察員
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // 如果元素進入畫面了，就幫它加上 visible 類別
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+            // 尋找所有帶有 fade-in 的元素並開始觀察
+            const hiddenElements = document.querySelectorAll('.fade-in');
+            hiddenElements.forEach((el) => observer.observe(el));
+        });
+    </script>
+
+</body>
+
+</html>

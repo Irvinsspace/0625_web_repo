@@ -1,10 +1,23 @@
+/* ==================================================== */
+/* style.css：共用樣式（字型、基本設定、導覽列、橫幅）      */
+/* 各頁專屬的版面請寫在與頁面同名的 CSS 檔                  */
+/* ==================================================== */
+
 @font-face {
-  font-family: "MyHanaMin"; /* 你可以自己取一個好記的名字，不要有空格最好 */
-  src: url("./fonts/HanaMinA.ttf") format("truetype"); /* 這裡換成你實際的檔案路徑 */
-  font-weight: normal;
-  font-style: normal;
+  font-family: "MyHanaMin";
+  src: url("./fonts/HanaMinA.ttf") format("truetype");
+  font-display: swap;               /* 字型載入前先用備用字型，避免空白 */
 }
 
+:root {
+  --bg: #f0efee;
+  --text: #524741;
+  --muted: #5C5445;
+  --heading-sub: #7a6f3f;           /* 原 #AA9F71，對比太低，加深 */
+  --accent: #b6b1a5;
+  --nav-bg: #524e41b6;
+  --font-main: "MyHanaMin", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
 
 * {
   margin: 0;
@@ -13,340 +26,253 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-size: cover; /* 讓背景圖填滿整個螢幕 */
-  /*background-image: url("pictures/background.png"); /* 設定背景圖 */
-    background-attachment: fixed; /* (選擇性) 讓背景圖固定，滑動網頁時只有中間區塊會動，很有質感！ */
-    background-color: #f0efee;
-    color: #333;
-    z-index: 2;
-
-    /* 這裡的名稱必須和 @font-face 裡自己取的 font-family 一模一樣 */
-    font-family: "MyHanaMin", Arial, sans-serif;
-
+  background-color: var(--bg);
+  color: #333;
+  font-family: var(--font-main);
+  overflow-x: hidden;               /* 舊瀏覽器備援 */
+  overflow-x: clip;                 /* 橫幅用 100vw，避免出現橫向捲軸 */
 }
 
-.main-container {
-  position: relative;
-  max-width: 1200px; /* 限制這個區塊的大小 */
-  margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
-  background-color: #f0efee;
-
-  /*給便當盒內部安全的留白空間，解決貼壁問題 */
-  padding: 40px;
-  box-sizing: border-box; /* 確保 padding 不會把 1200px 的寬度撐破 */
-
-  /* 把 % 改成固定的 px (像素)，這樣就算網頁再長，圓角永遠都是 20px 不會變形 */
-  border-radius: 0 0 20px 20px;
-
-  /*改成 100vh (剛好一個螢幕高) 就好，內容變多它會自己往下長 */
-  min-height: 100vh;
-
-}
-
-.header-container {
-    position: relative;
-    width: 100%;
-    height: 500px; /* 可調整橫幅高度 */
-    margin-top: -40px;
-    margin-left: -40px;
-    margin-right: -40px;
-    /* 因為它突破了，所以寬度要加上被扣掉的 padding 才會填滿 */
-    width: calc(100% + 80px);
-}
-
+/* ---------- 全域文字 ---------- */
 p {
-    text-align: left;
-    max-width: 70ch;
-    line-height: 1.6;
-
-    padding: 0 0 0 5px;
-    font-size: 25px;
-    color: #5C5445;
-    font-family: "MyHanaMin", Arial, sans-serif;
+  max-width: 70ch;
+  padding-left: 5px;
+  font-size: 25px;
+  line-height: 1.6;
+  color: var(--muted);
 }
-
 
 h1 {
-    text-align: left;
-    color: #524741;
-    font-size: 45px;
-    padding: 10px 0;
-
-    font-family: "MyHanaMin", Arial, sans-serif;
-    font-weight: bold;
-  }
-
+  padding: 10px 0;
+  font-size: 45px;
+  font-weight: bold;
+  color: var(--text);
+}
 
 h3 {
-  text-align: left;
-  color: #AA9F71;
-  font-size: 28px;
   padding: 5px 0;
-  font-family: "MyHanaMin", Arial, sans-serif;
+  font-size: 28px;
   font-weight: normal;
+  color: var(--heading-sub);
 }
 
-
-/* 導覽列外框設定 */
+/* ---------- 導覽列 ---------- */
+/* 類別名稱是 sticky，實際上是 fixed（浮在最上層）。改名需要同步改所有 HTML，所以保留 */
 .sticky-navbar {
-  position: fixed; /* 🌟 關鍵修改 1：將原本的 sticky 改成 fixed，讓導覽列脫離排版空間，懸浮在最上層 */
-  width: 100%; /* 🌟 關鍵修改 2：脫離排版後，必須手動告訴它要填滿 100% 寬度 */
-  left: 0; /* 🌟 確保它從畫面最左邊開始貼齊 */
-
-  /* 以下保留你原本寫好的超棒設定 */
+  position: fixed;
   top: 0;
-  background: #524e41b6;
+  left: 0;
+  width: 100%;
   z-index: 100;
-  padding: 15px 0;
-  backdrop-filter: blur(11px);
-  -webkit-backdrop-filter: blur(11px);
   display: flex;
   justify-content: center;
+  padding: 15px 0;
+  background: var(--nav-bg);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
 }
 
-/* 連結清單設定 */
 .nav-links {
-  list-style: none; /* 拿掉預設的清單黑點點 */
-  margin: 0;
-  padding: 0;
-  display: flex; /* 讓清單變成橫向排列 */
-  gap: 60px; /* 每個連結之間的距離 */
+  display: flex;
+  gap: clamp(20px, 5vw, 60px);      /* 手機寬度自動縮小，四個項目才排得下 */
+  list-style: none;
 }
 
-/* 連結文字的樣式 */
 .nav-links a {
-  color: #ffffff; /* 文字顏色 */
-  text-decoration: none; /* 拿掉預設的超連結底線 */
+  color: #fff;
   font-size: 16px;
-  text-shadow: 0 0 10px #070707; /* 文字光暈 */
   text-decoration: none;
-  font-family:"MyHanaMin", Arial, sans-serif;
+  text-shadow: 0 0 10px #070707;
   transition: 0.25s ease;
 }
 
 .nav-links a:hover {
-  color: #ffffff; /* 滑鼠移上去的顏色 */
-  text-shadow: 0 0 30px #f1efee; /* 滑鼠移上去的文字光暈 */ /* 滑鼠移上去的透明度 */
+  text-shadow: 0 0 30px #f1efee;
 }
 
+.nav-links a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+/* ---------- 下拉選單 ---------- */
 .dropdown-parent {
-  position: relative; /* 讓下拉選單的子元素絕對定位 */
+  position: relative;
 }
 
-/* 2. 下拉選單的預設樣式 (先藏起來！) */
 .dropdown-menu {
-  visibility: hidden;
-  opacity: 0;
-
   position: absolute;
   top: 100%;
   left: 50%;
-
-  /* 🌟 動畫關鍵：除了原本的水平置中 (-50%)，我們多加了 Y 軸往上偏移 (-15px) */
-  transform: translate(-50%, -15px);
-
-  background-color: #524e41b6;;
+  min-width: 150px;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, -15px);          /* 先往上偏移，顯示時滑下來 */
+  background-color: var(--nav-bg);
   backdrop-filter: blur(10px);
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  min-width: 150px;
-
-  /* 🌟 設定轉場動畫：讓透明度、位移都能順暢漸變 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
 
-.dropdown-menu li a {
-  display: block; /* 讓整個選項都可以點擊 */
-  color: #ffffff; /* 文字顏色 */
-  padding: 10px 15px;
-  border-bottom: 1px solid rgba(224, 222, 219, 0.829); /* 每個選項之間的間距 */
-  text-decoration: none;
-  text-shadow: 0 0 30px #1b1a19; /* 滑鼠移上去的文字光暈 */
-  font-family:"MyHanaMin", Arial, sans-serif;
-}
-
-/* 3. 下拉選單裡面的選項排版 */
 .dropdown-menu li {
   padding: 10px 20px;
   list-style: none;
 }
 
-/* 4. 🌟 啟動魔法：當滑鼠碰到父元素 (.dropdown-parent) 時，把子選單秀出來！ */
-.dropdown-parent:hover .dropdown-menu {
-  /* 把選單秀出來 */
-  visibility: visible;
-  opacity: 1;
-  /* 🌟 動畫關鍵：讓 Y 軸的 -15px 回到 0 (原本的位置)，就會產生往下滑的效果！ */
-  transform: translate(-50%, 0);
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  border-bottom: 1px solid rgba(224, 222, 219, 0.829);
+  text-shadow: 0 0 30px #1b1a19;
 }
 
-/* --- 先把漢堡按鈕跟機關藏起來 (電腦版不需要看到) --- */
-.menu-checkbox, .menu-btn {
+.menu-checkbox,
+.menu-btn {
   display: none;
 }
 
+/* 滑鼠移入，或用鍵盤 Tab 進入時都會展開 */
+.dropdown-parent:hover .dropdown-menu,
+.dropdown-parent:focus-within .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
 
-.text-content {  /* 進入網站歡迎內容跟簡介的一塊div */
-  padding: 50px 30px 30px 80px; /* 上方刻意多留 50px 的空白，因為大頭貼有往下凸 30px，避免文字被大頭貼擋住 */
+/* ---------- 橫幅區塊 ---------- */
+.main-container {
+  --pad: 40px;                                /* 手機版只要改這個變數 */
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--pad);
+  min-height: 100vh;
+  background-color: var(--bg);
+  border-radius: 0 0 20px 20px;
+}
+
+.header-container {
+  position: relative;
+  height: 500px;
+  /* 抵銷外框的 padding，讓橫幅貼齊外框邊緣 */
+  margin: calc(var(--pad) * -1) calc(var(--pad) * -1) 0;
+  width: calc(100% + var(--pad) * 2);
 }
 
 .Banner {
-    position: absolute; /* 🌟 讓圖片脫離排版，隨心所欲控制 */
-    top: 0;
-
-    /* 🌟 關鍵魔法：讓圖片從正中間對齊，然後往左右延展填滿整個螢幕 */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw; /* 100vw 代表 100% 的螢幕視窗寬度 */
-
-    height: 100%;
-
-    /* 這是你之前學過的防變形魔法，讓圖片填滿整個空間*/
-    object-fit: cover;
-
-    /* 為了不要蓋到大頭貼跟標籤，圖層要設最低[cite: 2]*/
-    z-index: 1;
-
-    /* 🌟 記得把原本這行 border-radius 刪掉！因為現在圖片要貼齊螢幕最邊緣，不需要上方圓角了 */
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;                               /* 橫幅撐滿整個視窗寬 */
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
-
-
-
-
-/* 2. 控制第一張貼紙的位置 */
-.sticker-1 {
-    position: absolute; /* 🌟 脫離排版，準備自由移動 */
-    width: 150px; /* 直接在 CSS 設寬度 */
-
-    /* 🌟 座標設定：距離父容器上方 50px，距離左邊 100px */
-    top: 50px;
-    left: 100px;
-
-    z-index: 5; /* 如果圖片重疊，可以用 z-index 決定誰在上面 */
-}
-
-/* 3. 控制第二張貼紙的位置 */
-.sticker-2 {
-    position: absolute;
-    width: 200px;
-
-    /* 🌟 座標設定：距離父容器底部 20px，距離右邊 50px */
-    bottom: 20px;
-    right: 50px;
-}
-
 
 .tags-box {
-    position: absolute;
-    left: 20px;
-    bottom: 15px;
-    z-index: 10;
-
-    display: flex;
-    gap: 10px; /* 標籤之間的間距 */
+  position: absolute;
+  left: 20px;
+  bottom: 15px;
+  z-index: 10;
+  display: flex;
+  gap: 10px;
 }
 
 .tag {
-  background-color: #524e41b6;
-  color: #f5f4f3; /* 文字顏色 */
-  padding: 10px 20px; /* 上下 10px，左右 20px 的呼吸空間 */
-  border-radius: 20px; /* 讓邊角變成圓潤的膠囊狀 */
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: var(--nav-bg);
+  color: #f5f4f3;
   font-size: 20px;
-  font-weight: 400;
-  box-shadow: 0 0 10px rgba(0,0,0,0.6); /* 加點小陰影更有質感 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
 .Profile-pic {
-    position: absolute;
-    right: 70px;
-    bottom: -50px; /* 調整圖片位置 */
-    border-radius: 50%;
-    width: 250px;
-    height: 250px;
-    border: 7px solid #b6b1a5;
-    box-shadow: 0 0 10px rgba(63, 60, 60, 0.3);
-    z-index: 10;
+  position: absolute;
+  right: 70px;
+  bottom: -50px;
+  z-index: 10;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 7px solid var(--accent);
+  box-shadow: 0 0 10px rgba(63, 60, 60, 0.3);
 }
 
+/* 「建置中」頁面用的置中圖片 */
 .under-development {
-    display: block;
-    margin: 10px auto; /* 置中圖片 */
-    max-width: 100%; /* 確保圖片不會超過容器寬度 */
-    height: auto; /* 保持圖片比例 */
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  height: auto;
 }
 
-.writing-down {
-    display: block;
-    margin: 10px auto; /* 置中圖片 */
-    max-width: 100%; /* 確保圖片不會超過容器寬度 */
-    height: auto; /* 保持圖片比例 */
+/* ---------- 頁尾 ---------- */
+.site-footer {
+    padding: 40px 20px;
+    text-align: center;
+    background: #524e41b6;
+    color: #fff;
+}
+.site-footer ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 32px;
+    list-style: none;
+    margin-bottom: 16px;
+}
+.site-footer a { color: #fff; text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+.site-footer p { max-width: none; text-align: center; font-size: 16px; color: #fff; }
+
+/* ==================================================== */
+/* 響應式：先寫大的螢幕，再往小的寫                          */
+/* ==================================================== */
+@media (max-width: 770px) {
+  .main-container { --pad: 20px; }
+
+  .header-container {
+    height: auto;
+    aspect-ratio: 3 / 1;                      /* 橫幅原圖 1200x400 */
+    top: 20px;                                /* 整塊視覺上往下移 20px，不需要可刪 */
+  }
 }
 
-/* ==================================================== */
-/* 手機與平板響應式設計2 (當螢幕寬度小於 770px 時生效)      */
-/* ==================================================== */
-@media screen and (max-width: 770px) {
+/* 手機與平板：大頭貼跨在橫幅下緣置中，標籤置中排在大頭貼下方 */
+@media (max-width: 770px) {
+  :root { --pic: clamp(100px, 28vw, 180px); }   /* 大頭貼直徑，index.css 也會用到 */
 
-  /* 1. 修正外框高度，讓容器與 Banner 圖片等比例縮放 */
-    .header-container {
-      height: auto;
-      top: 20px;
-      aspect-ratio: 3 / 1; /* 你的 Banner 原圖是 1200x400，這個設定能讓容器維持完美的 3:1 比例[cite: 2] */
-    }
-
-
-    /* 調整直向選單裡的間距 */
-  .nav-links li {
-      padding: 2px 0;
-      color: #524e41b6;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(202, 200, 197, 0.829); /* 加一條分隔線會更有質感 */
-  }
-
-  /* 連結文字的樣式 */
-  .nav-links a {
-    color: #ffffff; /* 文字顏色 */
-    text-decoration: none; /* 拿掉預設的超連結底線 */
-    font-size: 16px;
-    text-shadow: 0 0 10px #070707; /* 文字光暈 */
-    font-family:"MyHanaMin", Arial, sans-serif;
-    text-decoration: none;
-    transition: 0.25s ease;
-  }
-    /* 3.當隱藏的 Checkbox 被打勾時，把 nav-links 秀出來 */
-  .menu-checkbox:checked ~ .nav-links {
-      display: flex;
-  }
-
-}
-
-
-
-/* ==================================================== */
-/* 手機與平板響應式設計2 (當螢幕寬度小於 500px 時生效)      */
-/* ==================================================== */
-@media screen and (max-width: 640px) {
   .Profile-pic {
-    /* 調整位置與大小，清除原本的 bottom */
-    top: 60px;
-    right: 30px;
-    bottom: auto;
-    width: 100px;
-    height: 100px;
-    border: 3px solid #b6b1a5;
-
+    top: auto;
+    right: auto;
+    left: 50%;
+    bottom: 0;
+    width: var(--pic);
+    height: var(--pic);
+    border-width: 4px;
+    transform: translate(-50%, 50%);            /* 水平置中，並下移一半直徑，剛好跨在橫幅邊緣 */
   }
 
-    /* 連結文字的樣式 */
-  .nav-links a {
-    color: #ffffff; /* 文字顏色 */
-    text-decoration: none; /* 拿掉預設的超連結底線 */
-    font-size: 16px;
-    text-shadow: 0 0 10px #070707; /* 文字光暈 */
-    font-family:"MyHanaMin", Arial, sans-serif;
-    transition: 0.25s ease;
+  .tags-box {
+    top: calc(100% + var(--pic) / 2 + 12px);    /* 橫幅下緣 + 大頭貼下半部 + 12px */
+    bottom: auto;
+    left: 50%;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    transform: translateX(-50%);
+  }
+
+  .tag {
+    padding: clamp(5px, 1.4vw, 10px) clamp(10px, 3vw, 20px);
+    font-size: clamp(14px, 3.4vw, 20px);        /* 320px 時 14px，770px 時回到 20px */
   }
 }
 
+@media (max-width: 500px) {
+  .main-container { --pad: 10px; }
+}

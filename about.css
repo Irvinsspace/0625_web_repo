@@ -1,625 +1,160 @@
-@font-face {
-  font-family: "Bodoni";
-  src: url("./fonts/LibreBodoni-Bold.ttf") format("truetype"); /* 這裡換成你實際的檔案路徑 */
-  font-weight: normal;
-  font-style: normal;
+/* about.css：自我介紹頁專屬樣式（字型、導覽列、頁尾在 style.css）*/
+
+:root {
+    --text: #524741;
+    --muted: #6b6259;                      /* 目錄未選取的顏色，對比度夠 */
+    --line: #ccc;
+    --wrap: 1100px;
+    --toc-w: 200px;
 }
 
-@font-face {
-  font-family: "MyHanaMin"; /* 你可以自己取一個好記的名字，不要有空格最好 */
-  src: url("./fonts/HanaMinA.ttf") format("truetype"); /* 這裡換成你實際的檔案路徑 */
-  font-weight: normal;
-  font-style: normal;
+/* 點目錄時平滑捲動，並避開固定在上方的導覽列 */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
 }
 
-/* 🌟 準備浮現的元素：一開始透明且往下沉 40px */
-.fade-in {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-/* 🌟 當觀察員幫它加上 .visible 時，就會浮現並回到原位！ */
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.image-btn {
-    display: block;
-    width: 100%;
-    height: 100%;
-    cursor: pointer; /* 滑鼠移上去會變成點擊的小手圖案 */
-}
-
-
-.aboutMe-section {
-    position: relative;
-    width: auto;
-    max-width: 1200px; /* 限制這個區塊的大小 */
-    overflow: hidden;
-    padding-top: 100px;
-    text-align: center; /*圖片或任何內容物置中 */
-    margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
+img {
     user-select: none;
     -webkit-user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
 }
 
-.about-me-img {
-    width: 850px;
+/* ---------- 浮現動畫（沒有 JS 時內容照常顯示）---------- */
+.js .fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .8s ease-out, transform .8s ease-out;
+}
+.js .fade-in.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .fade-in { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- 整體版面：目錄 + 文章 ---------- */
+.about-layout {
+    display: grid;
+    grid-template-columns: var(--toc-w) minmax(0, 1fr);   /* minmax(0,1fr)：長文字不會把欄位撐出畫面 */
+    gap: clamp(32px, 5vw, 72px);
+    width: min(100% - 40px, var(--wrap));
+    margin: 0 auto;
+    padding: 110px 0 120px;
+}
+
+.about-main { min-width: 0; }
+
+.about-img {
+    display: block;
+    width: 100%;
+    max-width: 850px;
     height: auto;
-    z-index: 10;
+    margin: 0 auto 20px;
 }
 
-.aLittleAboutMe-text-content,
-.creating-text-content,
-.gaming-text-content,
-.whatIAmCuriousAbout-content {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    left:50px;
-    margin: auto;
-    z-index: 20;
+/* ---------- 文章區塊 ---------- */
+.about-section {
+    padding-block: clamp(40px, 7vw, 90px);
+    font-size: clamp(17px, 1.7vw, 22px);   /* 內文字級，下面都用 em 跟著算 */
 }
 
-.final-text-content {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    padding-bottom: 200px;
-    left:50px;
-    margin: auto;
-    z-index: 20;
+.about-section + .about-section {
+    border-top: 1px solid rgba(197, 155, 97, .3);   /* 取代原本的 <hr>，標題底線也不用了 */
 }
 
-
-.aLittleAboutMe-text-content h1,
-.creating-text-content h1,
-.gaming-text-content h1,
-.whatIAmCuriousAbout-content h1,
-.final-text-content h1 {
-    font-size: 70px;
-    color: #524741;
-    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-    line-height: 1.7;
-    font-weight: 100;
-    margin: 0;
+.about-section .section-title {
+    padding: 0;
+    margin-bottom: .6em;
+    font-size: 2.2em;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text);
 }
 
-.aLittleAboutMe-text-content p,
-.creating-text-content p,
-.gaming-text-content p,
-.whatIAmCuriousAbout-content p,
-.final-text-content p {
-    font-size: 28px;
-    color: #524741;
-    line-height: 1.7;
-    font-weight: 900;
-    margin: 0;
+.about-section p {
+    max-width: 38em;                       /* 約 38 字一行，閱讀最舒服 */
+    padding: 0;
+    font-size: 1em;
+    font-weight: 400;                      /* 字型只有一種粗細，900 會變成假粗體、字會糊 */
+    line-height: 1.9;
+    color: var(--text);
 }
+
+.about-section p + p { margin-top: 1.2em; }
 
 
 .paintingPage-link {
-    display: flex;
-    text-decoration: none; /* 拿掉超連結預設的醜醜底線 */
-    color: #524741;        /* 文字顏色 */
-    font-size: 28px;
-    font-weight: 900;
-
+    display: inline-block;
+    margin-top: 1.2em;
+    color: var(--text);
+    text-decoration: none;
+    transition: .25s;
 }
-
-.paintingPage-link:hover {
+.paintingPage-link:hover,
+.paintingPage-link:focus-visible {
     color: #887469;
-    transform: translateX(5px); /* 文字微微往右彈 */
+    transform: translateX(5px);
 }
 
-.content-divider {
-    border: 0;
-    height: 1px;
-    background-color: #c59b6121;
-    margin: 60px 0;
-}
-
-
-/* =========================================
-   文章區塊左右排版與新標題設定*
-========================================= */
-.reflection-layout {
-    display: flex;
-    gap: 10px; /* 目錄和文章之間的間距 */
-    padding: 20px 80px; /* 調整整體的左右間距 */
-    align-items: flex-start; /* 讓兩邊都對齊頂部 */
-}
-
-/* 重新調整右側文章區塊，讓它填滿剩餘空間 */
-.reflection-content {
-    flex-grow: 1;
-    padding: 0; /* 把原本的 padding 歸零，交給外層的 layout 控制 */
-}
-
-/* 專屬小標題的樣式 */
-.section-title {
-    font-size: 30px;
-    color: #52474180;
-    margin-top: 150px; /* 讓每個段落上方多一點呼吸空間 */
-    margin-bottom: 15px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-    font-weight: 900;
-}
-
-/* =========================================
-   左側時間軸浮動目錄 (Timeline TOC)
-========================================= */
-
-
-.toc-sidebar {
-    position: sticky; /* 讓目錄黏在畫面上 */
-    top: 300px; /* 往下滾動時會黏在距離上方 100px 的位置 */
-    width: 220px;
-    flex-shrink: 0; /* 確保目錄寬度不會被壓縮 */
+/* ---------- 目錄（桌面版）---------- */
+.toc {
+    position: sticky;
+    top: 120px;
+    align-self: start;                     /* grid 裡 sticky 一定要加，不然不會黏住 */
 }
 
 .toc-title {
-    font-size: 35px;
-    color: #5C5445;
     margin-bottom: 20px;
-    font-weight: 900;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text);
 }
 
-/* 實線軌道 */
-.toc-timeline {
-    border-left: 2px solid #ccc;
-    padding-left: 20px;
+.toc-list {
     display: flex;
     flex-direction: column;
-    gap: 40px; /* 每個目錄連結的間距 */
+    gap: 28px;
+    padding-left: 20px;
+    border-left: 2px solid var(--line);
 }
 
-/* 目錄連結文字 */
 .toc-link {
     position: relative;
+    font-size: 18px;
     text-decoration: none;
-    color: #5a50508c;
-    font-weight: bold;
-    font-size: 22px;
-    transition: 0.3s;
+    color: var(--muted);
+    transition: .3s;
 }
 
-/* 🌟 利用 ::before 偽元素畫出圓點「•」 */
 .toc-link::before {
-    content: ''; /* 雖然沒有文字，但我們畫一個圓 */
+    content: '';
     position: absolute;
-    left: -27px; /* 往左推，剛好壓在剛剛畫的虛線上 */
+    left: -27px;                           /* 剛好壓在左邊的線上 */
     top: 50%;
-    transform: translateY(-50%);
     width: 12px;
     height: 12px;
-    background-color: #ccc;
-    border-radius: 50%;
-    transition: 0.3s;
-}
-
-/* 滑鼠摸到目錄時的變化 */
-.toc-link:hover {
-    color: #524741;
-    transform: translateX(5px); /* 文字微微往右彈 */
-}
-
-/* 滑鼠摸到目錄時，圓點也會變色 */
-.toc-link:hover::before {
-    background-color: #524741; /* 變成可愛的黃色 */
-    box-shadow: 0 0 8px #201f1bcc; /* 微微發光 */
-}
-
-/* ==================================================== */
-/* TOC響應式設計 (當螢幕寬度小於 1200px 時生效)      */
-/* ==================================================== */
-
-.sticky-toc-section {
-  position: fixed; /* 🌟 關鍵修改 1：將原本的 sticky 改成 fixed，讓導覽列脫離排版空間，懸浮在最上層 */
-  width: 100%; /* 🌟 關鍵修改 2：脫離排版後，必須手動告訴它要填滿 100% 寬度 */
-  left: 0; /* 🌟 確保它從畫面最左邊開始貼齊 */
-}
-
-.dropdown-parent-toc {
-  position: relative; /* 讓下拉選單的子元素絕對定位 */
-}
-
-/* 2. 下拉選單的預設樣式 (先藏起來！) */
-.dropdown-menu-toc {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-
-
-  transform: translate(-50%, -15px);
-  background-color: #524e41b6;;
-  backdrop-filter: blur(10px);
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  min-width: 150px;
-
-  /* 🌟 設定轉場動畫：讓透明度、位移都能順暢漸變 */
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-}
-
-.dropdown-menu-toc li a {
-  display: block; /* 讓整個選項都可以點擊 */
-  color: #ffffff; /* 文字顏色 */
-  padding: 10px 15px;
-  border-bottom: 1px solid rgba(224, 222, 219, 0.829); /* 每個選項之間的間距 */
-  text-decoration: none;
-  text-shadow: 0 0 30px #1b1a19; /* 滑鼠移上去的文字光暈 */
-  font-family:"MyHanaMin", Arial, sans-serif;
-}
-
-/* 3. 下拉選單裡面的選項排版 */
-.dropdown-menu-toc li {
-  padding: 10px 20px;
-  list-style: none;
-}
-
-
-.dropdown-parent-toc:hover .dropdown-menu-toc {
-  /* 把選單秀出來 */
-  visibility: visible;
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
-/* ==================================================== */
-/* 平板與小筆電響應式設計 (當螢幕寬度小於 1200px 時生效)      */
-/* ==================================================== */
-@media screen and (max-width: 1200px) {
-    /* 1. 整體佈局調整：改為上下排列，而不是左右並排 */
-    .reflection-layout {
-        flex-direction: column; /* 讓目錄和文章變成上下排列 */
-        margin: auto;        /* 縮小整體的左右間距 */
-        gap: 30px;              /* 調整目錄和文章的間距 */
-    }
-
-    /* 2. 調整文章目錄（TOC） */
-
-    .toc-sidebar {
-        position: relative; /* 取消黏性定位（sticky），讓它跟著滾動 */
-        top: 55px;
-        width: 100%;        /* 讓目錄填滿螢幕寬度 */
-        margin-top: 50px;
-        margin-bottom: 20px;
-        background-color: #f0efeecb;
-        padding: 10px;
-        z-index: 50;
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
-        justify-content: center;
-        z-index: 50;
-    }
-
-    .toc-timeline {
-        /* 如果想讓目錄的項目變成橫向排列，可以加入以下設定： */
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 30px;
-        border-left: 0px solid #cccccc00;
-
-    }
-
-    .toc-link::before {
-    content: ''; /* 雖然沒有文字，但我們畫一個圓 */
-    position: absolute;
-    left: -27px; /* 往左推，剛好壓在剛剛畫的虛線上 */
-    top: 50%;
     transform: translateY(-50%);
-    width: 12px;
-    height: 12px;
-    background-color: #cccccc00;
     border-radius: 50%;
-    transition: 0.3s;
-    }
-
-    .toc-title {
-        font-size: 70px;    /* 縮小目錄標題字體 */
-        text-align: center;
-        color: #524741c7
-    }
-
-    .toc-link {
-        text-align: center;
-        font-size: 20px;    /* 縮小目錄連結字體 */
-    }
-
-    /* 3. 頂部主視覺圖片調整 */
-    .about-me-img {
-        width: 100%;        /* 讓圖片寬度自適應螢幕 */
-        height: auto;
-    }
-
-    /* 4. 各個文字內容區塊調整 */
-        .aLittleAboutMe-text-content,
-        .creating-text-content,
-        .gaming-text-content,
-        .whatIAmCuriousAbout-content,
-        .final-text-content {
-        left: 0;            /* 移除原本往右推的設定 */
-        width: 100%;        /* 讓內容填滿寬度 */
-        padding: 0 10px;    /* 加上一點左右內邊距，避免文字太貼齊邊緣 */
-        box-sizing: border-box; /* 確保 padding 不會撐破寬度 */
-    }
-
-    /* .final-text-content 原本的 bottom padding 稍微縮小 */
-    .final-text-content {
-        padding-bottom: 60px;
-    }
-
-    /* 5. 調整字體大小 */
-    .aLittleAboutMe-text-content h1,
-    .creating-text-content h1,
-    .gaming-text-content h1,
-    .whatIAmCuriousAbout-content h1,
-    .final-text-content h1 {
-        font-size:45px;    /* 大幅縮小大標題字體 */
-        text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* 陰影也跟著縮小 */
-    }
-
-    .aLittleAboutMe-text-content p,
-    .creating-text-content p,
-    .gaming-text-content p,
-    .whatIAmCuriousAbout-content p,
-    .final-text-content p {
-        font-size: 25px;    /* 縮小內文字體 */
-    }
-
-    .section-title {
-        font-size: 24px;    /* 縮小小標題字體 */
-        margin-top: 60px;   /* 縮小上方間距 */
-    }
-
-    .paintingPage-link {
-        font-size: 20px;    /* 縮小連結字體 */
-        justify-content: center; /* 讓連結置中 */
-        margin-top: 20px;
-    }
-
-    .content-divider {
-        margin: 40px 0;     /* 縮小分隔線的間距 */
-    }
-
-    .toc-title {
-    font-size: 50px;
-    color: #524741;
-    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-    line-height: 1.7;
-    font-weight: 100;
-    margin: 0;
-}
-}
-    /* ==================================================== */
-/* 手機與平板響應式設計 (當螢幕寬度小於 768px 時生效)      */
-/* ==================================================== */
-@media screen and (max-width: 768px) {
-
-    /* 1. 整體佈局調整：改為上下排列，而不是左右並排 */
-    .reflection-layout {
-        flex-direction: column; /* 讓目錄和文章變成上下排列 */
-        margin: auto;        /* 縮小整體的左右間距 */
-        gap: 30px;              /* 調整目錄和文章的間距 */
-    }
-
-    /* .toc-timeline {
-        /* 如果想讓目錄的項目變成橫向排列，可以加入以下設定：
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 30px;
-        border-left: 0px solid #cccccc00;
-
-    } */
-
-    .toc-title {
-        margin-top: 25px;
-        font-size: 30px;    /* 縮小目錄標題字體 */
-        text-align: center;
-        color: #524741c7
-    }
-
-    .toc-link {
-        text-align: center;
-        font-size: 17px;    /* 縮小目錄連結字體 */
-    }
-
-    /* 3. 頂部主視覺圖片調整 */
-    .about-me-img {
-        width: 100%;        /* 讓圖片寬度自適應螢幕 */
-        height: auto;
-    }
-
-
-
-    /* 4. 各個文字內容區塊調整 */
-    .aLittleAboutMe-text-content,
-    .creating-text-content,
-    .gaming-text-content,
-    .whatIAmCuriousAbout-content,
-    .final-text-content {
-        left: 0;            /* 移除原本往右推的設定 */
-        width: 100%;        /* 讓內容填滿寬度 */
-        padding: 0 10px;    /* 加上一點左右內邊距，避免文字太貼齊邊緣 */
-        box-sizing: border-box; /* 確保 padding 不會撐破寬度 */
-    }
-
-    /* .final-text-content 原本的 bottom padding 稍微縮小 */
-    .final-text-content {
-        padding-bottom: 60px;
-    }
-
-    /* 5. 調整字體大小 */
-    .aLittleAboutMe-text-content h1,
-    .creating-text-content h1,
-    .gaming-text-content h1,
-    .whatIAmCuriousAbout-content h1,
-    .final-text-content h1 {
-        font-size: 30px;    /* 大幅縮小大標題字體 */
-        text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* 陰影也跟著縮小 */
-    }
-
-    .aLittleAboutMe-text-content p,
-    .creating-text-content p,
-    .gaming-text-content p,
-    .whatIAmCuriousAbout-content p,
-    .final-text-content p {
-        font-size: 18px;    /* 縮小內文字體 */
-    }
-
-    .section-title {
-        font-size: 24px;    /* 縮小小標題字體 */
-        margin-top: 60px;   /* 縮小上方間距 */
-    }
-
-    .paintingPage-link {
-        font-size: 20px;    /* 縮小連結字體 */
-        justify-content: center; /* 讓連結置中 */
-        margin-top: 20px;
-    }
-
-    .content-divider {
-        margin: 40px 0;     /* 縮小分隔線的間距 */
-    }
+    background: var(--line);
+    transition: .3s;
 }
 
-/* .reading-book {
-    position: absolute;
-    width: 1200px ;
-    height: 800px ;
-    top: -50px;
-    z-index: 10;
+.toc-link:hover,
+.toc-link:focus-visible,
+.toc-link.is-active { color: var(--text); }
 
-}
- 2. 控制第一張貼紙的位置
-.traveling {
-    position: absolute;
-    width: 1200px ;
-    height: 800px ;
-    top: 800px;
-    z-index: 11;
+.toc-link:hover { transform: translateX(5px); }
+
+.toc-link:hover::before,
+.toc-link.is-active::before {
+    background: var(--text);
+    box-shadow: 0 0 8px #201f1bcc;
 }
 
-    3. 控制第二張貼紙的位置
-.sticker-2 {
-    position: absolute;
-    width: 200px;
-    top: 990px;
-    left: 100px;
-    z-index: 12;
+/* ---------- 小螢幕：頁面不長，直接隱藏目錄 ---------- */
+@media (max-width: 1000px) {
+    .about-layout { grid-template-columns: minmax(0, 1fr); }
+    .toc { display: none; }
 }
-
- 輪播圖主容器 
-.carousel-section {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    height: 800px; 
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 20px;
-    top: 0px;
-}
-
-
-.carousel-section input[type="radio"] {
-    display: none;
-}
-
- 每一頁投影片的設定
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0
-    transition: opacity 0.6s ease-in-out;
-    visibility: hidden;
-    transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.slide-text {
-    position: absolute;
-    bottom: 50px;
-    left: 50px;
-    padding: 20px 40px;
-    border-radius: 10px;
-    z-index: 10;
-
-    transform: translateY(30px);
-    opacity: 0;
-    transition: transform 0.6s ease-out 0.2s, opacity 0.6s ease-out 0.2s;
-}
-
-.slide-text h2 {
-    font-size: 150px;
-    color: #ffffff;
-    margin: 0 0 10px 0;
-    font-family: 'Libre Bodoni', serif;
-    letter-spacing: 2px;
-    font-weight: 600;
-    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
-}
-
-.slide-text h1 {
-    font-size: 50px;
-    color: #ffffff;
-    margin: 0;
-    font-family: "MyHanaMin", serif;
-    letter-spacing: 2px;
-    font-weight: 900;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.carousel-dots {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 15px;
-    z-index: 20;
-}
-
-.carousel-dots label {
-    width: 15px;
-    height: 15px;
-    background-color: #5c544594;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#slide1:checked ~ .carousel-slides .slide-1,
-#slide2:checked ~ .carousel-slides .slide-2,
-#slide3:checked ~ .carousel-slides .slide-3 {
-    opacity: 1;
-    visibility: visible;
-}
-
-#slide1:checked ~ .carousel-slides .slide-1 .slide-text,
-#slide2:checked ~ .carousel-slides .slide-2 .slide-text,
-#slide3:checked ~ .carousel-slides .slide-3 .slide-text {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-#slide1:checked ~ .carousel-slides .carousel-dots label[for="slide1"],
-#slide2:checked ~ .carousel-slides .carousel-dots label[for="slide2"],
-#slide3:checked ~ .carousel-slides .carousel-dots label[for="slide3"] {
-    background-color: #ffffff;
-    box-shadow: 0 0 20px rgba(187, 178, 178, 0.8);
-} */

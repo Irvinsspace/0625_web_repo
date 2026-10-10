@@ -1,47 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>黑犬的部落格</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>黑犬的部落格</title>
-        <link rel="stylesheet" href="style.css">
-</head>
+  <body>
+    <nav class="sticky-navbar">
+      <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
 
-<body>
-<nav class="sticky-navbar">
+      <label for="menu-toggle" class="menu-btn">☰</label>
 
-    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+      <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="about.html">自我介紹</a></li>
 
-    <label for="menu-toggle" class="menu-btn">☰</label>
+        <li class="dropdown-parent">
+          <a href="#">喜好專欄</a>
 
-    <ul class="nav-links">
-    <li><a href="index.html">首頁</a></li>
-    <li><a href="about.html">自我介紹</a></li>
-
-    <li class="dropdown-parent">
-        <a href="#">喜好專欄</a>
-
-        <ul class="dropdown-menu">
+          <ul class="dropdown-menu">
             <li><a href="painting.html">畫畫作品集</a></li>
             <li><a href="reading.html">閱讀專欄</a></li>
             <li><a href="my_fiction.html">小說</a></li>
-        </ul>
+          </ul>
+        </li>
 
-    <li><a href="diary.html">生活日誌</a></li>
-    </ul>
-
+        <li><a href="diary.html">生活日誌</a></li>
+      </ul>
     </nav>
     <div class="main-container">
-        <div class="text-content">
+      <div class="text-content">
         <h1>該網頁仍處於開發階段！</h1>
-        <img src="pictures\under_development.png" alt="under development" class="under-development" width="600" height="750">
-        </div>
+        <img
+          src="pictures\under_development.png"
+          alt="under development"
+          class="under-development"
+          width="600"
+          height="750"
+        />
+      </div>
     </div>
-</body>
-
-<footer>
-        <p>版權所有，未經授權請勿轉載。 &copy; 2026 黑犬</p>
-</footer>
-
+    <footer class="site-footer">
+      <ul>
+        <li><a href="about.html">自我介紹</a></li>
+        <li><a href="painting.html">畫廊</a></li>
+        <li><a href="reading.html">閱讀</a></li>
+        <li><a href="diary.html">生活日誌</a></li>
+      </ul>
+      <p>版權所有，未經授權請勿轉載。&copy; 2026 默文</p>
+    </footer>
+  </body>
 </html>

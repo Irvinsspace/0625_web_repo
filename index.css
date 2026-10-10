@@ -1,325 +1,196 @@
-@font-face {
-  font-family: "Bodoni";
-  src: url("./fonts/LibreBodoni-Bold.ttf") format("truetype"); /* 這裡換成你實際的檔案路徑 */
-  font-weight: normal;
-  font-style: normal;
+/* 字型 @font-face、導覽列、橫幅、標籤、大頭貼 請維持在 style.css，這裡只放首頁專屬樣式 */
+
+
+:root {
+    --bg: #f0efee;
+    --text: #524741;
+    --muted: #79746c;
+    --accent: #b6b1a5;
+    --link: #7a6f3f;                       /* 比原本 #AA9F71 深，對比度足夠 */
+    --card-bg: #f5f5f7;
+    --radius: 20px;
+    --gap: clamp(60px, 9vw, 140px);        /* 區塊上下間距 */
+    --wrap: 1100px;
+    --band: #e7e4df;                  /* 內容最大寬度 */
 }
 
-@font-face {
-  font-family: "MyHanaMin"; /* 你可以自己取一個好記的名字，不要有空格最好 */
-  src: url("./fonts/HanaMinA.ttf") format("truetype"); /* 這裡換成你實際的檔案路徑 */
-  font-weight: normal;
-  font-style: normal;
-}
+.band { background: var(--band); }
 
-body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-
-}
-
+/* 圖片防存取只留這一層 */
 img {
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none;    /* Firefox */
-    -ms-user-select: none;     /* IE10+/Edge */
-    user-select: none;         /* 標準語法 */
-
-    /* 防止圖片被拖曳 */
+    user-select: none;
+    -webkit-user-select: none;
     -webkit-user-drag: none;
-    user-drag: none;
-
-    /* 🌟 讓圖片無法被滑鼠互動（無法點擊、無法按右鍵） */
     pointer-events: none;
 }
 
-/* 🌟 準備浮現的元素：一開始透明且往下沉 40px */
-.fade-in {
+/* ---------- 浮現動畫（沒有 JS 時內容照常顯示）---------- */
+.js .fade-in {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition: opacity .8s ease-out, transform .8s ease-out;
+}
+.js .fade-in.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    .js .fade-in { opacity: 1; transform: none; transition: none; }
+    .slide, .slide-text, .bubble { transition: none; }
 }
 
-/* 🌟 當觀察員幫它加上 .visible 時，就會浮現並回到原位！ */
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
+/* ---------- 橫幅外框 ---------- */
+.main-container { min-height: 0; }
+
+/* 共用：置中內容欄 */
+.about, .latest, .start, .carousel-section {
+    width: min(100% - 40px, var(--wrap));
+    margin-inline: auto;
 }
 
-
-.main-container {
-  position: relative;
-  max-width: 1200px; /* 限制這個區塊的大小 */
-  margin: 0 auto; /* 讓區塊在畫面裡水平置中 */
-  background-color: #f0efee;
-
-  /*給便當盒內部安全的留白空間，解決貼壁問題 */
-  padding: 40px;
-  box-sizing: border-box; /* 確保 padding 不會把 1200px 的寬度撐破 */
-
-  /* 把 % 改成固定的 px (像素)，這樣就算網頁再長，圓角永遠都是 20px 不會變形 */
-  border-radius: 0 0 20px 20px;
-
-  /*改成 100vh (剛好一個螢幕高) 就好，內容變多它會自己往下長 */
-  min-height: 0px;
-
+.section-title {
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--text);
+    margin-bottom: 30px;
 }
 
-.hero-section {
-    position: relative;
+/* ---------- 名片（第 1 題的修正）---------- */
+.profile-card-section { padding: 100px 20px 0; }
+
+.profile-card {
     width: 100%;
-    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto var(--gap);
+    padding: 30px;
+    background: var(--card-bg);
+    border: 7px solid var(--accent);
+    border-radius: 3px;
     user-select: none;
     -webkit-user-select: none;
 }
 
-.intro-section,
-.intro-section-2,
-.intro-section-3,
-.intro-section-4 {
-    position: relative;
-    width: 100%;
-    /* 給每個區塊上下各 150px 的留白，你可以自由調整數字來改變間距 */
-    padding-top: 150px;
-    padding-bottom: 150px;
+.profile-card h2 {
+    font-size: clamp(26px, 5vw, 35px);
+    color: #444341;
+    margin-bottom: 10px;
+    font-family: "Baskerville Old Face", Georgia, "MyHanaMin", serif;
 }
 
-.text-content {
-    position: absolute; /* 脫離一般排版，浮在空中 */
-    bottom: 450px;          /* 距離頂部 50px */
-    left: 100px;        /* 距離左邊 200px */
-    z-index: 10;        /* 確保在圖片上面 */
+.profile-card p {
+    font-size: clamp(17px, 3.5vw, 24px);
+    color: var(--muted);
+    font-weight: 600;
+    font-family: "Baskerville Old Face", Georgia, "MyHanaMin", serif;
 }
 
+.profile-card .profile-quote { margin-top: 20px; color: #444341; }
 
-.text-content h1 {
-    font-size: 90px;
-    color: #ffffff;
-    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
-    z-index: 10;
+/* ---------- 主視覺：圖與文字疊在同一格 ---------- */
+.hero { display: grid; overflow: hidden; }
+.hero > * { grid-area: 1 / 1; }
+
+.hero-img { width: 100%; height: auto; display: block; }
+
+.hero-text {
+    align-self: end;
+    padding: clamp(20px, 5vw, 70px);
+    padding-top: 80px;
+    background: linear-gradient(to top, rgba(0, 0, 0, .45), transparent);
+    color: #fff;
+}
+
+.hero-text h1 {
+    font-size: clamp(5px, 6vw, 80px);
+    color: #fff;
     font-weight: 400;
-    margin: 0;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, .7);
 }
 
-.text-content-1 {
-    position: absolute;
-    bottom: 190px;
-    left: 200px;
-    z-index: 10;
-}
-
-.text-content-1 h3 {
-    font-size: 50px;
-    color: #ffffff;
-    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
-    z-index: 10;
+.hero-text p {
+    max-width: 40em;
+    font-size: clamp(10px, 2.2vw, 30px);
     line-height: 1.7;
-    margin: 0;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, .7);
 }
 
-
-.Explore-png {
-    width: 100%;
-    height: auto;
-    display: block;
-
+/* ---------- 關於我（兩欄）---------- */
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(26px, 5vw, 60px);
+    align-items: center;
+    padding-block: var(--gap);
 }
 
-
-.text-content-2 {
-    margin-left: 400px;
-    z-index: 10;
+.about-text h2 {
+    font-size: clamp(26px, 3.6vw, 42px);
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 20px;
 }
 
-.text-content-2 h3 {
-
-    font-size:70px;
-    color: #524741;
-    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-    z-index: 30;
-    margin: 0;
+.about-text p {
+    font-size: clamp(17px, 1.8vw, 22px);
+    line-height: 1.9;
+    max-width: 34em;
+    margin-bottom: 1em;
 }
 
+.about-img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
 
-.text-content-3 {
-    margin-left: 200px;
-    z-index: 10;
-}
-
-.text-content-3 h1 {
-    font-size: 50px;
-    color: #524741;
-    font-weight: 400;
-    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-    line-height: 1.7;
-    margin-bottom: 30px; /* 讓 h1 和下方的 h3 保持一點距離 */
-}
-
-.text-content-3 h3 {
-    font-size: 50px;
-    color: #524741;
-    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-    z-index: 34;
-    line-height: 1.7;
-    margin: 0;
-}
-
-.text-content-4 {
-    margin-left: 200px;
-}
-
-.text-content-4 h3 {
-    font-size: 50px;
-    color: #524741;
-    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-    z-index: 34;
-    line-height: 1.7;
-    margin: 0;
-}
-
-.text-content-5 {
-    position: absolute;
-    top: 50px;
-    margin-left: 250px;
-}
-
-.text-content-5 h3 {
-    font-size: 70px;
-    color: #524741; /* 同上，原本是白色 */
-    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-    line-height: 1.7;
-    margin: 0;
-}
-
-.writing-down {
-    width: 700px;
-    height: auto;
-    left: 550px;
-    z-index: 10;
-}
-
-/* =================================輪播圖主容器==================================== */
-
-/* 輪播圖主容器 */
+/* ---------- 輪播 ---------- */
 .carousel-section {
-    top: 0px;
     position: relative;
-    width: 100%;
-    max-width: 1200px;
-    height: 800px; /* 輪播圖的固定高度 */
-    margin: auto;
+    aspect-ratio: 3 / 2;
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: var(--radius);
 }
 
-/* 隱藏預設按鈕 */
-.carousel-section input[type="radio"] {
-    display: none;
-}
+.carousel-section input[type="radio"] { display: none; }
 
-.image-btn {
-    display: block;
-    width: 1200px;
-    height: 800px;
-    cursor: pointer; /* 滑鼠移上去會變成點擊的小手圖案 */
-}
+.image-btn { display: block; width: 100%; height: 100%; cursor: pointer; }
 
-.reading-book {
-    position: block; /* 🌟 脫離排版，準備自由移動 */
-    width: 1200px ;
-    height: 800px ;
-    top: -50px;
-    /* 🌟 座標設定：距離父容器上方 100px，距離左邊 50px */
-    z-index: 10; /* 如果圖片重疊，可以用 z-index 決定誰在上面 */
-}
-/* 2. 控制第一張貼紙的位置 */
-.traveling {
-    position: block; /* 🌟 脫離排版，準備自由移動 */
-    width: 1200px ;
-    height: 800px ;
-    /* 🌟 座標設定：距離父容器上方 50px，距離左邊 100px */
-    top: 800px;
-
-    z-index: 11; /* 如果圖片重疊，可以用 z-index 決定誰在上面 */
-}
-
-/* 3. 控制第二張貼紙的位置 */
-.sticker-2 {
-    position: block;
-    width: 200px;
-
-    /* 🌟 座標設定：距離父容器底部 20px，距離右邊 50px */
-    top: 990px;
-    left: 100px;
-    z-index: 12;
-}
-
-
-/* 每一頁投影片的設定 */
 .slide {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0; /* 預設全部隱藏 */
-    transition: opacity 0.6s ease-in-out;
-
-    /* 🌟 關鍵修正 1：滑動時其他圖片隱藏起來，才不會像隱形盾牌一樣擋住下方的點擊！ */
-    visibility: hidden;
-
-    /* 🌟 把 visibility 也加入動畫漸變中 */
-    transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;   /* 非目前投影片不擋住點擊 */
+    transition: opacity .6s ease-in-out, visibility .6s ease-in-out;
 }
 
-/* 讓圖片填滿空間 */
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+.slide img { width: 100%; height: 100%; object-fit: cover; }
 
-/* 🌟 你草圖中要求的：疊在左下角的文字設計 */
 .slide-text {
     position: absolute;
-    bottom: 50px;
-    left: 50px;
-    padding: 20px 40px;
-    border-radius: 10px;
-    z-index: 10;
-
-    /* 1. 初始狀態：往下沉 30px，並且完全透明 */
+    left: clamp(16px, 4vw, 50px);
+    bottom: clamp(36px, 6vw, 60px);
     transform: translateY(30px);
     opacity: 0;
-
-    /* 2. 動畫時間：文字浮現 0.6 秒，並且延遲 0.2 秒才開始 (這樣會比圖片慢一點點浮現，超有質感！) */
-    transition: transform 0.6s ease-out 0.2s, opacity 0.6s ease-out 0.2s;
+    transition: transform .6s ease-out .2s, opacity .6s ease-out .2s;
 }
 
 .slide-text h2 {
-    font-size: 90px;
-    color: #ffffff;
-    margin: 0 0 10px 0;
-    font-family: 'MyHanaMin', serif;
-    letter-spacing: 2px;
+    font-size: clamp(26px, 6vw, 80px);
+    color: #fff;
     font-weight: 400;
-    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 14px rgba(0, 0, 0, .6);
+    margin-bottom: 10px;
 }
 
-.slide-text h1 {
-    font-size: 50px;
-    color: #ffffff;
-    margin: 0;
-    font-family: "Libre Bodoni", serif;
-    letter-spacing: 2px;
-    font-weight: 400;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+.slide-link {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .9);
+    color: var(--text);
+    text-decoration: none;
+    font-size: clamp(14px, 1.6vw, 20px);
 }
+.slide-link:hover, .slide-link:focus-visible { background: #fff; }
 
-/* 圓點排版 */
 .carousel-dots {
     position: absolute;
-    bottom: 20px;
+    bottom: 16px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -330,515 +201,144 @@ img {
 .carousel-dots label {
     width: 15px;
     height: 15px;
-    background-color: #5c544594;
     border-radius: 50%;
+    background: #5c544594;
     cursor: pointer;
-    transition: 0.3s;
+    transition: .3s;
 }
 
-
-
-/* 🌟 第一段：控制大圖片的顯示與點擊 */
 #slide1:checked ~ .carousel-slides .slide-1,
 #slide2:checked ~ .carousel-slides .slide-2,
-#slide3:checked ~ .carousel-slides .slide-3 {
-    opacity: 1;
-    visibility: visible; /* 🌟 讓當前的圖片現身，並且可以被點擊！ */
-}
+#slide3:checked ~ .carousel-slides .slide-3 { opacity: 1; visibility: visible; }
 
-/* 🌟 第二段：控制文字專屬的 translateY 浮現動畫 (注意這裡沒有逗號！) */
 #slide1:checked ~ .carousel-slides .slide-1 .slide-text,
 #slide2:checked ~ .carousel-slides .slide-2 .slide-text,
-#slide3:checked ~ .carousel-slides .slide-3 .slide-text {
-    transform: translateY(0); /* 回到原本的位置 */
-    opacity: 1;
+#slide3:checked ~ .carousel-slides .slide-3 .slide-text { opacity: 1; transform: none; }
+
+#slide1:checked ~ .carousel-slides label[for="slide1"],
+#slide2:checked ~ .carousel-slides label[for="slide2"],
+#slide3:checked ~ .carousel-slides label[for="slide3"] {
+    background: #fff;
+    box-shadow: 0 0 20px rgba(187, 178, 178, .8);
 }
 
-#slide1:checked ~ .carousel-slides .carousel-dots label[for="slide1"],
-#slide2:checked ~ .carousel-slides .carousel-dots label[for="slide2"],
-#slide3:checked ~ .carousel-slides .carousel-dots label[for="slide3"] {
-    background-color: #ffffff;
-    box-shadow: 0 0 20px rgba(187, 178, 178, 0.8);
+/* ---------- 最新更新 ---------- */
+.latest { padding-top: var(--gap); }
+
+.card-grid {
+    margin-bottom: 270px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
 }
 
+.card {
+    display: block;
+    padding: 24px;
+    background: var(--card-bg);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color .25s, transform .25s;
+}
+.card:hover, .card:focus-visible { border-color: var(--link); transform: translateY(-4px); }
 
+.card-kind { font-size: 15px; color: var(--link); }
+.card h3 { font-size: clamp(20px, 2.2vw, 26px); color: var(--text); margin: 6px 0; }
+.card p { font-size: 18px; color: var(--muted); }
 
-
-/* ==================================================== */
-/* 底部互動導覽區塊設計                                    */
-/* ==================================================== */
-
-/* 1. 人物與泡泡的專屬容器 */
-.character-nav-container {
-    position: relative; /* 🌟 關鍵！這就是那四顆泡泡的座標基準點 */
-    width: 800px;       /* 限制一個固定的畫布寬度，讓泡泡好排版 */
-    height: 600px;      /* 根據你人物的高度抓一個適當的畫布高度 */
-    margin: 0 auto;     /* 讓這整組插圖在網頁正中間 */
-    margin-top: 50px;   /* 距離上方標題的距離 */
+/* ---------- 泡泡導覽 ---------- */
+.start { padding-block: var(--gap); }
+.start .section-title {
+    position: relative;
+    z-index: 30;              /* 保險：標題永遠在人物與泡泡的上層 */
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-/* 2. 中間的 Q 版人物 */
+.character-nav {
+    position: relative;
+    width: min(100%, 800px);
+    height: 600px;
+    margin: 0 auto;
+}
+
 .writing-down {
-    position: absolute; /* 把人物也變成貼紙 */
-    bottom: 0;          /* 貼齊容器底部 */
-    left: 50%;          /* 移動到中間 */
-    transform: translateX(-50%); /* 完美的水平置中魔法 */
-    width: 600px;       /* 你可以依據需要調整人物大小 */
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
     height: auto;
-    z-index: 10;
+    max-width: min(75%, 600px);
+    max-height: 100%;         /* 人物不會比容器高，頭就不會頂出去擋住標題 */
 }
 
-/* 3. 氣泡按鈕的共通設定 */
 .bubble {
-    position: absolute; /* 變成貼紙 */
-    z-index: 20;        /* 確保疊在人物上面 */
-
-    /* 文字排版設定 */
+    position: absolute;
+    z-index: 20;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 300px;
+    height: 200px;
     text-align: center;
-    text-decoration: none; /* 拿掉超連結預設的醜醜底線 */
-    color: #524741;        /* 文字顏色 */
+    text-decoration: none;
+    color: var(--text);
     font-size: 30px;
-    font-family: "MyHanaMin", serif; /* 延用你的質感字體 */
     font-weight: bold;
+    background: url("pictures/thought-bubble.png") center / 100% 100% no-repeat;
+    transition: transform .3s ease;
+}
+a.bubble:hover, a.bubble:focus-visible { transform: scale(1.1); }
 
-    /* 🌟 將你自己畫的雲朵放上來當背景 */
-    background-image: url('pictures/thought-bubble.png'); /* 記得換成你的圖檔名！ */
-    background-size: 100% 100%; /* 讓雲朵完美填滿這個按鈕大小 */
-    background-repeat: no-repeat;
+span.bubble { opacity: .7; }
 
-    width: 300px;  /* 泡泡的寬度 */
-    height: 200px; /* 泡泡的高度 */
+.bubble-1 { top: -20px;    left: -50px; }
+.bubble-2 { top: -30px;    right: -50px; }
+.bubble-3 { bottom: 150px; left: 20px; }
+.bubble-4 { bottom: 100px; right: 20px; }
 
-    /* 加上滑鼠移過去的 Q 彈動畫 */
-    transition: transform 0.3s ease;
+
+
+/* ---------- 響應式（只剩兩個斷點）---------- */
+@media (min-width: 1000px) and (min-height: 700px) {
+    html { scroll-snap-type: y mandatory; }
 }
 
-/* 滑鼠移過去時，泡泡會稍微放大，告訴使用者「可以點我喔！」 */
-.bubble:hover {
-    transform: scale(1.1);
+@media (max-width: 900px) {
+    .about { grid-template-columns: 1fr; }
+    .bubble-1 { left: -20px; }
+    .bubble-2 { right: -20px; }
 }
 
-/* 4. 將四顆泡泡釘在畫布的不同角落 (你可以自由微調這些 top, bottom, left, right 的數值) */
-.bubble-1 {
-    top: -20px;
-    left: -50px;
-}
-.bubble-2 {
-    top: -30px;
-    right: -50px;
-}
-.bubble-3 {
-    bottom: 150px;
-    left: 20px;
-}
-.bubble-4 {
-    bottom: 100px;
-    right: 20px;
+@media (max-width: 770px) {
+    /* 大頭貼下半部 + 標籤 都懸在橫幅下方，名片要往下讓位 */
+    .profile-card-section { padding-top: calc(var(--pic) / 2 + 110px); }
 }
 
-/* ==================================================== */
-/* 平板與小筆電響應式設計 (當螢幕寬度小於 1680px 時生效)      */
-/* ==================================================== */
-@media screen and (max-width: 1680px) {
+@media (max-width: 700px) {
+    .hero-text { padding-top: 40px; }
 
-    .text-content {
-        bottom: auto;
-        bottom: 25%;      /* 改用百分比，讓文字跟著畫面比例走 */
-        left: 5%;
-    }
-    .text-content h1 {
-        font-size: 60px; /* 縮小手機版標題 */
-    }
-
-    .text-content-1 {
-        bottom: 7%;
-        left: 13%;
-        width: 90%;
-    }
-
-    .text-content-1 h3 {
-        font-size: 30px; /* 縮小內文 */
-    }
-
-    /* 縮小左側巨大的留白，改用百分比才不會把文字擠出畫面 */
-    .text-content-2 {
-        margin-left: 10%;
-    }
-    .text-content-3, .text-content-4, .text-content-5 {
-        margin-left: 10%;
-    }
-
-    /* 把輪播圖的固定 1200px 寬高解除，讓它跟著螢幕大小彈性縮放 */
-    .carousel-section {
-        width: 90%;
+    /* 泡泡改成 2×2 格狀，人物在上方 */
+    .character-nav {
         height: auto;
-        aspect-ratio: 3 / 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
     }
-    .image-btn, .reading-book, .traveling {
-        width: 100%;
-        height: 100%;
-    }
-
-    /* 底部互動區的人物與泡泡也可以稍微縮小畫布寬度 */
-    .character-nav-container {
-        width: 100%;
-    }
-
-    .text-content-5 {
-        position: relative; /* 取消絕對定位，讓它乖乖待在上層 */
-        top: 0;
-        margin-left: 0;
-        text-align: center;
-        margin-bottom: 40px;
-    }
-    .text-content-5 h3 {
-        font-size: 70px;
-        padding-left: 50px;
-        margin-bottom: 100px;
-    }
-
-    /* 縮小泡泡按鈕並重新調整位置 */
-    .bubble {
-        width: 300px;
-        height: 200px;
-        font-size: 22px;   /* 泡泡裡的字也要縮小 */
-    }
-
-    /* 重新分配四個泡泡在手機上的位置 */
-    .bubble-1 { top: 10%; left: 10%; }
-    .bubble-2 { top: 4%; right: 10%; }
-    .bubble-3 { bottom: 15%; left: 8%; }
-    .bubble-4 { bottom: 21%; right: 10%; }
-}
-
-
-/* ==================================================== */
-/* 平板與小筆電響應式設計 (當螢幕寬度小於 1200px 時生效)      */
-/* ==================================================== */
-@media screen and (max-width: 1200px) {
-
-    .text-content {
-        bottom: auto;
-        bottom: 25%;      /* 改用百分比，讓文字跟著畫面比例走 */
-        left: 3%;
-    }
-    .text-content h1 {
-        font-size: 40px; /* 縮小手機版標題 */
-    }
-
-    .text-content-1 {
-        bottom: 4%;
-        left: 11%;
-        width: 90%;
-    }
-
-    .text-content-1 h3 {
-        font-size: 30px; /* 縮小內文 */
-    }
-
-    /* 縮小左側巨大的留白，改用百分比才不會把文字擠出畫面 */
-    .text-content-2 {
-        margin-left: 10%;
-    }
-    .text-content-3, .text-content-4, .text-content-5 {
-        margin-left: 10%;
-    }
-
-    /* 把輪播圖的固定 1200px 寬高解除，讓它跟著螢幕大小彈性縮放 */
-    .carousel-section {
-        width: 90%;
-        height: auto;
-        aspect-ratio: 3 / 2;
-    }
-    .image-btn, .reading-book, .traveling {
-        width: 100%;
-        height: 100%;
-    }
-
-    /* 底部互動區的人物與泡泡也可以稍微縮小畫布寬度 */
-    .character-nav-container {
-        width: 100%;
-    }
-
-    .text-content-5 {
-        position: relative; /* 取消絕對定位，讓它乖乖待在上層 */
-        top: 0;
-        margin-left: 0;
-        text-align: center;
-        margin-bottom: 40px;
-    }
-    .text-content-5 h3 {
-        font-size: 70px;
-        padding-left: 50px;
-        margin-bottom: 100px;
-    }
-}
-
-/* ==================================================== */
-/* 手機與平板響應式設計 (當螢幕寬度小於 770px 時生效)      */
-/* ==================================================== */
-@media screen and (max-width: 770px) {
-
-    /* 1. 修正外框邊距，並讓高度由裡面的 Banner 自然撐開 */
-    .header-container {
-        height: auto;
-        /* 配合手機版 main-container 縮小的 padding (20px)[cite: 3] */
-        margin-top: -20px;
-        margin-left: -20px;
-        margin-right: -20px;
-        width: calc(100% + 40px); /* 左右突破各 20px，總共加 40px */
-    }
-
-    /* 2. 讓 Banner 回歸正常排版，撐出高度並把 hero-section 往下推 */
-    .Banner {
-        position: relative; /* 🌟 關鍵魔法：取消絕對定位，讓它佔用實際網頁空間 */
-        left: 0;            /* 取消原本電腦版的置中偏移[cite: 1] */
-        transform: none;    /* 取消原本電腦版的位移[cite: 1] */
-
-        /* 保留你原本在 index.css 寫好的完美防變形設定[cite: 3] */
-        width: 100%;
-        max-width: 1200px;
-        height: auto;
-        display: block;
-    }
-
-    .Banner {
-    width: 100%;       /* 讓它永遠填滿父容器 (也就是 main-container) 的寬度 */
-    max-width: 1200px; /* 最大不會超過原本的尺寸 */
-    height: auto;      /* 高度自動等比例縮放，確保圖片不會被壓扁變形 */
-    display: block;    /* 消除圖片下方預設的幾像素神祕空隙 */
-    }
-    /* 1. 調整整體區塊的留白 */
-    .intro-section, .intro-section-2, .intro-section-3, .intro-section-4 {
-        padding-top: 60px;
-        padding-bottom: 60px;
-    }
-    .main-container {
-        padding: 20px;
-    }
-
-    /* 2. 修正首頁（你好，我是黑犬）的絕對定位與字體大小 */
-    .text-content {
-        bottom: auto;
-        bottom: 20%;      /* 改用百分比，讓文字跟著畫面比例走 */
-        left: -5%;
-    }
-    .text-content h1 {
-        font-size: 40px; /* 縮小手機版標題 */
-    }
-
-    .text-content-1 {
-        bottom: 5%;
-        left: 7%;
-        width: 90%;
-    }
-
-    .text-content-1 h3 {
-        font-size: 20px; /* 縮小內文 */
-    }
-
-    /* 3. 修正其他區塊的推擠 (移除原本過大的 margin-left) */
-    .text-content-2,
-    .text-content-3,
-    .text-content-4 {
-        margin-left: 5%;
-        width: 90%;
-    }
-    .text-content-2 h3,
-    .text-content-3 h3,
-    .text-content-4 h3 {
-        font-size: 24px;
-    }
-    .text-content-3 h1 {
-        font-size: 24px;
-    }
-
-
-    /* 4. 修正輪播圖 (保持 3:2 原圖比例) */
-    .carousel-section {
-        height: auto;          /* 取消固定高度 */
-        aspect-ratio: 3 / 2;   /* 讓高度自動跟隨寬度，保持 3:2 的完美比例 */
-    }
-
-    /* 🌟 關鍵修正：把按鈕的固定寬度解除，改成跟著外層 100% */
-    .image-btn {
-        width: 100%;
-        height: 100%;
-    }
-
-    .slide img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
-
-    .slide-text {
-        bottom: 20px;
-        left: 20px;
-        padding: 10px;
-    }
-
-    .slide-text h2 {
-        font-size: 40px;       /* 手機版文字大小保持縮小 */
-    }
-
-    /* 5. 修正「想從哪裡開始？」的標題，避免被泡泡擋住 */
-    .text-content-5 {
-        position: relative; /* 取消絕對定位，讓它乖乖待在上層 */
-        top: 0;
-        margin-left: 0;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .text-content-5 h3 {
-        font-size: 60px;
-        padding-left: 50px;
-        margin-bottom: 100px;
-    }
-
-    /* 6. 修正底部互動導覽區塊 (人物與泡泡) */
-    .character-nav-container {
-        width: 100%;       /* 讓畫布符合手機寬度 */
-        height: 400px;     /* 縮小畫布高度 */
-        margin-top: 20px;
-    }
-
     .writing-down {
-        width: 60%;        /* 讓人物圖縮小 */
+        position: static;
+        transform: none;
+        grid-column: 1 / -1;
+        width: 70%;
+        margin: 0 auto;
     }
-
-    /* 縮小泡泡按鈕並重新調整位置 */
     .bubble {
-        width: 190px;
-        height: 100px;
-        font-size: 22px;   /* 泡泡裡的字也要縮小 */
-    }
-
-    /* 重新分配四個泡泡在手機上的位置 */
-    .bubble-1 { top: 0%; left: 3%; }
-    .bubble-2 { top: 0; right: -2%; }
-    .bubble-3 { bottom: 18%; left: -4%; }
-    .bubble-4 { bottom: 21%; right: -2%; }
-}
-
-
-/* ==================================================== */
-/* 手機與平板響應式設計2 (當螢幕寬度小於 500px 時生效)      */
-/* ==================================================== */
-@media screen and (max-width: 500px) {
-
-    /* 1. 調整整體區塊的留白 */
-    .intro-section, .intro-section-2, .intro-section-3, .intro-section-4 {
-        padding-top: 60px;
-        padding-bottom: 60px;
-    }
-    .main-container {
-        padding: 10px;
-    }
-
-    /* 2. 修正首頁（你好，我是黑犬）的絕對定位與字體大小 */
-    .text-content {
-        bottom: auto;
-        bottom: 20%;      /* 改用百分比，讓文字跟著畫面比例走 */
-        left: -5%;
-    }
-    .text-content h1 {
-        font-size: 30px; /* 縮小手機版標題 */
-    }
-
-    .text-content-1 {
-        bottom: 5%;
-        left: 7%;
-        width: 90%;
-    }
-
-    .text-content-1 h3 {
-        font-size: 15px; /* 縮小內文 */
-    }
-
-    /* 3. 修正其他區塊的推擠 (移除原本過大的 margin-left) */
-    .text-content-2,
-    .text-content-3,
-    .text-content-4 {
-        margin-left: 5%;
-        width: 90%;
-    }
-    .text-content-2 h3,
-    .text-content-3 h3,
-    .text-content-4 h3 {
-        font-size: 24px;
-    }
-    .text-content-3 h1 {
-        font-size: 24px;
-    }
-
-
-    /* 4. 修正輪播圖 (保持 3:2 原圖比例) */
-    .carousel-section {
-        height: auto;          /* 取消固定高度 */
-        aspect-ratio: 3 / 2;   /* 讓高度自動跟隨寬度，保持 3:2 的完美比例 */
-    }
-
-    /* 🌟 關鍵修正：把按鈕的固定寬度解除，改成跟著外層 100% */
-    .image-btn {
+        position: static;
         width: 100%;
-        height: 100%;
+        height: 110px;
+        font-size: 18px;
     }
-
-    .slide img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
-
-    .slide-text {
-        bottom: 20px;
-        left: 20px;
-        padding: 10px;
-    }
-
-    .slide-text h2 {
-        font-size: 28px;       /* 手機版文字大小保持縮小 */
-    }
-
-    /* 5. 修正「想從哪裡開始？」的標題，避免被泡泡擋住 */
-    .text-content-5 {
-        position: relative; /* 取消絕對定位，讓它乖乖待在上層 */
-        top: 0;
-        margin-left: 0;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .text-content-5 h3 {
-        font-size: 30px;
-        padding-left: 50px;
-        margin-bottom: 100px;
-    }
-
-    /* 6. 修正底部互動導覽區塊 (人物與泡泡) */
-    .character-nav-container {
-        width: 100%;       /* 讓畫布符合手機寬度 */
-        height: 400px;     /* 縮小畫布高度 */
-        margin-top: 20px;
-    }
-
-    .writing-down {
-        width: 60%;        /* 讓人物圖縮小 */
-    }
-
-    /* 縮小泡泡按鈕並重新調整位置 */
-    .bubble {
-        width: 190px;
-        height: 100px;
-        font-size: 22px;   /* 泡泡裡的字也要縮小 */
-    }
-
-    /* 重新分配四個泡泡在手機上的位置 */
-    .bubble-1 { top: 0%; left: 3%; }
-    .bubble-2 { top: 0; right: -2%; }
-    .bubble-3 { bottom: 18%; left: -4%; }
-    .bubble-4 { bottom: 21%; right: -2%; }
 }
