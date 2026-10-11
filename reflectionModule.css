@@ -1,263 +1,237 @@
+/* reflectionModule.css：單本書的完整心得頁（字型、導覽列、頁尾在 style.css）*/
 
-/* =========================================
-   完整心得頁面：下方文章區塊
-========================================= */
-.reflection-content {
-    padding: 50px 200px;
-    /* 🌟 防止文字被反白選取複製 */
-    user-select: none;
-    -webkit-user-select: none; /* 支援蘋果 Safari 瀏覽器 */
+:root {
+    --text: #524741;
+    --muted: #5C5445;
+    --soft: #6b6259;
+    --line: #ccc;
+    --toc-w: 200px;
+    --read-weight: 700;                    /* 文章字重：字型線條太細時用 700，想改細一點就改這裡 */
 }
 
-/* =========================================
-   完整心得頁面：上方書本資訊區塊
-========================================= */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;             /* 點目錄跳轉時，避開固定導覽列與手機版目錄列 */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+
+/* 外框沿用 style.css 的 .main-container，只多留空間給固定的導覽列 */
+.book-page { padding-top: 90px; }
+
 .back-btn {
     display: inline-block;
-    margin-bottom: 20px;
-    color: #524741;
+    margin-bottom: 30px;
+    color: var(--text);
     text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-    padding: 50px 20px;
+    transition: .3s;
+    font-weight: var(--read-weight);
 }
+.back-btn:hover,
+.back-btn:focus-visible { transform: translateX(-5px); }
 
-.back-btn:hover {
-    color: #555;
-    transform: translateX(-5px); /* 滑鼠摸到往左微彈 */
-}
-
+/* ---------- 書本資訊 ---------- */
 .book-detail-header {
     display: flex;
-    gap: 40px;
-    align-items: center; /* 讓圖片跟文字垂直置中對齊 */
-    margin-bottom: 30px;
+    align-items: center;
+    gap: clamp(20px, 4vw, 40px);
 }
 
 .detail-cover {
-    width: 220px; /* 這裡的封面可以比預覽圖再大一點 */
+    width: clamp(140px, 22vw, 220px);
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
     border-radius: 8px;
-    box-shadow: 2px 4px 15px rgba(0,0,0,0.25);
+    box-shadow: 2px 4px 15px rgba(0, 0, 0, .25);
 }
 
 .detail-info {
-    display: absolute;
+    display: flex;                          /* 原本寫成 display: absolute，不是合法值 */
     flex-direction: column;
-    gap: 15px; /* 標題、作者、標籤之間的間距 */
+    gap: 12px;
+    min-width: 0;
 }
 
 .detail-title {
-    font-size: 50px;
-    color: #524741;
+    padding: 0;
+    font-size: clamp(30px, 5vw, 50px);
+    line-height: 1.3;
+    color: var(--text);
 }
 
 .detail-author {
-    font-size: 24px;
-    color: #5C5445;
     margin: 0;
-    font-weight: 900;
+    padding: 0;
+    font-size: clamp(18px, 2.4vw, 24px);
+    color: var(--muted);
 }
 
-/* =========================================
-   完整心得頁面：下方文章區塊
-========================================= */
-.reflection-content {
-    padding: 50px 200px;
+.book-divider {
+    height: 1px;
+    margin: 40px 0;
+    border: 0;
+    background: #1b1b1b1a;
 }
+
+/* ---------- 版面：目錄 + 文章 ---------- */
+.reflection-layout {
+    display: grid;
+    grid-template-columns: var(--toc-w) minmax(0, 1fr);   /* minmax(0,1fr)：長文不會撐出畫面 */
+    gap: clamp(32px, 5vw, 60px);
+    align-items: start;                     /* sticky 需要 */
+    padding-bottom: 80px;
+}
+
+/* ---------- 文章 ---------- */
+.reflection-content { font-size: clamp(17px, 1.6vw, 20px); }
 
 .reflection-content h2 {
-    font-size: 36px;
-    color: #5C5445;
     margin-bottom: 20px;
-    border-left: 5px solid #5C5445; /* 左側加上可愛的黃色裝飾線 */
     padding-left: 15px;
+    font-size: clamp(26px, 3vw, 36px);
+    color: var(--muted);
+    border-left: 5px solid var(--muted);
+    font-weight: var(--read-weight);
+}
+
+.reflection-content .section-title {
+    margin: 3em 0 .6em;
+    padding-bottom: 10px;
+    font-size: 1.3em;
+    color: var(--text);
+    border-bottom: 1px solid #e5e2dc;
+    font-weight: var(--read-weight);
 }
 
 .reflection-content p {
-    font-size: 20px;
-    line-height: 1.5; /* 讓文章行距變寬，閱讀起來更舒服 */
+    max-width: 38em;                        /* 約 38 字一行，長文最好讀 */
+    margin-bottom: 1.2em;
+    padding: 0;
+    font-size: 1em;
+    line-height: 1.9;
     color: #333;
-    margin-bottom: 20px;
-    text-align: justify; /* 讓文字左右對齊，看起來更整齊 */
-    font-weight: 700;
+    font-weight: var(--read-weight);
 }
 
-/* =========================================
-   文章區塊左右排版與新標題設定*
-========================================= */
-.reflection-layout {
-    display: flex;
-    gap: 60px; /* 目錄和文章之間的間距 */
-    padding: 20px 80px; /* 調整整體的左右間距 */
-    align-items: flex-start; /* 讓兩邊都對齊頂部 */
+/* 書中引文 */
+.reflection-content blockquote {
+    max-width: 38em;
+    margin: 1.5em 0;
+    padding: .4em 0 .4em 1.2em;
+    line-height: 1.9;
+    color: var(--soft);
+    border-left: 3px solid var(--line);
+    font-weight: var(--read-weight);
 }
 
-/* 重新調整右側文章區塊，讓它填滿剩餘空間 */
-.reflection-content {
-    flex-grow: 1;
-    padding: 0; /* 把原本的 padding 歸零，交給外層的 layout 控制 */
-}
-
-/* 專屬小標題的樣式 */
-.section-title {
-    font-size: 24px;
-    color: #524741;
-    margin-top: 50px; /* 讓每個段落上方多一點呼吸空間 */
-    margin-bottom: 15px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-    font-weight: 900;
-}
-
-/* =========================================
-   左側時間軸浮動目錄 (Timeline TOC)
-========================================= */
-.toc-sidebar {
-    position: sticky; /* 讓目錄黏在畫面上 */
-    top: 100px; /* 往下滾動時會黏在距離上方 100px 的位置 */
-    width: 220px;
-    flex-shrink: 0; /* 確保目錄寬度不會被壓縮 */
+/* ---------- 目錄（桌面：側邊時間軸）---------- */
+.toc {
+    position: sticky;
+    top: 100px;
 }
 
 .toc-title {
-    font-size: 22px;
-    color: #5C5445;
+    display: block;                         /* 讓 summary 不顯示預設三角形 */
     margin-bottom: 20px;
-    font-weight: 900;
+    font-size: 22px;
+    color: var(--muted);
+    list-style: none;
+    cursor: pointer;
+    font-weight: var(--read-weight);
 }
+.toc-title::-webkit-details-marker { display: none; }
 
-/* 虛線軌道 */
-.toc-timeline {
-    border-left: 2px dashed #ccc; /* 🌟 這裡畫出了左邊垂直的虛線 */
-    padding-left: 20px;
+.toc-list {
     display: flex;
     flex-direction: column;
-    gap: 25px; /* 每個目錄連結的間距 */
+    gap: 24px;
+    padding-left: 20px;
+    border-left: 2px dashed var(--line);
 }
 
-/* 目錄連結文字 */
 .toc-link {
     position: relative;
-    text-decoration: none;
-    color: #777;
-    font-weight: bold;
     font-size: 16px;
-    transition: 0.3s;
+    text-decoration: none;
+    color: var(--soft);
+    transition: .3s;
 }
 
-/* 🌟 利用 ::before 偽元素畫出圓點「•」 */
 .toc-link::before {
-    content: ''; /* 雖然沒有文字，但我們畫一個圓 */
+    content: '';
     position: absolute;
-    left: -27px; /* 往左推，剛好壓在剛剛畫的虛線上 */
+    left: -27px;
     top: 50%;
-    transform: translateY(-50%);
     width: 12px;
     height: 12px;
-    background-color: #ccc;
+    transform: translateY(-50%);
     border-radius: 50%;
-    transition: 0.3s;
+    background: var(--line);
+    transition: .3s;
 }
 
-/* 滑鼠摸到目錄時的變化 */
-.toc-link:hover {
-    color: #524741;
-    transform: translateX(5px); /* 文字微微往右彈 */
+.toc-link:hover,
+.toc-link:focus-visible,
+.toc-link.is-active { color: var(--text); }
+
+.toc-link:hover { transform: translateX(5px); }
+
+.toc-link:hover::before,
+.toc-link.is-active::before {
+    background: var(--text);
+    box-shadow: 0 0 8px #201f1bcc;
+
 }
 
-/* 滑鼠摸到目錄時，圓點也會變色 */
-.toc-link:hover::before {
-    background-color: #524741; /* 變成可愛的黃色 */
-    box-shadow: 0 0 8px #201f1bcc; /* 微微發光 */
+/* 桌面版目錄永遠展開，標題不需要能點 */
+@media (min-width: 1000px) {
+    .toc-title { pointer-events: none; cursor: default; }
 }
 
-    /* ==================================================== */
-/* 手機與平板響應式設計 (當螢幕寬度小於 768px 時生效)      */
-/* ==================================================== */
-@media screen and (max-width: 768px) {
-
-/* 1. 整體佈局調整：改為上下排列，而不是左右並排 */
+/* ---------- 手機與平板：目錄變成黏在上方的收合列 ---------- */
+@media (max-width: 999px) {
     .reflection-layout {
-        flex-direction: column; /* 讓目錄和文章變成上下排列 */
-        padding: 18px;
-        margin: auto;        /* 縮小整體的左右間距 */
-        gap: 30px;              /* 調整目錄和文章的間距 */
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
     }
 
-    /* 2. 調整文章目錄（TOC） */
-    .toc-sidebar {
-        position: sticky; /* 取消黏性定位（sticky），讓它跟著滾動 */
-        top: 20px;
-        width: 100%;        /* 讓目錄填滿螢幕寬度 */
-        margin-bottom: 20px;
-        background-color: #f0efeecb;
-        padding: 10px;
+    .toc {
+        top: 60px;                          /* 剛好在固定導覽列下方 */
         z-index: 50;
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
-        justify-content: center;
-    }
-
-    .toc-timeline {
-        /* 如果想讓目錄的項目變成橫向排列，可以加入以下設定： */
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 30px;
-        border-left: 0px solid #cccccc00;
-    }
-
-    .toc-link::before {
-        content: ''; /* 雖然沒有文字，但我們畫一個圓 */
-        position: absolute;
-        left: -27px; /* 往左推，剛好壓在剛剛畫的虛線上 */
-        top: 50%;
-        transform: translateY(-50%);
-        width: 12px;
-        height: 12px;
-        background-color: #cccccc00;
-        border-radius: 50%;
-        transition: 0.3s;
+        padding: 0 16px;
+        background: rgba(240, 239, 238, .96);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
     }
 
     .toc-title {
-        margin-top: 30px;
-        font-size: 30px;    /* 縮小目錄標題字體 */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+        padding: 12px 0;
+        font-size: 18px;
+    }
+    .toc-title::after { content: '▾'; }
+    .toc[open] .toc-title::after { content: '▴'; }
+
+    .toc-list {
+        gap: 18px;
+        margin: 4px 0 16px 6px;
+    }
+}
+
+/* ---------- 手機：書本資訊改成上下排列 ---------- */
+@media (max-width: 600px) {
+    .book-detail-header {
+        flex-direction: column;
         text-align: center;
-        color: #524741c7
     }
-
-    .toc-link {
-        font-size: 15px;    /* 縮小目錄連結字體 */
-    }
-
-    /* 3. 頂部主視覺圖片調整 */
-    .about-me-img {
-        width: 100%;        /* 讓圖片寬度自適應螢幕 */
-        height: auto;
-    }
-
-    /* 4. 各個文字內容區塊調整 */
-    .reflection-content {
-        left: 0;            /* 移除原本往右推的設定 */
-        width: 100%;        /* 讓內容填滿寬度 */
-        padding: 0 10px;    /* 加上一點左右內邊距，避免文字太貼齊邊緣 */
-        box-sizing: border-box; /* 確保 padding 不會撐破寬度 */
-    }
-
-
-    /* 5. 調整字體大小 */
-    .reflection-content h2 {
-        font-size: 28px;    /* 大幅縮小大標題字體 */
-        text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* 陰影也跟著縮小 */
-    }
-
-    .reflection-content p {
-        font-size: 18px;    /* 縮小內文字體 */
-    }
-
-    .section-title {
-        font-size: 24px;    /* 縮小小標題字體 */
-        margin-top: 60px;   /* 縮小上方間距 */
-    }
-
+    .detail-title { text-align: center; }
+    .detail-info { align-items: center; }
+    .detail-info .book-tags { justify-content: center; }
 }

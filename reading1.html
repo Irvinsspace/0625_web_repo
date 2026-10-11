@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="默文讀過的書與閱讀心得。">
+    <title>閱讀專欄｜默文的部落格</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reading.css">
+</head>
+<body>
+
+    <nav class="sticky-navbar" aria-label="主選單">
+        <ul class="nav-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="about.html">自我介紹</a></li>
+            <li class="dropdown-parent">
+                <a href="#">喜好專欄</a>
+                <ul class="dropdown-menu">
+                    <li><a href="painting.html">畫畫作品集</a></li>
+                    <li><a href="reading.html">閱讀專欄</a></li>
+                    <li><a href="my_fiction.html">小說</a></li>
+                </ul>
+            </li>
+            <li><a href="diary.html">生活日誌</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-container reading-page">
+
+        <header class="page-head">
+            <h1>閱讀專欄</h1>
+            <p>我讀過的書與心得，可以依類型篩選。</p>
+        </header>
+
+        <!-- 類型篩選：data-filter 要對應下面書本的 data-category -->
+        <div class="filter-bar" role="group" aria-label="書本類型篩選">
+            <span class="filter-label">書本類型</span>
+            <button type="button" class="tag-filter-btn" data-filter="all" aria-pressed="true">#全部</button>
+            <button type="button" class="tag-filter-btn" data-filter="psychology" aria-pressed="false">#心理學</button>
+            <button type="button" class="tag-filter-btn" data-filter="philosophy" aria-pressed="false">#哲學</button>
+            <button type="button" class="tag-filter-btn" data-filter="novel" aria-pressed="false">#小說</button>
+            <button type="button" class="tag-filter-btn" data-filter="prose" aria-pressed="false">#散文</button>
+        </div>
+
+        <div class="reading-list">
+
+            <!-- 新增書本時複製一個 article，改 data-category（多個分類用空格分開）-->
+            <article class="book-card" data-category="psychology philosophy">
+                <div class="book-left">
+                    <div class="book-tags">
+                        <span class="book-tag">#哲學</span>
+                        <span class="book-tag">#心理學</span>
+                    </div>
+                    <img src="booksCover/Man's_Search_for_Meaning.jpg" alt="《活出生命的意義》書封" class="book-cover" width="180" height="270" loading="lazy">
+                </div>
+
+                <div class="book-right">
+                    <h2 class="book-title">活出生命的意義 - 維克多·E·法蘭克</h2>
+                    <a href="reflections/book1.html" class="reflection-preview">
+                        <p>在開始談論法蘭克實際上對精神療法的貢獻之前，我想先分享自己除了曾在國中時期閱讀過經典的文學作品《偷書賊》 (馬克斯·祖薩克)以外，
+                            我也觀看過Netflix上其他談論這場大屠殺歷史的影集。我總對這段歷史感到無比惋惜
+                            儘管有些故事呈現了德國家庭冒險庇護猶太人的溫情...</p>
+                        <span class="read-more">閱讀完整心得與反思 ➔</span>
+                    </a>
+                </div>
+            </article>
+
+            <article class="book-card" data-category="psychology philosophy">
+                <div class="book-left">
+                    <div class="book-tags">
+                        <span class="book-tag">#哲學</span>
+                        <span class="book-tag">#心理學</span>
+                    </div>
+                    <img src="booksCover/The_Meaning_of_Anxiety.jpg" alt="《焦慮的意義》書封" class="book-cover" width="180" height="270" loading="lazy">
+                </div>
+                <div class="book-right">
+                    <h2 class="book-title">焦慮的意義 - 羅洛·梅</h2>
+                    <a href="reflections/book2.html" class="reflection-preview">
+                        <p>仍在撰寫階段......</p>
+                        <span class="read-more">閱讀完整心得與反思 ➔</span>
+                    </a>
+                </div>
+            </article>
+
+            <article class="book-card" data-category="philosophy">
+                <div class="book-left">
+                    <div class="book-tags">
+                        <span class="book-tag">#哲學</span>
+                    </div>
+                    <img src="booksCover/A_Philosophy_of_Loneliness.jpg" alt="《孤獨的哲學》書封" class="book-cover" width="180" height="270" loading="lazy">
+                </div>
+                <div class="book-right">
+                    <h2 class="book-title">孤獨的哲學 - 拉斯·史文德森</h2>
+                    <a href="reflections/APOfLoneliness.html" class="reflection-preview">
+                        <p>仍在撰寫階段......</p>
+                        <span class="read-more">閱讀完整心得與反思 ➔</span>
+                    </a>
+                </div>
+            </article>
+
+            <article class="book-card" data-category="philosophy">
+                <div class="book-left">
+                    <div class="book-tags">
+                        <span class="book-tag">#哲學</span>
+                    </div>
+                    <img src="booksCover/A_Philosophy_of_Hope.jpg" alt="《希望的哲學》書封" class="book-cover" width="180" height="270" loading="lazy">
+                </div>
+                <div class="book-right">
+                    <h2 class="book-title">希望的哲學 - 拉斯·史文德森</h2>
+                    <a href="reflections/APOfHope.html" class="reflection-preview">
+                        <p>仍在撰寫階段......</p>
+                        <span class="read-more">閱讀完整心得與反思 ➔</span>
+                    </a>
+                </div>
+            </article>
+
+            <!-- 篩選後沒有書時顯示 -->
+            <p class="empty-note" hidden>這個分類目前還沒有書，敬請期待。</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <ul>
+            <li><a href="about.html">自我介紹</a></li>
+            <li><a href="painting.html">畫廊</a></li>
+            <li><a href="reading.html">閱讀</a></li>
+            <li><a href="diary.html">生活日誌</a></li>
+        </ul>
+        <p>版權所有，未經授權請勿轉載。&copy; 2026 默文</p>
+    </footer>
+
+    <script>
+        const buttons = document.querySelectorAll('.tag-filter-btn');
+        const books = document.querySelectorAll('.book-card');
+        const emptyNote = document.querySelector('.empty-note');
+
+        buttons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+                let shown = 0;
+
+                buttons.forEach((b) => b.setAttribute('aria-pressed', b === btn));
+
+                books.forEach((book) => {
+                    const match = filter === 'all' || book.dataset.category.split(' ').includes(filter);
+                    book.hidden = !match;            // 分隔線由 CSS 自動處理，不用再管
+                    if (match) shown++;
+                });
+
+                emptyNote.hidden = shown > 0;
+            });
+        });
+    </script>
+</body>
+</html>

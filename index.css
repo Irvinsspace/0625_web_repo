@@ -242,6 +242,13 @@ img {
     text-decoration: none;
     transition: border-color .25s, transform .25s;
 }
+
+.card-img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+}
+
 .card:hover, .card:focus-visible { border-color: var(--link); transform: translateY(-4px); }
 
 .card-kind { font-size: 15px; color: var(--link); }

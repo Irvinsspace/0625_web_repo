@@ -209,6 +209,24 @@ h3 {
   height: auto;
 }
 
+/* ---------- 書籍標籤（閱讀專欄與單本心得頁共用）---------- */
+.book-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.book-tag {
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #6b6262;
+  background: #fff;
+  border: 2px solid #eee;
+  border-radius: 15px;
+}
+
 /* ---------- 頁尾 ---------- */
 .site-footer {
     padding: 40px 20px;
@@ -226,7 +244,12 @@ h3 {
 }
 .site-footer a { color: #fff; text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
-.site-footer p { max-width: none; text-align: center; font-size: 16px; color: #fff; }
+
+.site-footer p { max-width: none;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+}
 
 /* ==================================================== */
 /* 響應式：先寫大的螢幕，再往小的寫                          */

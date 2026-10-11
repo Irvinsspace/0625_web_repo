@@ -1,274 +1,170 @@
-/* =========================================
-   閱讀專欄：書本模組排版
-========================================= */
+/* reading.css：閱讀專欄清單頁專屬樣式（字型、導覽列、頁尾在 style.css）*/
+
+:root {
+    --text: #524741;
+    --muted: #6b6262;
+    --card: #f8f7f3;
+    --line: #E2DED3;
+    --accent: #b1a68e;
+}
+
+/* 外框沿用 style.css 的 .main-container，只多留空間給固定的導覽列 */
+.reading-page { padding-top: 90px; }
+
+.page-head { margin-bottom: 30px; }
+.page-head p { font-size: clamp(16px, 2vw, 20px); }
+
+/* ---------- 類型篩選列 ---------- */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 50px;
+}
+
+.filter-label {
+    margin-right: 6px;
+    font-size: 18px;
+    color: #574836;
+}
+
+.tag-filter-btn {
+    padding: 8px 18px;
+    font: inherit;                          /* 按鈕預設不會繼承字型，這行取代原本的 Gen Jyuu 字型 */
+    font-size: 16px;
+    color: var(--muted);
+    background: #fff;
+    border: 2px solid #eee;
+    border-radius: 20px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, .05);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.tag-filter-btn:hover,
+.tag-filter-btn:focus-visible {
+    background: var(--line);
+    transform: translateY(-3px);
+}
+
+.tag-filter-btn[aria-pressed="true"] {
+    color: #f0ede5;
+    background: var(--accent);
+    box-shadow: 0 4px 15px rgba(100, 73, 57, .6);
+}
+
+/* ---------- 書本卡片 ---------- */
 .book-card {
     display: flex;
-    gap: 30px; /* 封面跟右邊心得的間距 */
-    margin-bottom: 30px;
+    gap: 30px;
     align-items: flex-start;
+}
+
+/* 有 hidden 屬性的卡片一定要隱藏（因為上面的 display:flex 會蓋掉預設值）*/
+.book-card[hidden] { display: none; }
+
+/* 分隔線：只出現在「前面還有可見卡片」的卡片上，篩選後不會多出空線 */
+.book-card:not([hidden]) ~ .book-card:not([hidden]) {
+    margin-top: 60px;
+    padding-top: 60px;
+    border-top: 1px solid rgba(27, 27, 27, .1);
 }
 
 .book-left {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 180px; /* 統一封面的寬度 */
-    flex-shrink: 0; /* 確保封面不會被壓縮 */
+    flex-shrink: 0;
+    width: 180px;
 }
 
 .book-cover {
     width: 100%;
+    aspect-ratio: 2 / 3;                    /* 每本封面比例統一 */
+    object-fit: cover;
     border-radius: 5px;
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.2); /* 加點陰影讓書有實體感 */
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, .2);
 }
 
 .book-right {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* 讓右邊填滿剩餘空間 */
+    flex: 1;
+    min-width: 0;
 }
 
 .book-title {
-    font-size: 24px;
-    color: #524741;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #a0a0a04f; /* 用底線裝飾書名 */
-    padding-bottom: 5px;
     display: inline-block;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 400;
+    color: var(--text);
+    border-bottom: 1px solid #a0a0a04f;
 }
 
-/* 閱讀心得預覽框框 */
+/* ---------- 心得預覽框（整個框都能點）---------- */
 .reflection-preview {
-    text-decoration: none; /* 拿掉超連結底線 */
-    color: #E2DED3;
-    background-color: #f8f7f3;
+    display: block;
     padding: 20px;
+    color: var(--text);
+    text-decoration: none;
+    background: var(--card);
+    border: 1px solid var(--line);
     border-radius: 12px;
-    border: 1px solid #E2DED3;
-    transition: all 0.3s ease; /* 滑鼠摸到的轉場動畫 */
-    display: block; /* 讓整個框框變成一個大按鈕，點哪裡都能進去 */
+    transition: .3s ease;
 }
 
 .reflection-preview p {
+    max-width: none;
     margin-bottom: 10px;
-    line-height: 1.6;
-    font-size: 20px;
-    font-weight: 900;
-
-    /* === 解決文字過長的魔法 === */
-    display: -webkit-box;
+    padding: 0;
+    font-size: clamp(16px, 1.6vw, 20px);
+    font-weight: 400;                       /* 原本 900 會變假粗體 */
+    line-height: 1.7;
+    color: var(--text);
+    display: -webkit-box;                   /* 最多顯示 3 行，超過的用刪節號 */
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* 限制最多顯示 3 行 (你可以依照喜好改為 2 或 4) */
-    overflow: hidden;      /* 把超過 3 行的內容隱藏起來 */
-    text-overflow: ellipsis; /* 在結尾加上刪節號 (...) */
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
 }
 
-/* 滑鼠摸到預覽框時的效果 */
-.reflection-preview:hover {
-    background-color: #d8d7d2; /* 微微變亮 */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* 陰影加深 */
-    transform: translateY(-3px); /* 整個框框往上彈一點點 */
+.reflection-preview:hover,
+.reflection-preview:focus-visible {
+    background: #efede6;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+    transform: translateY(-3px);
 }
 
 .read-more {
     display: block;
     margin-top: 15px;
+    font-size: 16px;
+    text-align: right;
     color: #5C5445;
-    font-weight: bold;
-    text-align: right; /* 把「點擊閱讀完整心得」推到右邊 */
 }
 
-/* 裝飾性分隔線 */
-.book-divider {
-    border: 0;
-    height: 1px;
-    background-color: #1b1b1b1a;
-    margin: 60px 0;
-}
-
-/* =========================================
-   右側懸浮標籤選單
-========================================= */
-.sticky-anchor-right {
-    position: sticky;
-    top: 100px;
-    z-index: 10;
-    width: 0;
-    height: 0;
-    float: right; /* 把隱形的錨點推到便當盒的最右邊 */
-}
-
-.tags-sidebar {
-    position: absolute;
-    /* 這裡的數字決定它在右邊多遠，你可以依照自己的背景寬度微調 */
-    right: -300px;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 130px;
-}
-
-.sidebar-title {
-    font-size: 24px;
-    color: #574836;
-    margin-bottom: 5px;
+.empty-note {
+    max-width: none;
+    padding: 40px 0;
+    font-size: 20px;
     text-align: center;
 }
 
-.tag-filter-btn {
-    background-color: #ffffff;
-    border: 2px solid #eee;
-    padding: 10px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #6b6262;
-    transition: 0.3s;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
-}
-
-.tag-filter-btn:hover {
-    background-color: #E2DED3; /* 滑鼠摸到變色 */
-    color: #6b6262;
-    transform: translateY(-3px);
-}
-
-
-.tag-filter-btn.active {
-    background-color: #b1a68e;
-    color: #f0ede5;
-    box-shadow: 0 4px 15px rgba(100, 73, 57, 0.6);
-}
-
-/* =========================================
-   書本封面上的個別 Tag 樣式
-========================================= */
-.book-tags {
-    margin-bottom: 15px;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap; /* 如果標籤太多會自動換行 */
-}
-
-.book-tag {
-    background-color: #ffffff;
-    border: 2px solid #eee;
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 13px;
-    color: #6b6262;
-    font-weight: bold;
-}
-
-/* =========================================
-   右側懸浮標籤選單
-========================================= */
-.sticky-anchor-right {
-    position: sticky;
-    top: 100px;
-    z-index: 10;
-    width: 0;
-    height: 0;
-    float: right; /* 把隱形的錨點推到便當盒的最右邊 */
-}
-
-.tags-sidebar {
-    position: absolute;
-    /* 這裡的數字決定它在右邊多遠，你可以依照自己的背景寬度微調 */
-    right: -300px;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 130px;
-}
-
-.sidebar-title {
-    font-size: 24px;
-    color: #574836;
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-.tag-filter-btn {
-    background-color: #ffffff;
-    border: 2px solid #eee;
-    padding: 10px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #6b6262;
-    transition: 0.3s;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
-    font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
-}
-
-.tag-filter-btn:hover {
-    background-color: #E2DED3; /* 滑鼠摸到變色 */
-    color: #6b6262;
-    transform: translateY(-3px);
-}
-
-
-.tag-filter-btn.active {
-    background-color: #b1a68e;
-    color: #f0ede5;
-    box-shadow: 0 4px 15px rgba(100, 73, 57, 0.6);
-}
-
-/* =========================================
-   書本封面上的個別 Tag 樣式
-========================================= */
-.book-tags {
-    margin-bottom: 15px;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap; /* 如果標籤太多會自動換行 */
-}
-
-.book-tag {
-    background-color: #ffffff;
-    border: 2px solid #eee;
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 13px;
-    color: #6b6262;
-    font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
-    font-weight: bold;
-}
-
-/* ==================================================== */
-/* 螢幕寬度小於 1440px 時，將標籤選單移至上方 */
-/* ==================================================== */
-@media screen and (max-width: 1920px) {
-    .sticky-anchor-right {
-        position: static; /* 取消 sticky 定位 */
-        float: none;      /* 取消靠右浮動 */
-        width: 100%;
-        height: auto;
-        margin-bottom: 30px; /* 與下方的書籍列表保持距離 */
+/* ---------- 手機：卡片改成上下排列 ---------- */
+@media (max-width: 600px) {
+    .book-card {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 
-    .tags-sidebar {
-        position: static;    /* 取消 absolute 絕對定位 */
-        flex-direction: row; /* 讓按鈕從垂直變成橫向排列 */
-        justify-content: center; /* 讓按鈕在畫面上方置中 */
-        padding-top: 60px;
-        flex-wrap: wrap;     /* 如果畫面變窄，按鈕會自動換行 */
-        width: 100%;
+    .book-card:not([hidden]) ~ .book-card:not([hidden]) {
+        margin-top: 40px;
+        padding-top: 40px;
     }
 
-    .tag-filter-btn {
-    background-color: #ffffff;
-    border: 2px solid #eee;
-    padding: 10px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #6b6262;
-    transition: 0.3s;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
-    font-family:"Gen Jyuu Gothic ExtraLight", Arial, sans-serif;
-}
+    .book-left { width: min(55%, 200px); }
+    .book-tags { justify-content: center; }
+    .book-right { width: 100%; }
 }
