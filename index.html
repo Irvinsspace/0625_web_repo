@@ -25,10 +25,10 @@
           <ul class="dropdown-menu">
             <li><a href="painting.html">畫畫作品集</a></li>
             <li><a href="reading.html">閱讀專欄</a></li>
-            <li><a href="my_fiction.html">小說</a></li>
+            <li><span class="nav-disabled" aria-disabled="true">小說（即將推出）</span></li>
           </ul>
         </li>
-        <li><a href="diary.html">生活日誌</a></li>
+        <li><span class="nav-disabled" aria-disabled="true">生活日誌（即將推出）</span></li>
       </ul>
     </nav>
 
@@ -103,7 +103,7 @@
               常常因為腦袋裡忽然冒出來的小問題就開始查資料，最後不知不覺地一路查到完全不同的地方。
             </p>
             <p>
-              我正在持續上傳自己從過去到現在的繪圖作品，以及幾本很想留下心得的書。歡迎點開喜好專欄，和我一起在網站裡走走。
+              目前我正在持續上傳自己從過去到現在的繪圖作品，以及幾本很想留下心得的書。歡迎點開喜好專欄，和我一起在網站裡走走。
             </p>
           </div>
           <img
@@ -118,13 +118,13 @@
 
       <!-- 輪播：預設第 1 張，每張都有明確的前往連結 -->
       <section class="carousel-section" aria-label="內容精選">
-        <input type="radio" name="slider" id="slide1" checked />
-        <input type="radio" name="slider" id="slide2" />
-        <input type="radio" name="slider" id="slide3" />
+        <input type="radio" name="slider" id="slide1"  />
+        <!-- <input type="radio" name="slider" id="slide2" /> -->
+        <input type="radio" name="slider" id="slide3" checked />
 
         <div class="carousel-slides">
           <div class="slide slide-1">
-            <label for="slide2" class="image-btn">
+            <label for="slide3" class="image-btn">
               <img
                 src="pictures/Hobbies_reading.png"
                 alt="閱讀"
@@ -138,7 +138,7 @@
             </div>
           </div>
 
-          <div class="slide slide-2">
+          <!-- <div class="slide slide-2">
             <label for="slide3" class="image-btn">
               <img
                 src="pictures/traveling.png"
@@ -149,9 +149,9 @@
             </label>
             <div class="slide-text">
               <h2>我的旅行記事</h2>
-              <a class="slide-link" href="diary.html">前往生活日誌</a>
+
             </div>
-          </div>
+          </div>-->
 
           <div class="slide slide-3">
             <label for="slide1" class="image-btn">
@@ -170,7 +170,7 @@
 
           <div class="carousel-dots">
             <label for="slide1" aria-label="第 1 張"></label>
-            <label for="slide2" aria-label="第 2 張"></label>
+            <!-- <label for="slide2" aria-label="第 2 張"></label> -->
             <label for="slide3" aria-label="第 3 張"></label>
           </div>
         </div>
@@ -187,15 +187,10 @@
             <p>2026/10繪製人物場景圖練習</p>
           </a>
           <a class="card fade-in" href="reading.html">
-            <img src="booksCover/Man's_Search_for_Meaning.jpg" class="card-img" alt="">
+            <img src="booksCover/Mans_Search_for_Meaning.jpg" class="card-img" alt="">
             <span class="card-kind">閱讀</span>
             <h3>《活出生命的意義》心得</h3>
             <p>這本書給了我很大的啟發去實踐現實生活中探索的動力。</p>
-          </a>
-          <a class="card fade-in" href="diary.html">
-            <span class="card-kind">日誌</span>
-            <h3>日誌網頁尚處製作階段。</h3>
-            <p> </p>
           </a>
         </div>
       </section>
@@ -215,7 +210,6 @@
             <a href="about.html" class="bubble bubble-1">關於我</a>
             <a href="painting.html" class="bubble bubble-2">我的畫廊</a>
             <a href="reading.html" class="bubble bubble-3">我的書籍心得</a>
-            <span class="bubble bubble-4" aria-disabled="true">
           </div>
         </section>
     </div>
@@ -226,9 +220,9 @@
         <li><a href="about.html">自我介紹</a></li>
         <li><a href="painting.html">畫廊</a></li>
         <li><a href="reading.html">閱讀</a></li>
-        <li><a href="diary.html">生活日誌</a></li>
+        <li><span class="nav-disabled" aria-disabled="true">生活日誌（即將推出）</span></li>
       </ul>
-      <p class="footer-contact">聯絡我：<a href="mailto:你的信箱@gmail.com">你的信箱@gmail.com</a></p>
+      <p class="footer-contact">聯絡我：<a href="mailto:你的信箱@gmail.com">我的信箱@gmail.com</a></p>
       <p>版權所有，未經授權請勿轉載。&copy; 2026 默文</p>
     </footer>
 

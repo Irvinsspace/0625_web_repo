@@ -19,6 +19,17 @@
   --font-main: "MyHanaMin", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
 }
 
+ /* 尚未完成的nav-links網頁*/
+.nav-links .nav-disabled {
+  color: rgba(255, 255, 255, .5);
+  font-size: 16px;
+  cursor: not-allowed;
+}
+.dropdown-menu li .nav-disabled {
+  display: block;
+  padding: 10px 15px;
+}
+
 * {
   margin: 0;
   padding: 0;
