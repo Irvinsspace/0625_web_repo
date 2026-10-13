@@ -1,407 +1,199 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <title>默文的部落格</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="painting.css" />
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="默文的電繪與手繪作品集。">
+    <title>畫畫作品集｜默文的部落格</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="painting.css">
+</head>
+<body>
 
-  <body>
-    <nav class="sticky-navbar">
-      <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
-
-
-      <ul class="nav-links">
-        <li><a href="index.html">首頁</a></li>
-        <li><a href="about.html">自我介紹</a></li>
-
-        <li class="dropdown-parent">
-          <a href="#">喜好專欄</a>
-
-          <ul class="dropdown-menu">
-            <li><a href="painting.html">畫畫作品集</a></li>
-            <li><a href="reading.html">閱讀專欄</a></li>
-            <li><span class="nav-disabled" aria-disabled="true">小說</span></li>
-          </ul>
-        </li>
-
-        <li><span class="nav-disabled" aria-disabled="true">生活日誌</span></li>
-      </ul>
+    <nav class="sticky-navbar" aria-label="主選單">
+        <ul class="nav-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="about.html">自我介紹</a></li>
+            <li class="dropdown-parent">
+                <a href="#">喜好專欄</a>
+                <ul class="dropdown-menu">
+                    <li><a href="painting.html">畫畫作品集</a></li>
+                    <li><a href="reading.html">閱讀專欄</a></li>
+                    <li><span class="nav-disabled" aria-disabled="true">小說</span></li>
+                </ul>
+            </li>
+            <li><span class="nav-disabled" aria-disabled="true">生活日誌</span></li>
+        </ul>
     </nav>
 
-    <div class="main-container">
-      <!-- <div class="header-container">
-            <img src="banner\DP_banner.png" class="Banner" alt="橫幅">
-        </div> -->
+    <main class="main-container painting-page">
 
-      <input
-        type="radio"
-        id="btn-digital"
-        name="gallery-tab"
-        class="tab-input"
-        checked
-      />
-      <input
-        type="radio"
-        id="btn-traditional"
-        name="gallery-tab"
-        class="tab-input"
-      />
+        <!-- 分頁用的 radio 要放在最前面（CSS 靠它們切換畫廊）-->
+        <input type="radio" id="btn-digital" name="gallery-tab" class="tab-input" checked>
+        <input type="radio" id="btn-traditional" name="gallery-tab" class="tab-input">
 
-      <!-- 🌟 新增這層隱形的錨點 -->
-      <div class="sticky-anchor">
-        <div class="side-buttons">
-          <label for="btn-digital" class="side-btn">電繪區作品集</label>
-          <label for="btn-traditional" class="side-btn">手繪區作品集</label>
+        <h1 class="sr-only">畫畫作品集</h1>
+
+        <div class="sticky-anchor">
+            <div class="side-buttons">
+                <label for="btn-digital" class="side-btn">電繪區作品集</label>
+                <label for="btn-traditional" class="side-btn">手繪區作品集</label>
+            </div>
         </div>
-      </div>
 
-      <section class="hint-box">
-        <h3>小提示</h3>
-        <p>
-          歡迎。這裡分別是我電繪與手繪作品的作品集。<br />
-          通常使用的繪圖軟體是 Medibang。厚塗或是插圖畫風都是我擅長的。<br />
-          可以點擊藝廊圖片來放大觀賞，也能看到我的簡單註解。
-        </p>
-      </section>
+        <section class="hint-box">
+            <h2>小提示</h2>
+            <p>
+                歡迎。這裡分別是我電繪與手繪作品的作品集。<br>
+                通常使用的繪圖軟體是 Medibang。厚塗或是插圖畫風都是我擅長的。<br>
+                可以點擊藝廊圖片來放大觀賞，也能看到我的簡單註解。
+            </p>
+        </section>
 
-      <!-- 1️⃣ 電繪畫廊區塊 -->
-      <div style="padding-top: 100px"></div>
-      <div class="gallery-content digital-gallery">
-        <div class="gallery-grid">
-          <!-- 每一張圖都加上 polaroid 類別，以及防右鍵/拖曳屬性 -->
-          <img
-            src="pictures\Explore.png"
-            data-text="探索。(2026/10)"
-            alt="畫作1"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="pictures\painting.png"
-            data-text="心之所向。(2026/09)"
-            alt="畫作2"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="pictures\traveling.png"
-            data-text="旅行的意義。(2026/09)"
-            alt="畫作3"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="pictures\Hobbies_reading.png"
-            data-text="讀書的喜好。(2026/09)"
-            alt="畫作ˋ"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\sunflower_08182026.png"
-            data-text="黃昏感的光影變化練習。(2026/08)"
-            alt="畫作ㄓ"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\sunflower_edited.png"
-            data-text="版面設計練習。(2026/09)"
-            alt="畫作ˊ"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\Your Glaze.png"
-            data-text="首次嘗試畫黑白光影的原創角色形象圖(2026/06)"
-            alt="畫作˙"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\mooreArt_001.png"
-            data-text="原創角色形象繪製(2026/06)"
-            alt="畫作ㄚ"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\Chen_2025.3.20.png"
-            data-text="寫實場景透視練習(2025/03)"
-            alt="畫作9"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="pictures\banner.png"
-            alt="畫作9"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\MW12.png"
-            data-text="小說角色繪製/水墨風上色嘗試(2025/01)"
-            alt="畫作10"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\ghrr.png"
-            alt="畫作11"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\city of tears.png"
-            data-text="電玩遊戲 空洞騎士 的同人作品。(2022/06)"
-            alt="畫作12"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\sailor moon redraw challange 20210925.png"
-            data-text="前陣子繪圈流行的水手月亮挑戰(2021/09)"
-            alt="畫作12"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\Practice0001.png"
-            alt="畫作13"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\blue_eyes.png"
-            data-text="大頭貼草圖草圖構思。(2024/02)"
-            alt="畫作14"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\blue_eyes(f)20240215.png"
-            data-text="幫友繪製的大頭貼成品。(2024/02)"
-            alt="畫作14"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\gura(hbd davi)01292024.png"
-            data-text="送給朋友的Gura Vtuber插圖頭像。(2024/01)"
-            alt="畫作15"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\me0003.png"
-            alt="畫作16"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\jojo_Kakyoin.png"
-            data-text="當年在追Jojo系列時畫下的Q版花京院。(2022/10)"
-            alt="畫作17"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\Amenor01.png"
-            data-text="小說設定的原創角色。(2024/05)"
-            alt="畫作18"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\c.png"
-            alt="畫作19"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings/kirby return to dreamland.png"
-            data-text="我很喜歡的電玩遊戲角色們。(2024/02)"
-            alt="畫作20"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings/w1.png"
-            data-text="原創角色戰鬥姿態練習草圖。(2023/07)"
-            alt="畫作21"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings/winterson11.png"
-            data-text="原創角色寫實感形象練習(2023/03)"
-            alt="畫作22"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings/Mervyns.png"
-            data-text="梗圖式的角色形象展示(2026/05)"
-            alt="畫作23"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\miren_wallpaper(g)_9.5.22.png"
-            alt="畫作24"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\miren6 6.3.2023.png"
-            alt="畫作25"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings/0001.png"
-            data-text="補足小說設定形象的宇宙航艦。(2023/03)"
-            alt="畫作26"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\me(24.10.25).png"
-            data-text="自己的插畫風肖像。(2024/10)"
-            alt="畫作27"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\N 06172026.png"
-            data-text="角色形象設計草圖(2026/06)"
-            alt="畫作28"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="Paintings\reading.png"
-            data-text="地下書店中的自畫像 未完稿(始於2025/04)"
-            alt="畫作29"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
+        <!-- 圖片由下方的 paintings 清單自動產生 -->
+        <div class="gallery-content digital-gallery">
+            <div class="gallery-grid" id="grid-digital"></div>
         </div>
-      </div>
 
-      <!-- 2️⃣ 手繪畫廊 (預設隱藏，點了按鈕才會跑出來) -->
-      <div class="gallery-content traditional-gallery">
-        <div class="gallery-grid">
-          <img
-            src="traditionalArt\theSeven.jpg"
-            data-text="最喜歡的故事角色們。(2026/06)"
-            alt="手繪1"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
-          <img
-            src="圖檔路徑4"
-            data-text=" "
-            alt="手繪2"
-            class="polaroid"
-            oncontextmenu="return false;"
-            draggable="false"
-          />
+        <div class="gallery-content traditional-gallery">
+            <div class="gallery-grid" id="grid-traditional"></div>
         </div>
-      </div>
-    </div>
 
-    <!-- 這是點擊後才會跑出來的「放大預覽區 (Lightbox)」 -->
-    <div id="lightbox" class="lightbox">
-      <span class="close-btn">&times;</span>
-      <!-- 多包一層 wrapper 讓我們可以排版圖片和底下的文字 -->
-      <div class="lightbox-wrapper">
-        <img
-          id="lightbox-img"
-          src=""
-          alt="放大預覽"
-          oncontextmenu="return false;"
-          draggable="false"
-        />
-        <!-- 這是用來顯示白色介紹文字的地方 -->
-        <p id="lightbox-text" class="lightbox-text"></p>
-      </div>
+        <noscript><p class="noscript-note">需要開啟 JavaScript 才能瀏覽作品集。</p></noscript>
+    </main>
+
+    <!-- 點擊後的放大預覽 -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="作品放大預覽">
+        <button type="button" class="close-btn" aria-label="關閉">&times;</button>
+        <div class="lightbox-wrapper">
+            <img id="lightbox-img" src="" alt="">
+            <p id="lightbox-text" class="lightbox-text"></p>
+        </div>
     </div>
 
     <footer class="site-footer">
-      <ul>
-        <li><a href="about.html">自我介紹</a></li>
-        <li><a href="painting.html">畫廊</a></li>
-        <li><a href="reading.html">閱讀</a></li>
-        <li><a href="diary.html">生活日誌</a></li>
-      </ul>
-      <p class="footer-contact">聯絡我：<a href="mailto:你的信箱@gmail.com">我的信箱@gmail.com</a></p>
-      <p>版權所有，未經授權請勿轉載。&copy; 2026 默文</p>
+        <ul>
+            <li><a href="about.html">自我介紹</a></li>
+            <li><a href="painting.html">畫廊</a></li>
+            <li><a href="reading.html">閱讀</a></li>
+            <li><span class="nav-disabled" aria-disabled="true">生活日誌（即將推出）</span></li>
+        </ul>
+        <p class="footer-contact">聯絡我：<a href="mailto:你的信箱@gmail.com">你的信箱@gmail.com</a></p>
+        <p>版權所有，未經授權請勿轉載。&copy; 2026 默文</p>
     </footer>
-    <!-- 這一小段 JavaScript 負責控制點擊放大的魔法 -->
+
     <script>
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImg = document.getElementById("lightbox-img");
-      const lightboxText = document.getElementById("lightbox-text");
-      const images = document.querySelectorAll(".polaroid");
-      const closeBtn = document.querySelector(".close-btn");
+        /* =====================================================
+           作品清單：新增一張畫 = 加一行；拿掉一張 = 刪掉那一行（或在前面加 //）
+           title 會同時當作圖片說明、alt 文字與放大後的文字；date 與 title 都可省略
+           thumb 可選，之後想用縮圖加快載入時再加（見回覆說明）
+           ===================================================== */
+        const paintings = {
+            digital: [
+                { src: "pictures/Explore.png", title: "探索", date: "2026/10" },
+                { src: "pictures/painting.png", title: "心之所向", date: "2026/09" },
+                { src: "pictures/traveling.png", title: "旅行的意義", date: "2026/09" },
+                { src: "pictures/Hobbies_reading.png", title: "讀書的喜好", date: "2026/09" },
+                { src: "Paintings/sunflower_08182026.png", title: "黃昏感的光影變化練習", date: "2026/08" },
+                { src: "Paintings/sunflower_edited.png", title: "版面設計練習", date: "2026/09" },
+                { src: "Paintings/Your Glaze.png", title: "首次嘗試畫黑白光影的原創角色形象圖", date: "2026/06" },
+                { src: "Paintings/mooreArt_001.png", title: "原創角色形象繪製", date: "2026/06" },
+                { src: "Paintings/Chen_2025.3.20.png", title: "寫實場景透視練習", date: "2025/03" },
+                { src: "pictures/banner.png" },   // TODO：還沒有標題
+                { src: "Paintings/MW12.png", title: "小說角色繪製/水墨風上色嘗試", date: "2025/01" },
+                { src: "Paintings/ghrr.png" },   // TODO：還沒有標題
+                { src: "Paintings/city of tears.png", title: "電玩遊戲 空洞騎士 的同人作品", date: "2022/06" },
+                { src: "Paintings/sailor moon redraw challange 20210925.png", title: "前陣子繪圈流行的水手月亮挑戰", date: "2021/09" },
+                { src: "Paintings/Practice0001.png" },   // TODO：還沒有標題
+                { src: "Paintings/blue_eyes.png", title: "大頭貼草圖草圖構思", date: "2024/02" },
+                { src: "Paintings/blue_eyes(f)20240215.png", title: "幫友繪製的大頭貼成品", date: "2024/02" },
+                { src: "Paintings/gura(hbd davi)01292024.png", title: "送給朋友的Gura Vtuber插圖頭像", date: "2024/01" },
+                { src: "Paintings/me0003.png" },   // TODO：還沒有標題
+                { src: "Paintings/jojo_Kakyoin.png", title: "當年在追Jojo系列時畫下的Q版花京院", date: "2022/10" },
+                { src: "Paintings/Amenor01.png", title: "小說設定的原創角色", date: "2024/05" },
+                { src: "Paintings/c.png" },   // TODO：還沒有標題
+                { src: "Paintings/kirby return to dreamland.png", title: "我很喜歡的電玩遊戲角色們", date: "2024/02" },
+                { src: "Paintings/w1.png", title: "原創角色戰鬥姿態練習草圖", date: "2023/07" },
+                { src: "Paintings/winterson11.png", title: "原創角色寫實感形象練習", date: "2023/03" },
+                { src: "Paintings/Mervyns.png", title: "梗圖式的角色形象展示", date: "2026/05" },
+                { src: "Paintings/miren_wallpaper(g)_9.5.22.png" },   // TODO：還沒有標題
+                { src: "Paintings/miren6 6.3.2023.png" },   // TODO：還沒有標題
+                { src: "Paintings/0001.png", title: "補足小說設定形象的宇宙航艦", date: "2023/03" },
+                { src: "Paintings/me(24.10.25).png", title: "自己的插畫風肖像", date: "2024/10" },
+                { src: "Paintings/N 06172026.png", title: "角色形象設計草圖", date: "2026/06" },
+                { src: "Paintings/reading.png", title: "地下書店中的自畫像 未完稿", date: "始於2025/04" },
+            ],
+            traditional: [
+                { src: "traditionalArt/theSeven.jpg", title: "最喜歡的故事角色們", date: "2026/06" },
+            ],
+        };
 
-      // 當點擊小圖時，幫 Lightbox 穿上 'show' 的衣服，觸發淡入魔法！
-      images.forEach((img) => {
-        img.addEventListener("click", function () {
-          lightbox.classList.add("show");
-          lightboxImg.src = this.src;
-          lightboxText.innerText = this.getAttribute("data-text") || "";
-        });
-      });
+        /* ---------- 產生圖片 ---------- */
+        function render(list, grid) {
+            list.forEach((p) => {
+                const caption = p.title ? (p.date ? `${p.title}（${p.date}）` : p.title) : '';
 
-      // 點擊右上角叉叉，脫掉 'show' 的衣服關閉
-      closeBtn.addEventListener("click", function () {
-        lightbox.classList.remove("show");
-      });
+                const btn = document.createElement('button');   // 用 button 包起來，鍵盤也能開啟
+                btn.type = 'button';
+                btn.className = 'polaroid';
+                btn.dataset.full = p.src;
+                btn.dataset.caption = caption;
 
-      // 點擊黑色背景任何一處也能關閉
-      lightbox.addEventListener("click", function (e) {
-        if (e.target !== lightboxImg && e.target !== lightboxText) {
-          lightbox.classList.remove("show");
+                const img = document.createElement('img');
+                img.src = p.thumb || p.src;
+                img.alt = caption || '畫作';
+                img.loading = 'lazy';                           // 滑到才載入，50 張也不會拖慢
+                img.draggable = false;
+
+                btn.append(img);
+                grid.append(btn);
+            });
         }
-      });
+        render(paintings.digital, document.getElementById('grid-digital'));
+        render(paintings.traditional, document.getElementById('grid-traditional'));
+
+        /* ---------- 放大預覽 ---------- */
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxText = document.getElementById('lightbox-text');
+        const closeBtn = lightbox.querySelector('.close-btn');
+        let lastFocus = null;
+
+        function openLightbox(btn) {
+            lastFocus = btn;
+            lightboxImg.src = btn.dataset.full;
+            lightboxImg.alt = btn.dataset.caption || '畫作';
+            lightboxText.textContent = btn.dataset.caption;
+            lightbox.classList.add('show');
+            document.documentElement.classList.add('no-scroll');   // 預覽時背景不要跟著捲動
+            closeBtn.focus();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('show');
+            document.documentElement.classList.remove('no-scroll');
+            if (lastFocus) lastFocus.focus();
+        }
+
+        // 一個監聽器處理所有圖片
+        document.querySelector('.painting-page').addEventListener('click', (e) => {
+            const btn = e.target.closest('.polaroid');
+            if (btn) openLightbox(btn);
+        });
+
+        // 點黑色背景或叉叉關閉；點到圖片或文字不關
+        lightbox.addEventListener('click', (e) => {
+            if (!e.target.closest('.lightbox-wrapper img, .lightbox-text')) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('show')) closeLightbox();
+        });
+
+        // 禁止圖片右鍵（只擋得住一般使用者，擋不了截圖）
+        document.addEventListener('contextmenu', (e) => {
+            if (e.target.tagName === 'IMG') e.preventDefault();
+        });
     </script>
-  </body>
+</body>
 </html>
