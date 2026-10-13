@@ -41,7 +41,7 @@ img {
 .main-container { min-height: 0; }
 
 /* 共用：置中內容欄 */
-.about, .latest, .start, .carousel-section {
+.about, .latest, .start, .carousel {
     width: min(100% - 40px, var(--wrap));
     margin-inline: auto;
 }
@@ -138,7 +138,11 @@ img {
 .about-img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
 
 /* ---------- 輪播 ---------- */
+
+.carousel { padding-top: var(--gap); }
+
 .carousel-section {
+    display: grid;
     position: relative;
     aspect-ratio: 3 / 2;
     overflow: hidden;

@@ -117,61 +117,65 @@
       </div>
 
       <!-- 輪播：預設第 1 張，每張都有明確的前往連結 -->
-      <section class="carousel-section" aria-label="內容精選">
-        <input type="radio" name="slider" id="slide1"  />
-        <!-- <input type="radio" name="slider" id="slide2" /> -->
-        <input type="radio" name="slider" id="slide3" checked />
+      <section class="carousel">
+        <h2 class="section-title fade-in">在這裡，你能看到...</h2>
 
-        <div class="carousel-slides">
-          <div class="slide slide-1">
-            <label for="slide3" class="image-btn">
-              <img
-                src="pictures/Hobbies_reading.png"
-                alt="閱讀"
-                loading="lazy"
-                draggable="false"
-              />
-            </label>
-            <div class="slide-text">
-              <h2>分享我喜愛的書籍</h2>
-              <a class="slide-link" href="reading.html">前往閱讀專欄</a>
+        <div class="carousel-section" aria-label="內容精選">
+          <input type="radio" name="slider" id="slide1"  />
+          <!-- <input type="radio" name="slider" id="slide2" /> -->
+          <input type="radio" name="slider" id="slide3" checked />
+
+          <div class="carousel-slides">
+            <div class="slide slide-1">
+              <label for="slide3" class="image-btn">
+                <img
+                  src="pictures/Hobbies_reading.png"
+                  alt="閱讀"
+                  loading="lazy"
+                  draggable="false"
+                />
+              </label>
+              <div class="slide-text">
+                <h2>分享我喜愛的書籍</h2>
+                <a class="slide-link" href="reading.html">前往閱讀專欄</a>
+              </div>
             </div>
-          </div>
 
-          <!-- <div class="slide slide-2">
-            <label for="slide3" class="image-btn">
-              <img
-                src="pictures/traveling.png"
-                alt="旅行"
-                loading="lazy"
-                draggable="false"
-              />
-            </label>
-            <div class="slide-text">
-              <h2>我的旅行記事</h2>
+            <!-- <div class="slide slide-2">
+              <label for="slide3" class="image-btn">
+                <img
+                  src="pictures/traveling.png"
+                  alt="旅行"
+                  loading="lazy"
+                  draggable="false"
+                />
+              </label>
+              <div class="slide-text">
+                <h2>我的旅行記事</h2>
 
+              </div>
+            </div>-->
+
+            <div class="slide slide-3">
+              <label for="slide1" class="image-btn">
+                <img
+                  src="pictures/painting.png"
+                  alt="繪畫"
+                  loading="lazy"
+                  draggable="false"
+                />
+              </label>
+              <div class="slide-text">
+                <h2>我的圖畫作品</h2>
+                <a class="slide-link" href="painting.html">前往畫廊</a>
+              </div>
             </div>
-          </div>-->
 
-          <div class="slide slide-3">
-            <label for="slide1" class="image-btn">
-              <img
-                src="pictures/painting.png"
-                alt="繪畫"
-                loading="lazy"
-                draggable="false"
-              />
-            </label>
-            <div class="slide-text">
-              <h2>我的圖畫作品</h2>
-              <a class="slide-link" href="painting.html">前往畫廊</a>
+            <div class="carousel-dots">
+              <label for="slide1" aria-label="第 1 張"></label>
+              <!-- <label for="slide2" aria-label="第 2 張"></label> -->
+              <label for="slide3" aria-label="第 3 張"></label>
             </div>
-          </div>
-
-          <div class="carousel-dots">
-            <label for="slide1" aria-label="第 1 張"></label>
-            <!-- <label for="slide2" aria-label="第 2 張"></label> -->
-            <label for="slide3" aria-label="第 3 張"></label>
           </div>
         </div>
       </section>
